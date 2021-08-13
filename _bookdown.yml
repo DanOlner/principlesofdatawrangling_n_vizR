@@ -2,6 +2,6 @@ book_filename: "Introduction to the principles of data wrangling and visualisati
 chapter_name: ""
 repo: https://github.com/seankross/bookdown-start
 output_dir: docs
-rmd_files: ["index.Rmd", "01-Introduction.Rmd"]
+rmd_files: ["index.Rmd", "01_basics.Rmd", "02_viz_n_wrangling.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes

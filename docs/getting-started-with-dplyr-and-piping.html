@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Getting started with dplyr and piping | Introduction to the principles of data wrangling and visualisation in R</title>
+  <meta name="description" content="11 Getting started with dplyr and piping | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Getting started with dplyr and piping | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="seankross/bookdown-start" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Getting started with dplyr and piping | Introduction to the principles of data wrangling and visualisation in R" />
+  
+  
+  
+
+<meta name="author" content="Dan Olner" />
+
+
+<meta name="date" content="2021-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="using-ggplots-own-stat-functions.html"/>
+<link rel="next" href="using-scales-to-control-appearance.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to the principles of data wrangling and visualisation in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="getting-r-and-rstudio.html"><a href="getting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting R and RStudio</a></li>
+<li class="chapter" data-level="3" data-path="r-studio.html"><a href="r-studio.html"><i class="fa fa-check"></i><b>3</b> R-Studio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-studio.html"><a href="r-studio.html#a-first-look-at-rstudio"><i class="fa fa-check"></i><b>3.1</b> A first look at RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="r-studio.html"><a href="r-studio.html#entering-commands-in-r"><i class="fa fa-check"></i><b>3.2</b> Entering commands in R</a></li>
+<li class="chapter" data-level="3.3" data-path="r-studio.html"><a href="r-studio.html#assigning-to-variables"><i class="fa fa-check"></i><b>3.3</b> Assigning to variables</a></li>
+<li class="chapter" data-level="3.4" data-path="r-studio.html"><a href="r-studio.html#opening-a-project-in-rstudio"><i class="fa fa-check"></i><b>3.4</b> Opening a project in RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="r-studio.html"><a href="r-studio.html#creating-a-new-script-and-running-code-in-it"><i class="fa fa-check"></i><b>3.5</b> Creating a new script and running code in it</a></li>
+<li class="chapter" data-level="3.6" data-path="r-studio.html"><a href="r-studio.html#but-will-it-make-sense-in-two-months-time-using-comments-and-sections"><i class="fa fa-check"></i><b>3.6</b> ‘But will it make sense in two month’s time…?’ Using comments and sections</a></li>
+<li class="chapter" data-level="3.7" data-path="r-studio.html"><a href="r-studio.html#its-all-about-the-libraries"><i class="fa fa-check"></i><b>3.7</b> It’s all about the libraries</a></li>
+<li class="chapter" data-level="3.8" data-path="r-studio.html"><a href="r-studio.html#loading-a-file-into-a-dataframe-and-examining-the-data"><i class="fa fa-check"></i><b>3.8</b> Loading a file into a dataframe and examining the data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>4</b> Introduction</a></li>
+<li class="chapter" data-level="5" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>5</b> Getting started</a></li>
+<li class="chapter" data-level="6" data-path="loading-the-libraries.html"><a href="loading-the-libraries.html"><i class="fa fa-check"></i><b>6</b> Loading the libraries</a></li>
+<li class="chapter" data-level="7" data-path="loading-the-house-price-data.html"><a href="loading-the-house-price-data.html"><i class="fa fa-check"></i><b>7</b> Loading the house price data</a></li>
+<li class="chapter" data-level="8" data-path="lets-jump-right-into-ggplot.html"><a href="lets-jump-right-into-ggplot.html"><i class="fa fa-check"></i><b>8</b> Let’s jump right into ggplot</a></li>
+<li class="chapter" data-level="9" data-path="the-lubridate-library.html"><a href="the-lubridate-library.html"><i class="fa fa-check"></i><b>9</b> The lubridate library</a></li>
+<li class="chapter" data-level="10" data-path="using-ggplots-own-stat-functions.html"><a href="using-ggplots-own-stat-functions.html"><i class="fa fa-check"></i><b>10</b> Using ggplot’s own stat functions</a></li>
+<li class="chapter" data-level="11" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html"><i class="fa fa-check"></i><b>11</b> Getting started with <strong>dplyr</strong> and <strong>piping</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#piping"><i class="fa fa-check"></i><b>11.1</b> Piping!</a></li>
+<li class="chapter" data-level="11.2" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#dplyrs-verbs"><i class="fa fa-check"></i><b>11.2</b> <strong>dplyr</strong>’s verbs</a></li>
+<li class="chapter" data-level="11.3" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#and-a-few-extras-while-were-here"><i class="fa fa-check"></i><b>11.3</b> And a few extras while we’re here…</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="using-scales-to-control-appearance.html"><a href="using-scales-to-control-appearance.html"><i class="fa fa-check"></i><b>12</b> Using scales to control appearance</a></li>
+<li class="chapter" data-level="13" data-path="scales-for-controlling-colour.html"><a href="scales-for-controlling-colour.html"><i class="fa fa-check"></i><b>13</b> Scales for controlling colour</a></li>
+<li class="chapter" data-level="14" data-path="using-factors-to-control-order-of-variables.html"><a href="using-factors-to-control-order-of-variables.html"><i class="fa fa-check"></i><b>14</b> Using factors to control order of variables</a></li>
+<li class="chapter" data-level="15" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html"><i class="fa fa-check"></i><b>15</b> Joining data sources together</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#gathering-into-long-form"><i class="fa fa-check"></i><b>15.1</b> `Gathering’ into long form</a></li>
+<li class="chapter" data-level="15.2" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#saving-and-reloading-the-housing-data"><i class="fa fa-check"></i><b>15.2</b> Saving and reloading the housing data</a></li>
+<li class="chapter" data-level="15.3" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#merging-the-housing-and-wages-data"><i class="fa fa-check"></i><b>15.3</b> Merging the housing and wages data</a></li>
+<li class="chapter" data-level="15.4" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#choosing-a-subset-based-on-some-criterion"><i class="fa fa-check"></i><b>15.4</b> Choosing a subset based on some criterion</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html"><i class="fa fa-check"></i><b>16</b> Saving ggplots as image files</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html#time-for-a-pause"><i class="fa fa-check"></i><b>16.1</b> Time for a pause!</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="six-and-a-bit-options.html"><a href="six-and-a-bit-options.html"><i class="fa fa-check"></i><b>17</b> SIX (and a bit) OPTIONS</a></li>
+<li class="chapter" data-level="18" data-path="prettifying-a-graph.html"><a href="prettifying-a-graph.html"><i class="fa fa-check"></i><b>18</b> Prettifying a graph</a></li>
+<li class="chapter" data-level="19" data-path="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><a href="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><i class="fa fa-check"></i><b>19</b> Facetting and dodging: getting as much info into one graph as humanly possible</a></li>
+<li class="chapter" data-level="20" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>20</b> Iteration</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="iteration.html"><a href="iteration.html#outputting-multiple-plots"><i class="fa fa-check"></i><b>20.1</b> 1. Outputting multiple plots</a></li>
+<li class="chapter" data-level="20.2" data-path="iteration.html"><a href="iteration.html#pulling-out-multiple-model-values-and-visualising-them"><i class="fa fa-check"></i><b>20.2</b> 2. Pulling out multiple model values and visualising them</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html"><i class="fa fa-check"></i><b>21</b> A little bit of mapping</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms"><i class="fa fa-check"></i><b>21.1</b> One simple way to use ggplot for mapping: the 2D geoms</a></li>
+<li class="chapter" data-level="21.2" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#using-cowplot-to-get-around-the-facetting-problem"><i class="fa fa-check"></i><b>21.2</b> Using cowplot to get around the facetting problem</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><a href="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><i class="fa fa-check"></i><b>22</b> Making a map using the simple features library, tmap and a bit of wrangling</a></li>
+<li class="chapter" data-level="23" data-path="a-last-little-ggplot-mapping-example.html"><a href="a-last-little-ggplot-mapping-example.html"><i class="fa fa-check"></i><b>23</b> A last little ggplot mapping example</a></li>
+<li class="chapter" data-level="24" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>24</b> Data sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to the principles of data wrangling and visualisation in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started-with-dplyr-and-piping" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Getting started with <strong>dplyr</strong> and <strong>piping</strong></h1>
+<p>We’re going to be mainly using <strong>dplyr</strong> to reshape our data into different forms for the visualisations. (We’ve already loaded this library as part of the <strong>tidyverse</strong> package.)</p>
+<p>Before we get to <strong>dplyr</strong> itself -</p>
+<div id="piping" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Piping!</h2>
+<blockquote>
+<p><strong>Piping is <em>magic</em>: it will make everything spectacularly easier and tidier.</strong></p>
+</blockquote>
+<blockquote>
+<p>Specifically, this is <strong>the pipe operator</strong>. It loads with <strong>dplyr</strong> and looks like this:</p>
+</blockquote>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-32-1.png" width="192" style="display: block; margin: auto;" /></p>
+<p>A quick recap: <strong>pretty much everything in R is a function</strong>. For example, to find the square root of a number, use the <strong>sqrt</strong> function:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="getting-started-with-dplyr-and-piping.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>Functions can nest in functions. If, for some reason, you wanted to find the base 10 log of the square root of 100, you could nest like this:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="getting-started-with-dplyr-and-piping.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="fu">sqrt</span>(<span class="dv">100</span>))</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>And so on, if you had more complex things to accomplish. <strong>The pipe operator makes this much more intuitive and readable</strong>. So instead of the above, we can do this:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="getting-started-with-dplyr-and-piping.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="getting-started-with-dplyr-and-piping.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>() <span class="sc">%&gt;%</span> <span class="fu">log10</span>()</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>So what we’re doing here: <strong>piping the result from one function into the next until we get the output we’re after</strong>. The number 100 is <strong>piped</strong> into the <strong>sqrt</strong> function - the output from that function (10) is <strong>piped</strong> into the <strong>log</strong> function.</p>
+<p>The power of this is:</p>
+<ul>
+<li>It lets us create a conveyor belt for what we do with data in a way that can very easily be changed at any stage in the process.</li>
+<li><strong>dplyr</strong> is designed with this in mind.</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>As with the assignment operator, typing percent-more-than-percent every time you want the pipe operator is a pain: so RStudio has another shortcut key.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>This time it’s: CTRL + SHIFT + M. Try this in the next bit of coding.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>This is also on your one page shortcut key guide.</strong></p>
+</blockquote>
+<hr />
+</div>
+<div id="dplyrs-verbs" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> <strong>dplyr</strong>’s verbs</h2>
+<p>We can use the <strong>pipe operator</strong> to link <strong>dplyr verbs</strong> together - these are <strong>functions that reshape the data in various useful ways</strong>. We’ll go through them one by one and end with a <strong>ggplot</strong>.</p>
+<p>Let’s start by <strong>finding a summary statistic</strong>. We’ll find the average price in the housing data.</p>
+<blockquote>
+<p><strong>It’s good practice to have each dplyr verb on its own line. Notice how RStudio helps with this too: pressing return at the end of one line, after the pipe, automatically indents the next line. We’ll do the same with ggplot in the next section.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="getting-started-with-dplyr-and-piping.html#cb107-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span> </span>
+<span id="cb107-2"><a href="getting-started-with-dplyr-and-piping.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `mean(price)`
+##           &lt;dbl&gt;
+## 1       225522.</code></pre>
+<hr />
+<blockquote>
+<p><strong><em>Verb 1: summarise</em>. This passes all values from the column name you pass - in this case price - and we tell it to find the mean. It then gives you a <em>single row back</em> with the summary in.</strong></p>
+</blockquote>
+<hr />
+<p>Notice here: <strong>dplyr</strong> (like almost all <strong>tidyverse</strong> functions) takes in <strong>bare variable names.</strong> It knows the variable is from <strong>sales</strong> as we’ve just piped that in.</p>
+<p>But that’s the average price for the whole time range - <strong>what about one year?</strong></p>
+<hr />
+<blockquote>
+<p><strong><em>Verb 2: filter</em>. We can filter by year. So we’ve now got <em>two</em> pipe operators:</strong></p>
+</blockquote>
+<hr />
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="getting-started-with-dplyr-and-piping.html#cb109-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span> </span>
+<span id="cb109-2"><a href="getting-started-with-dplyr-and-piping.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb109-3"><a href="getting-started-with-dplyr-and-piping.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `mean(price)`
+##           &lt;dbl&gt;
+## 1       390511.</code></pre>
+<p>The <strong>filter</strong> verb uses <strong>logical operators</strong> to query each row in the data. The full list of these <strong>is on the data wrangling cheatsheet</strong>. Here they are again:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-38-1.png" width="240" style="display: block; margin: auto;" /></p>
+<p>Note especially the <strong>double equals</strong> we just used: this allows us to find exact matches for values and text (in this case, matching to 2015).</p>
+<p><strong>A quick reminder of how R uses logical operators to create TRUE/FALSE vectors</strong>. (TRUE/FALSE values are also known as <strong>boolean</strong> values.) Here’s an illustration of two logical operators checking their condition against each row of the chosen variable:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-39-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>So all <strong>filter</strong> does is take in a vector like this …</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="getting-started-with-dplyr-and-piping.html#cb111-1" aria-hidden="true" tabindex="-1"></a>ttwa<span class="sc">==</span><span class="st">&#39;Bradford&#39;</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<p>… and then use that to <strong>keep the TRUE values</strong>. This is worth repeating, as once that’s clear, you can produce <strong>any kind of boolean vector you like</strong> to filter the data. More on this shortly.</p>
+<p>So: <strong>filter</strong> picked out one particular year. But what if we want average price <strong>for each year?</strong></p>
+<hr />
+<blockquote>
+<p><strong><em>Verb 3: group_by</em>. This will <em>group the data by the category or categories we give it</em>. The next function will then <em>apply to each group.</em> You’ll get one row per group with the mean in:</strong></p>
+</blockquote>
+<hr />
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="getting-started-with-dplyr-and-piping.html#cb113-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span> </span>
+<span id="cb113-2"><a href="getting-started-with-dplyr-and-piping.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb113-3"><a href="getting-started-with-dplyr-and-piping.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## # A tibble: 24 x 2
+##     year `mean(price)`
+##    &lt;dbl&gt;         &lt;dbl&gt;
+##  1  1995        79425.
+##  2  1996        84693.
+##  3  1997        94675.
+##  4  1998       104499.
+##  5  1999       120137.
+##  6  2000       137448.
+##  7  2001       151563.
+##  8  2002       173274.
+##  9  2003       188621.
+## 10  2004       212300.
+## # ... with 14 more rows</code></pre>
+<p>That’s given us average price per year - but has just showed some of them in the console. <strong>To be able to work with this returned dataframe, we need to assign it to a variable name:</strong></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="getting-started-with-dplyr-and-piping.html#cb115-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb115-2"><a href="getting-started-with-dplyr-and-piping.html#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-3"><a href="getting-started-with-dplyr-and-piping.html#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<p>You’ll see <strong>saleSummary</strong> has appeared in the environment pane: <strong>click on it to view the new summary data.</strong></p>
+<hr />
+<p>One more thing before making another graph: if we want to find out average price per year <strong>and per city/ttwa</strong>, just include both in the <strong>group_by</strong> function.</p>
+<p>We’ll add one more thing here too. <strong>dplyr</strong> defaults the summary variable name to <strong>mean(price)</strong> - but we can <strong>set the name ourselves in summarise</strong> if we want something more sensible:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="getting-started-with-dplyr-and-piping.html#cb116-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb116-2"><a href="getting-started-with-dplyr-and-piping.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ttwa,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb116-3"><a href="getting-started-with-dplyr-and-piping.html#cb116-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;ttwa&#39;. You can override using the `.groups` argument.</code></pre>
+<p>saleSummary now has <strong>one column each for ttwa and year in long format</strong>, each with a price average. <strong>Which is exactly what we need to map each of those to aesthetics in ggplot.</strong></p>
+<p>Note also: an advantage of this separate-line approach to coding is: it’s easy to try different things, keep them and comment them out. So for instance, for the previous code, we could have kept the <strong>filter</strong> verb in place in case we wanted to come back to it:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="getting-started-with-dplyr-and-piping.html#cb118-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb118-2"><a href="getting-started-with-dplyr-and-piping.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(year == 2018) %&gt;% </span></span>
+<span id="cb118-3"><a href="getting-started-with-dplyr-and-piping.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ttwa,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-4"><a href="getting-started-with-dplyr-and-piping.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price))</span></code></pre></div>
+<hr />
+<p><strong>This can now go straight into ggplot:</strong></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="getting-started-with-dplyr-and-piping.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb119-2"><a href="getting-started-with-dplyr-and-piping.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-47-1.png" width="595.2" style="display: block; margin: auto;" /></p>
+</div>
+<div id="and-a-few-extras-while-were-here" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> And a few extras while we’re here…</h2>
+<p>There are a number of other <strong>dplyr</strong> verbs and we’ll cover some of them below, but for now, let’s just make some additions to what we’ve done, to introduce some new ideas.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Using another geometry</strong></li>
+</ol>
+<p>First: <strong>we can use a different geometry</strong> - we don’t have to stick to points. With data over time, it makes sense to link time points with a <strong>line</strong>. As you might guess, the <strong>geom_line</strong> geometry will do this. Comment out <strong>geom_point</strong> for now and add it:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="getting-started-with-dplyr-and-piping.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb120-2"><a href="getting-started-with-dplyr-and-piping.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-48-1.png" width="595.2" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="getting-started-with-dplyr-and-piping.html#cb121-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_point()</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Layering geometries</strong></li>
+</ol>
+<p>You’re not limited to one geometry: <strong>you can layer them.</strong> So if we just <strong>un-comment geom_point</strong> (and make sure <strong>there’s a plus</strong> at the end of geom_line):</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="getting-started-with-dplyr-and-piping.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb122-2"><a href="getting-started-with-dplyr-and-piping.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb122-3"><a href="getting-started-with-dplyr-and-piping.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-49-1.png" width="595.2" style="display: block; margin: auto;" /></p>
+<p>Note that our <strong>aesthetic mapping of colour to TTWA has applied to both lines and points.</strong> More on that shortly.</p>
+<p>What if we want <strong>geom_point</strong> to represent something different? Well…</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Summarising for more than one variable</strong></li>
+</ol>
+<p>Say we want to show the <strong>number of sales for each TTWA in each year</strong>. The first thing to do is <strong>count the sales via dplyr’s summarise</strong>. This requires an update to our previous <strong>dplyr</strong> code - <strong>just add another summary variable to the summarise function:</strong></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="getting-started-with-dplyr-and-piping.html#cb123-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb123-2"><a href="getting-started-with-dplyr-and-piping.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ttwa,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-3"><a href="getting-started-with-dplyr-and-piping.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price), <span class="at">countOfSales =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;ttwa&#39;. You can override using the `.groups` argument.</code></pre>
+<p>You’ll see we now have <strong>countOfSales</strong> as well as <strong>meanPrice</strong>:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-51-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><strong>What does n() do?</strong> It’s <strong>dplyr</strong> shorthand for ‘number of observations’: if we’ve grouped the data, <strong>it will give us the number of observations per group</strong>. (You can see this and other <strong>summarise</strong> functions on page 2 of the <strong>dplyr</strong> cheatsheet.)</p>
+<blockquote>
+<p><strong>Now we have a count of sales, we can use this directly in <em>geom_point</em>.</strong> This is done by <strong>using the aes function in the geometry itself:</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="getting-started-with-dplyr-and-piping.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb125-2"><a href="getting-started-with-dplyr-and-piping.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb125-3"><a href="getting-started-with-dplyr-and-piping.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-52-1.png" width="595.2" style="display: block; margin: auto;" /></p>
+<p>The <strong>size of the points</strong> now represents <strong>count of sales</strong>. <strong>ggplot</strong> gives it its own legend.</p>
+<p>Two things to note here:</p>
+<ul>
+<li>If you’ve mapped an aesthetic in the top <strong>ggplot</strong> function <strong>it will cascade to all other geometries.</strong> However, we can <strong>over-ride this within those geometries using their own aes function.</strong></li>
+<li><strong>The order of geometries determines which draws first.</strong> This can be used to control the look. We’ll do that next.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>The order of drawing and deciding where to map aesthetics</strong></li>
+</ol>
+<p>Say we don’t want colour to be mapped to both points and lines. There are a couple of options - one (the most flexible) is to <strong>overwrite the colour mapping in geom_point</strong> by <strong>choosing our own colour directly</strong>.</p>
+<ul>
+<li>We do this by setting the points’ colour <strong>outside of aes</strong> to what we want. We’re not mapping to any variable this time, just setting it to a single value. There are a <strong>list of named colours we can use</strong>, including ‘grey’ (more on this list below):</li>
+</ul>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="getting-started-with-dplyr-and-piping.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb126-2"><a href="getting-started-with-dplyr-and-piping.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb126-3"><a href="getting-started-with-dplyr-and-piping.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-53-1.png" width="595.2" style="display: block; margin: auto;" /></p>
+<p>The general principle here:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Each list of aesthetics under the geometries on the cheatsheet can be <em>either</em> mapped to a variable (by including them in the <em>aes</em> function ) <em>or</em> set directly to a single type.</strong></li>
+<li>Setting these within a <strong>geom</strong> has the effect of <strong>over-riding</strong> the cascading value.</li>
+</ol>
+<hr />
+<p>In this graph, <strong>points are drawn over the lines.</strong> This might look better if they were under them. <strong>To do this, just change the order.</strong> Having everything on separate lines makes this a little easier, though <strong>be careful to make sure pluses are in the right place</strong>.</p>
+<p>Also: <strong>remember you can use ALT + up/down arrows to move lines of code.</strong> So, shifting <strong>geom_point</strong> behind <strong>geom_line</strong> (and remembering to shift the <strong>plus</strong> as well…):</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="getting-started-with-dplyr-and-piping.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb127-2"><a href="getting-started-with-dplyr-and-piping.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb127-3"><a href="getting-started-with-dplyr-and-piping.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="co"># &lt;&lt;&lt; moved this down one line and moved the plus too</span></span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-54-1.png" width="595.2" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="using-ggplots-own-stat-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-scales-to-control-appearance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

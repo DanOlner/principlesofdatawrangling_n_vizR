@@ -45,3 +45,5 @@ po/*~
 *.docx
 
 *.tmp
+
+data/*

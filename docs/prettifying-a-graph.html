@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>18 Prettifying a graph | Introduction to the principles of data wrangling and visualisation in R</title>
+  <meta name="description" content="18 Prettifying a graph | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="18 Prettifying a graph | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="seankross/bookdown-start" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="18 Prettifying a graph | Introduction to the principles of data wrangling and visualisation in R" />
+  
+  
+  
+
+<meta name="author" content="Dan Olner" />
+
+
+<meta name="date" content="2021-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="six-and-a-bit-options.html"/>
+<link rel="next" href="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to the principles of data wrangling and visualisation in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="getting-r-and-rstudio.html"><a href="getting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting R and RStudio</a></li>
+<li class="chapter" data-level="3" data-path="r-studio.html"><a href="r-studio.html"><i class="fa fa-check"></i><b>3</b> R-Studio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-studio.html"><a href="r-studio.html#a-first-look-at-rstudio"><i class="fa fa-check"></i><b>3.1</b> A first look at RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="r-studio.html"><a href="r-studio.html#entering-commands-in-r"><i class="fa fa-check"></i><b>3.2</b> Entering commands in R</a></li>
+<li class="chapter" data-level="3.3" data-path="r-studio.html"><a href="r-studio.html#assigning-to-variables"><i class="fa fa-check"></i><b>3.3</b> Assigning to variables</a></li>
+<li class="chapter" data-level="3.4" data-path="r-studio.html"><a href="r-studio.html#opening-a-project-in-rstudio"><i class="fa fa-check"></i><b>3.4</b> Opening a project in RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="r-studio.html"><a href="r-studio.html#creating-a-new-script-and-running-code-in-it"><i class="fa fa-check"></i><b>3.5</b> Creating a new script and running code in it</a></li>
+<li class="chapter" data-level="3.6" data-path="r-studio.html"><a href="r-studio.html#but-will-it-make-sense-in-two-months-time-using-comments-and-sections"><i class="fa fa-check"></i><b>3.6</b> ‘But will it make sense in two month’s time…?’ Using comments and sections</a></li>
+<li class="chapter" data-level="3.7" data-path="r-studio.html"><a href="r-studio.html#its-all-about-the-libraries"><i class="fa fa-check"></i><b>3.7</b> It’s all about the libraries</a></li>
+<li class="chapter" data-level="3.8" data-path="r-studio.html"><a href="r-studio.html#loading-a-file-into-a-dataframe-and-examining-the-data"><i class="fa fa-check"></i><b>3.8</b> Loading a file into a dataframe and examining the data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>4</b> Introduction</a></li>
+<li class="chapter" data-level="5" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>5</b> Getting started</a></li>
+<li class="chapter" data-level="6" data-path="loading-the-libraries.html"><a href="loading-the-libraries.html"><i class="fa fa-check"></i><b>6</b> Loading the libraries</a></li>
+<li class="chapter" data-level="7" data-path="loading-the-house-price-data.html"><a href="loading-the-house-price-data.html"><i class="fa fa-check"></i><b>7</b> Loading the house price data</a></li>
+<li class="chapter" data-level="8" data-path="lets-jump-right-into-ggplot.html"><a href="lets-jump-right-into-ggplot.html"><i class="fa fa-check"></i><b>8</b> Let’s jump right into ggplot</a></li>
+<li class="chapter" data-level="9" data-path="the-lubridate-library.html"><a href="the-lubridate-library.html"><i class="fa fa-check"></i><b>9</b> The lubridate library</a></li>
+<li class="chapter" data-level="10" data-path="using-ggplots-own-stat-functions.html"><a href="using-ggplots-own-stat-functions.html"><i class="fa fa-check"></i><b>10</b> Using ggplot’s own stat functions</a></li>
+<li class="chapter" data-level="11" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html"><i class="fa fa-check"></i><b>11</b> Getting started with <strong>dplyr</strong> and <strong>piping</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#piping"><i class="fa fa-check"></i><b>11.1</b> Piping!</a></li>
+<li class="chapter" data-level="11.2" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#dplyrs-verbs"><i class="fa fa-check"></i><b>11.2</b> <strong>dplyr</strong>’s verbs</a></li>
+<li class="chapter" data-level="11.3" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#and-a-few-extras-while-were-here"><i class="fa fa-check"></i><b>11.3</b> And a few extras while we’re here…</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="using-scales-to-control-appearance.html"><a href="using-scales-to-control-appearance.html"><i class="fa fa-check"></i><b>12</b> Using scales to control appearance</a></li>
+<li class="chapter" data-level="13" data-path="scales-for-controlling-colour.html"><a href="scales-for-controlling-colour.html"><i class="fa fa-check"></i><b>13</b> Scales for controlling colour</a></li>
+<li class="chapter" data-level="14" data-path="using-factors-to-control-order-of-variables.html"><a href="using-factors-to-control-order-of-variables.html"><i class="fa fa-check"></i><b>14</b> Using factors to control order of variables</a></li>
+<li class="chapter" data-level="15" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html"><i class="fa fa-check"></i><b>15</b> Joining data sources together</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#gathering-into-long-form"><i class="fa fa-check"></i><b>15.1</b> `Gathering’ into long form</a></li>
+<li class="chapter" data-level="15.2" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#saving-and-reloading-the-housing-data"><i class="fa fa-check"></i><b>15.2</b> Saving and reloading the housing data</a></li>
+<li class="chapter" data-level="15.3" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#merging-the-housing-and-wages-data"><i class="fa fa-check"></i><b>15.3</b> Merging the housing and wages data</a></li>
+<li class="chapter" data-level="15.4" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#choosing-a-subset-based-on-some-criterion"><i class="fa fa-check"></i><b>15.4</b> Choosing a subset based on some criterion</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html"><i class="fa fa-check"></i><b>16</b> Saving ggplots as image files</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html#time-for-a-pause"><i class="fa fa-check"></i><b>16.1</b> Time for a pause!</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="six-and-a-bit-options.html"><a href="six-and-a-bit-options.html"><i class="fa fa-check"></i><b>17</b> SIX (and a bit) OPTIONS</a></li>
+<li class="chapter" data-level="18" data-path="prettifying-a-graph.html"><a href="prettifying-a-graph.html"><i class="fa fa-check"></i><b>18</b> Prettifying a graph</a></li>
+<li class="chapter" data-level="19" data-path="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><a href="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><i class="fa fa-check"></i><b>19</b> Facetting and dodging: getting as much info into one graph as humanly possible</a></li>
+<li class="chapter" data-level="20" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>20</b> Iteration</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="iteration.html"><a href="iteration.html#outputting-multiple-plots"><i class="fa fa-check"></i><b>20.1</b> 1. Outputting multiple plots</a></li>
+<li class="chapter" data-level="20.2" data-path="iteration.html"><a href="iteration.html#pulling-out-multiple-model-values-and-visualising-them"><i class="fa fa-check"></i><b>20.2</b> 2. Pulling out multiple model values and visualising them</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html"><i class="fa fa-check"></i><b>21</b> A little bit of mapping</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms"><i class="fa fa-check"></i><b>21.1</b> One simple way to use ggplot for mapping: the 2D geoms</a></li>
+<li class="chapter" data-level="21.2" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#using-cowplot-to-get-around-the-facetting-problem"><i class="fa fa-check"></i><b>21.2</b> Using cowplot to get around the facetting problem</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><a href="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><i class="fa fa-check"></i><b>22</b> Making a map using the simple features library, tmap and a bit of wrangling</a></li>
+<li class="chapter" data-level="23" data-path="a-last-little-ggplot-mapping-example.html"><a href="a-last-little-ggplot-mapping-example.html"><i class="fa fa-check"></i><b>23</b> A last little ggplot mapping example</a></li>
+<li class="chapter" data-level="24" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>24</b> Data sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to the principles of data wrangling and visualisation in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prettifying-a-graph" class="section level1" number="18">
+<h1><span class="header-section-number">18</span> Prettifying a graph</h1>
+<p>So we made some graphs, but they’re lacking finesse. <strong>ggplot</strong> provides many ways to customise its appearance to make it more presentable. <strong>In this option, we’ll look at some of the most common functions used to do this.</strong> So here’s the plot we were just working on, for reference - <strong>but feel free to go and grab code for the earlier plots if you’d prefer.</strong> This will all apply to those too.</p>
+<p><strong>Here we’ll look at the top and bottom local authorities’ wage multiple</strong> (excluding Kensington and Chelsea, as we did before).</p>
+<p><strong>Note: this section uses the same <em>price_n_wage</em> dataframe from the section on merging. If you’ve done the facet option before this one, you may have over-written it. If so, here’s a quick option to reload. (Or run the code for that section again, whichever you prefer.)</strong></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="prettifying-a-graph.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reload price_n_wage data we previously made, if it&#39;s been over-written with anything</span></span>
+<span id="cb172-2"><a href="prettifying-a-graph.html#cb172-2" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/price_n_wage_fromjoinsection.rds&#39;</span>)</span>
+<span id="cb172-3"><a href="prettifying-a-graph.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-4"><a href="prettifying-a-graph.html#cb172-4" aria-hidden="true" tabindex="-1"></a>price_n_wage2018 <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb172-5"><a href="prettifying-a-graph.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb172-6"><a href="prettifying-a-graph.html#cb172-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>wagemultiple)</span>
+<span id="cb172-7"><a href="prettifying-a-graph.html#cb172-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-8"><a href="prettifying-a-graph.html#cb172-8" aria-hidden="true" tabindex="-1"></a><span class="co">#choose whichever zone selection option you want. Here&#39;s the previous three.</span></span>
+<span id="cb172-9"><a href="prettifying-a-graph.html#cb172-9" aria-hidden="true" tabindex="-1"></a><span class="co">#zoneselection &lt;- price_n_wage2018 %&gt;% filter(wagemultiple &lt; 5.78)</span></span>
+<span id="cb172-10"><a href="prettifying-a-graph.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="co">#zoneselection &lt;- price_n_wage2018 %&gt;% slice(2:11)</span></span>
+<span id="cb172-11"><a href="prettifying-a-graph.html#cb172-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-12"><a href="prettifying-a-graph.html#cb172-12" aria-hidden="true" tabindex="-1"></a><span class="co">#We&#39;ll use this one here.</span></span>
+<span id="cb172-13"><a href="prettifying-a-graph.html#cb172-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Top and bottom five, excluding Kensington and Chelsea</span></span>
+<span id="cb172-14"><a href="prettifying-a-graph.html#cb172-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Use a vector function for multiple selection</span></span>
+<span id="cb172-15"><a href="prettifying-a-graph.html#cb172-15" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">72</span><span class="sc">:</span><span class="dv">76</span>))</span></code></pre></div>
+<p>We’ve already seen how to change the label for the legends using <strong>labs</strong> and control legend order using <strong>fact_reorder</strong> - these are included here:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="prettifying-a-graph.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb173-2"><a href="prettifying-a-graph.html#cb173-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb173-3"><a href="prettifying-a-graph.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb173-4"><a href="prettifying-a-graph.html#cb173-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;area&#39;</span>)</span></code></pre></div>
+<blockquote>
+<p><strong>The basic principle is to add cumulatively to a ggplot: just add a <em>plus</em> at the end of a line and then include our new tweak on its own line.</strong> An advantage of it being on its own line: <em>we can comment out any particular feature easily to play around with the output.</em></p>
+</blockquote>
+<p><strong>Try any / all of the following. If you want to see them all together, skip ahead a few pages.</strong></p>
+<hr />
+<blockquote>
+<ul>
+<li><strong>Change the axis labels</strong></li>
+</ul>
+</blockquote>
+<p>The x and y axis labels can be changed with the <strong>xlab</strong> and <strong>ylab</strong> functions. So updating the y axis would look like:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="prettifying-a-graph.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">&#39;wage multiple&#39;</span>) </span></code></pre></div>
+<blockquote>
+<ul>
+<li><strong>Add some better ticks to the y axis scale</strong></li>
+</ul>
+</blockquote>
+<p>You can set any scale ticks completely manually. This can be done by adding a <strong>scale_y_continuous</strong> function.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="prettifying-a-graph.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>))</span></code></pre></div>
+<p>It’s also possible to <strong>over-ride the labels used for those ticks</strong>. Be careful to make sure both of these vectors are same length - it needs a one-to-one correspondence:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="prettifying-a-graph.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>),</span>
+<span id="cb176-2"><a href="prettifying-a-graph.html#cb176-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;0&#39;</span>,<span class="st">&#39;5x&#39;</span>,<span class="st">&#39;10x&#39;</span>,<span class="st">&#39;15x&#39;</span>,<span class="st">&#39;20x&#39;</span>,<span class="st">&#39;25x&#39;</span>,<span class="st">&#39;30x&#39;</span>))</span></code></pre></div>
+<p>This tells <strong>ggplot</strong> exactly <em>which</em> breaks we want and how to label them. (The labels can be text or numbers.) So we have very fine control of these.</p>
+<blockquote>
+<ul>
+<li><strong>Giving the plot a title</strong></li>
+</ul>
+</blockquote>
+<p>I always forget how to do this and need to google it! I invariably <a href="http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/">copy the code from here</a> and amend it. We add a <strong>ggtitle</strong> and then make it bold by changing the <strong>theme</strong>.</p>
+<p>The latest <strong>ggplot</strong> aligns titles to the left by default - you can include an <strong>hjust</strong> value in theme</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="prettifying-a-graph.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;House prices as multiple of yearly wage top and bottom five English local authorities&quot;</span>) <span class="sc">+</span></span>
+<span id="cb177-2"><a href="prettifying-a-graph.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><strong>That’s a stupidly long title.</strong> You can wrap lines in the title by using <strong>backslash n</strong> where the lines should break. It’s hard to spot here: the <strong>backslash n</strong> is after <em>wage</em> and before <em>top</em>:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="prettifying-a-graph.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;House prices as multiple of yearly wage</span><span class="sc">\n</span><span class="st">top and bottom five English local authorities&quot;</span>) </span></code></pre></div>
+<blockquote>
+<ul>
+<li><strong>Removing axis titles entirely</strong></li>
+</ul>
+</blockquote>
+<p>One might think having the ‘year’ title for the x axis is a bit superfluous: years are self-explanatory. (Many say axes must always be labelled, mind!) Anyway, if you don’t like it, the <strong>theme</strong> function can again be used. <strong>Note here, we’re adding the to theme formatting we did for title above.</strong></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="prettifying-a-graph.html#cb179-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>)),</span>
+<span id="cb179-2"><a href="prettifying-a-graph.html#cb179-2" aria-hidden="true" tabindex="-1"></a>        axis.title.x<span class="ot">=</span><span class="fu">element_blank</span>()<span class="er">)</span></span></code></pre></div>
+<p>The same can be done with text and ticks using <strong>axis.text.x</strong> and <strong>axis.ticks.x</strong> (or y).</p>
+<blockquote>
+<ul>
+<li><strong>Changing the line type and size</strong></li>
+</ul>
+</blockquote>
+<p>As we did when changing the sales count circles to grey, the line type and size can be altered in the <strong>geom_line</strong> function directly. <a href="http://docs.ggplot2.org/0.9.3.1/aes_linetype_size_shape.html">Here’s a reference</a> for the <strong>linetype</strong> number:</p>
+<blockquote>
+<p><strong>0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="prettifying-a-graph.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">5</span>)</span></code></pre></div>
+<blockquote>
+<ul>
+<li><strong>Quickly creating a flag for a new aesthetic mapping</strong></li>
+</ul>
+</blockquote>
+<p>Perhaps you want to mark out which local authorities are in London. All we need for this: <strong>a single column marking which of the local authorities are in London.</strong> We could then use <strong>linetype</strong> to mark this.</p>
+<p>In the current data, the three London zones are <strong>Camden</strong>, <strong>Islington</strong> and <strong>Hackney</strong>. You could obviously use some more sophisticated way to pick out your group but let’s just make it directly:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="prettifying-a-graph.html#cb181-1" aria-hidden="true" tabindex="-1"></a>londonzones <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Camden&#39;</span>,<span class="st">&#39;Islington&#39;</span>,<span class="st">&#39;Hackney&#39;</span>)</span></code></pre></div>
+<p>We can then use <strong>dplyr</strong> to make a <strong>flag column</strong> (with actual labels rather than just a zero and one, as is common with flag columns.)</p>
+<p>There’s a new function here: <strong>ifelse</strong>. As the name suggests, this just lets us say: <strong>if this condition is met, do this - else, do that</strong>. (That’s the best way to remember the order of the arguments too: <em>`if, then: this, else that’</em>.) We can combine it with the <strong>%in%</strong> operator.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="prettifying-a-graph.html#cb182-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb182-2"><a href="prettifying-a-graph.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inLondon =</span> <span class="fu">ifelse</span>(Area <span class="sc">%in%</span> londonzones, <span class="st">&#39;london&#39;</span>,<span class="st">&#39;other&#39;</span>))</span></code></pre></div>
+<p>As always, take a look at the dataframe to confirm it’s done what you wanted it to. Or throw it into the <strong>ggplot</strong> and see…</p>
+<blockquote>
+<ul>
+<li><strong>Bringing all that together</strong></li>
+</ul>
+</blockquote>
+<p>Here’s those options all in the ggplot code - <strong>including the new linetype aesthetic mapping.</strong> It also hides the <em>inLondon</em> variable name above the <strong>linetype</strong> legend.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="prettifying-a-graph.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb183-2"><a href="prettifying-a-graph.html#cb183-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb183-3"><a href="prettifying-a-graph.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> inLondon), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb183-4"><a href="prettifying-a-graph.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;wage multiple&#39;</span>) <span class="sc">+</span></span>
+<span id="cb183-5"><a href="prettifying-a-graph.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;local authority&#39;</span>, <span class="at">linetype =</span> <span class="st">&#39; &#39;</span>) <span class="sc">+</span></span>
+<span id="cb183-6"><a href="prettifying-a-graph.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>), </span>
+<span id="cb183-7"><a href="prettifying-a-graph.html#cb183-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;0&#39;</span>,<span class="st">&#39;5x&#39;</span>,<span class="st">&#39;10x&#39;</span>,<span class="st">&#39;15x&#39;</span>,<span class="st">&#39;20x&#39;</span>,<span class="st">&#39;25x&#39;</span>,<span class="st">&#39;30x&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb183-8"><a href="prettifying-a-graph.html#cb183-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;House prices as multiple of yearly wage</span><span class="sc">\n</span><span class="st">top and bottom five English local authorities&quot;</span>) <span class="sc">+</span></span>
+<span id="cb183-9"><a href="prettifying-a-graph.html#cb183-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb183-10"><a href="prettifying-a-graph.html#cb183-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-113-1.png" width="691.2" style="display: block; margin: auto;" /></p>
+<!-- > **Prettifying a log scale** -->
+<!-- ```{r echo = F, message = F} -->
+<!-- #One I made earlier -->
+<!-- saleSummary <- readRDS('data/saleSummary4logprettifying.rds') -->
+<!-- ``` -->
+<!-- One last thing: we've worked a lot with log scales for prices and they didn't look great. **How to improve them?** Let's look at one of the price graphs using a log scale. Here's the code to create it again. -->
+<!-- This has **one easy addition** to make prices more readable: **turning them into multiples of a thousand**. Axes look a lot nicer with *100* and a label explaining they're in thousands. -->
+<!-- ```{r eval = F} -->
+<!-- sales <- readRDS('data/landRegistryPricePaidTopTTWAs.rds') -->
+<!-- sales$year <- year(sales$date) -->
+<!-- saleSummary <- sales %>%  -->
+<!--   mutate(pricethousands = price/1000) %>%  -->
+<!--   group_by(ttwa,year) %>%  -->
+<!--   summarise(meanPriceThousands = mean(pricethousands), countOfSales = n()) -->
+<!-- ``` -->
+<!-- We can then **make some additions to the *scale_y_log10* function**, including setting the scale name directly. The values in **breaks** are where the *real* (non-log) values will have ticks. The **labels** function tells them what to show. We could leave that out here since it's just repeating breaks, but it's worth knowing you have complete control over them. -->
+<!-- ```{r fig.width=7.2, fig.height=4.5} -->
+<!-- ggplot(saleSummary,  -->
+<!--        aes(x = year, y = meanPriceThousands,  -->
+<!--            colour = fct_reorder(ttwa,-meanPriceThousands))) + -->
+<!--   geom_point(aes(size = countOfSales), alpha = 0.3) + -->
+<!--   geom_line() + -->
+<!--   guides(size = F) + -->
+<!--   labs(colour = 'TTWA') + -->
+<!--   scale_y_log10(name = 'average price (log scale in real prices)', -->
+<!--                 breaks = c(100,200,400), -->
+<!--                 labels = c(100,200,400)) + -->
+<!--   scale_size_continuous(range = c(0,10)) + -->
+<!--   ggtitle("Average House prices for TTWAs") + -->
+<!--   theme(plot.title = element_text(face="bold",hjust = 0.5), -->
+<!--         axis.title.x=element_blank()) -->
+<!-- ``` -->
+<hr />
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="six-and-a-bit-options.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

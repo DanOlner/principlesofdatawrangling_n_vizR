@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>21 A little bit of mapping | Introduction to the principles of data wrangling and visualisation in R</title>
+  <meta name="description" content="21 A little bit of mapping | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="21 A little bit of mapping | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="seankross/bookdown-start" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="21 A little bit of mapping | Introduction to the principles of data wrangling and visualisation in R" />
+  
+  
+  
+
+<meta name="author" content="Dan Olner" />
+
+
+<meta name="date" content="2021-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="iteration.html"/>
+<link rel="next" href="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to the principles of data wrangling and visualisation in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="getting-r-and-rstudio.html"><a href="getting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting R and RStudio</a></li>
+<li class="chapter" data-level="3" data-path="r-studio.html"><a href="r-studio.html"><i class="fa fa-check"></i><b>3</b> R-Studio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-studio.html"><a href="r-studio.html#a-first-look-at-rstudio"><i class="fa fa-check"></i><b>3.1</b> A first look at RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="r-studio.html"><a href="r-studio.html#entering-commands-in-r"><i class="fa fa-check"></i><b>3.2</b> Entering commands in R</a></li>
+<li class="chapter" data-level="3.3" data-path="r-studio.html"><a href="r-studio.html#assigning-to-variables"><i class="fa fa-check"></i><b>3.3</b> Assigning to variables</a></li>
+<li class="chapter" data-level="3.4" data-path="r-studio.html"><a href="r-studio.html#opening-a-project-in-rstudio"><i class="fa fa-check"></i><b>3.4</b> Opening a project in RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="r-studio.html"><a href="r-studio.html#creating-a-new-script-and-running-code-in-it"><i class="fa fa-check"></i><b>3.5</b> Creating a new script and running code in it</a></li>
+<li class="chapter" data-level="3.6" data-path="r-studio.html"><a href="r-studio.html#but-will-it-make-sense-in-two-months-time-using-comments-and-sections"><i class="fa fa-check"></i><b>3.6</b> ‘But will it make sense in two month’s time…?’ Using comments and sections</a></li>
+<li class="chapter" data-level="3.7" data-path="r-studio.html"><a href="r-studio.html#its-all-about-the-libraries"><i class="fa fa-check"></i><b>3.7</b> It’s all about the libraries</a></li>
+<li class="chapter" data-level="3.8" data-path="r-studio.html"><a href="r-studio.html#loading-a-file-into-a-dataframe-and-examining-the-data"><i class="fa fa-check"></i><b>3.8</b> Loading a file into a dataframe and examining the data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>4</b> Introduction</a></li>
+<li class="chapter" data-level="5" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>5</b> Getting started</a></li>
+<li class="chapter" data-level="6" data-path="loading-the-libraries.html"><a href="loading-the-libraries.html"><i class="fa fa-check"></i><b>6</b> Loading the libraries</a></li>
+<li class="chapter" data-level="7" data-path="loading-the-house-price-data.html"><a href="loading-the-house-price-data.html"><i class="fa fa-check"></i><b>7</b> Loading the house price data</a></li>
+<li class="chapter" data-level="8" data-path="lets-jump-right-into-ggplot.html"><a href="lets-jump-right-into-ggplot.html"><i class="fa fa-check"></i><b>8</b> Let’s jump right into ggplot</a></li>
+<li class="chapter" data-level="9" data-path="the-lubridate-library.html"><a href="the-lubridate-library.html"><i class="fa fa-check"></i><b>9</b> The lubridate library</a></li>
+<li class="chapter" data-level="10" data-path="using-ggplots-own-stat-functions.html"><a href="using-ggplots-own-stat-functions.html"><i class="fa fa-check"></i><b>10</b> Using ggplot’s own stat functions</a></li>
+<li class="chapter" data-level="11" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html"><i class="fa fa-check"></i><b>11</b> Getting started with <strong>dplyr</strong> and <strong>piping</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#piping"><i class="fa fa-check"></i><b>11.1</b> Piping!</a></li>
+<li class="chapter" data-level="11.2" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#dplyrs-verbs"><i class="fa fa-check"></i><b>11.2</b> <strong>dplyr</strong>’s verbs</a></li>
+<li class="chapter" data-level="11.3" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#and-a-few-extras-while-were-here"><i class="fa fa-check"></i><b>11.3</b> And a few extras while we’re here…</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="using-scales-to-control-appearance.html"><a href="using-scales-to-control-appearance.html"><i class="fa fa-check"></i><b>12</b> Using scales to control appearance</a></li>
+<li class="chapter" data-level="13" data-path="scales-for-controlling-colour.html"><a href="scales-for-controlling-colour.html"><i class="fa fa-check"></i><b>13</b> Scales for controlling colour</a></li>
+<li class="chapter" data-level="14" data-path="using-factors-to-control-order-of-variables.html"><a href="using-factors-to-control-order-of-variables.html"><i class="fa fa-check"></i><b>14</b> Using factors to control order of variables</a></li>
+<li class="chapter" data-level="15" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html"><i class="fa fa-check"></i><b>15</b> Joining data sources together</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#gathering-into-long-form"><i class="fa fa-check"></i><b>15.1</b> `Gathering’ into long form</a></li>
+<li class="chapter" data-level="15.2" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#saving-and-reloading-the-housing-data"><i class="fa fa-check"></i><b>15.2</b> Saving and reloading the housing data</a></li>
+<li class="chapter" data-level="15.3" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#merging-the-housing-and-wages-data"><i class="fa fa-check"></i><b>15.3</b> Merging the housing and wages data</a></li>
+<li class="chapter" data-level="15.4" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#choosing-a-subset-based-on-some-criterion"><i class="fa fa-check"></i><b>15.4</b> Choosing a subset based on some criterion</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html"><i class="fa fa-check"></i><b>16</b> Saving ggplots as image files</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html#time-for-a-pause"><i class="fa fa-check"></i><b>16.1</b> Time for a pause!</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="six-and-a-bit-options.html"><a href="six-and-a-bit-options.html"><i class="fa fa-check"></i><b>17</b> SIX (and a bit) OPTIONS</a></li>
+<li class="chapter" data-level="18" data-path="prettifying-a-graph.html"><a href="prettifying-a-graph.html"><i class="fa fa-check"></i><b>18</b> Prettifying a graph</a></li>
+<li class="chapter" data-level="19" data-path="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><a href="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><i class="fa fa-check"></i><b>19</b> Facetting and dodging: getting as much info into one graph as humanly possible</a></li>
+<li class="chapter" data-level="20" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>20</b> Iteration</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="iteration.html"><a href="iteration.html#outputting-multiple-plots"><i class="fa fa-check"></i><b>20.1</b> 1. Outputting multiple plots</a></li>
+<li class="chapter" data-level="20.2" data-path="iteration.html"><a href="iteration.html#pulling-out-multiple-model-values-and-visualising-them"><i class="fa fa-check"></i><b>20.2</b> 2. Pulling out multiple model values and visualising them</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html"><i class="fa fa-check"></i><b>21</b> A little bit of mapping</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms"><i class="fa fa-check"></i><b>21.1</b> One simple way to use ggplot for mapping: the 2D geoms</a></li>
+<li class="chapter" data-level="21.2" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#using-cowplot-to-get-around-the-facetting-problem"><i class="fa fa-check"></i><b>21.2</b> Using cowplot to get around the facetting problem</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><a href="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><i class="fa fa-check"></i><b>22</b> Making a map using the simple features library, tmap and a bit of wrangling</a></li>
+<li class="chapter" data-level="23" data-path="a-last-little-ggplot-mapping-example.html"><a href="a-last-little-ggplot-mapping-example.html"><i class="fa fa-check"></i><b>23</b> A last little ggplot mapping example</a></li>
+<li class="chapter" data-level="24" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>24</b> Data sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to the principles of data wrangling and visualisation in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-little-bit-of-mapping" class="section level1" number="21">
+<h1><span class="header-section-number">21</span> A little bit of mapping</h1>
+<p>In this section, we’ll take a quick look at three different ways to make maps from the housing data:</p>
+<ul>
+<li>The first two use ggplot again, to show two very simple ways it can be used to view geographical data. ggplot can do a lot more, but this is a start.</li>
+<li>Then we’ll introduce a couple of new libraries: <strong>the simple features (sf) library</strong> and <strong>tmap</strong> for making maps.</li>
+</ul>
+<p>The <strong>sf library</strong> is relatively new: it’s particularly great because it works excellently with all the *<strong>dplyr</strong> data wrangling skills you’ve already learned. We’ll run through an example of doing that.</p>
+<div id="one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms" class="section level2" number="21.1">
+<h2><span class="header-section-number">21.1</span> One simple way to use ggplot for mapping: the 2D geoms</h2>
+<p>A really simple way to make quick maps is to use ggplot’s <strong>2D geoms</strong>. One of these included on the ggplot cheatsheet - <strong>geom_bin2d</strong> - does a single job: as the help says, if you have two dimensions of continuous data, it:</p>
+<blockquote>
+<p>divides the plane into rectangles, counts the number of cases in each rectangle, and then (by default) maps the number of cases to the rectangle’s fill.</p>
+</blockquote>
+<p>We have exact postcode locations for each sale: these can be our two dimensions. So in practice that means we can easily make a map using this geom that <strong>counts how many sales there are in each rectangle</strong>. First, let’s re-load the sales data (adding the year column back in) and subset to London:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="a-little-bit-of-mapping.html#cb248-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaidTopTTWAs.rds&#39;</span>)</span>
+<span id="cb248-2"><a href="a-little-bit-of-mapping.html#cb248-2" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sales<span class="sc">$</span>date)</span>
+<span id="cb248-3"><a href="a-little-bit-of-mapping.html#cb248-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-4"><a href="a-little-bit-of-mapping.html#cb248-4" aria-hidden="true" tabindex="-1"></a>london <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">==</span><span class="st">&#39;London&#39;</span>)</span></code></pre></div>
+<p>Then try the new geom, subsetting to a single year:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="a-little-bit-of-mapping.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb249-2"><a href="a-little-bit-of-mapping.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>()</span></code></pre></div>
+<p>A map! It could with a few little extras. The next version shows that you can:</p>
+<ul>
+<li>Control the number of bins by defining their dimensions. This geographical data is in British National Grid projection: <strong>Easting and Northing units are in metres.</strong> So we can make a map with 1km square grid by <strong>setting bin width to 1000.</strong> As with geom_bar and other bin stats, this is set in the geom itself.</li>
+<li>Pick a colour scale, as we’ve done before - but with one difference: use <strong>distiller</strong>. This is for continuous variables: it distills continuous values from color brewer’s discrete scales. (You can also add <strong>trans = ‘log’</strong> into this function if you want a log fill scale showing the correct values.)</li>
+<li><strong>coord_fixed</strong> does what the name suggests: the x and y axis are fixed relative to each other. It’s also possible to set a ratio for the two of them - check the help file.</li>
+<li><strong>theme_void()</strong> drops almost all extras from the graph, just leaving the data itself and the guide/legend.</li>
+</ul>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="a-little-bit-of-mapping.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb250-2"><a href="a-little-bit-of-mapping.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb250-3"><a href="a-little-bit-of-mapping.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb250-4"><a href="a-little-bit-of-mapping.html#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb250-5"><a href="a-little-bit-of-mapping.html#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-158-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>But what about things other than count?</strong></p>
+<p>What if we want to, say, <strong>find the median sale value per square?</strong> ggplot has a <strong>stat</strong> for that - though it’s not listed on the cheatsheet: <strong>stat_summary_2d</strong>. This gives us total control over what goes into each square. The only extra thing we need to do here:</p>
+<blockquote>
+<p><strong>Provide a z value</strong>: this will be the column used in the grid square statistic. So we’ll use price.</p>
+</blockquote>
+<p>stat_summary_2d’s default is to give you the mean, but we can provide any function we like. So here’s the median (and we’re including all the other extras we added to the last one). Note, we’ve only changed three things: the geom used, and adding ‘z = price’ into the aesthetic. We’ve also done as mentioned above: told the fill scale <strong>we want a log transformation:</strong></p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="a-little-bit-of-mapping.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings, <span class="at">z =</span> price)) <span class="sc">+</span></span>
+<span id="cb251-2"><a href="a-little-bit-of-mapping.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary_2d</span>(<span class="at">fun =</span> median, <span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb251-3"><a href="a-little-bit-of-mapping.html#cb251-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>, <span class="at">trans =</span> <span class="st">&#39;log&#39;</span>) <span class="sc">+</span></span>
+<span id="cb251-4"><a href="a-little-bit-of-mapping.html#cb251-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb251-5"><a href="a-little-bit-of-mapping.html#cb251-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-159-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Try finding the <strong>minimum</strong> and <strong>maximum</strong> property value per square (using the min and max functions). This reveals something interesting about the difference in property types in the centre versus the outskirts.</p>
+<blockquote>
+<p><strong>You have a couple of options now:</strong> you can skip ahead to the next section if you want to do some proper mapping with actual map data, get to use the simple features package and learn how to wrangle spatial data.</p>
+</blockquote>
+<blockquote>
+<p>Or the last part of this section just shows quickly how to use the <strong>map</strong> function from the <strong>purrr</strong> library (also used in the ‘pulling out multiple values’ section) to get around a problem with using facet (see the facet section).</p>
+</blockquote>
+</div>
+<div id="using-cowplot-to-get-around-the-facetting-problem" class="section level2" number="21.2">
+<h2><span class="header-section-number">21.2</span> Using cowplot to get around the facetting problem</h2>
+<p>As the section above on facetting shows, <strong>ggplot</strong> can be used to ‘facet’ produce many sub-plots based on a factor, like property type. However, facets all <strong>keep the same colour scale</strong>. This can be a problem if e.g. the count of flats and detached houses is very different: each individual map will have its scale compressed and look flat and boring.</p>
+<p>One workaround: <strong>create a number of individual plots and then combine them.</strong> We can do this with the <strong>cowplot</strong> library. As always, use <strong>install.packages</strong> if this isn’t already installed.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="a-little-bit-of-mapping.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code></pre></div>
+<p>This library can be used to <strong>very neatly arrange multiple ggplots.</strong></p>
+<p>So let’s aim to make a single plot showing the <strong>count of each different property type</strong>. We can start with the same code we just wrote for getting a count of properties per grid square, except subset to single property types:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="a-little-bit-of-mapping.html#cb253-1" aria-hidden="true" tabindex="-1"></a>flats <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&#39;F&#39;</span>)</span>
+<span id="cb253-2"><a href="a-little-bit-of-mapping.html#cb253-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-3"><a href="a-little-bit-of-mapping.html#cb253-3" aria-hidden="true" tabindex="-1"></a>flatplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(flats <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb253-4"><a href="a-little-bit-of-mapping.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb253-5"><a href="a-little-bit-of-mapping.html#cb253-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb253-6"><a href="a-little-bit-of-mapping.html#cb253-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb253-7"><a href="a-little-bit-of-mapping.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb253-8"><a href="a-little-bit-of-mapping.html#cb253-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-9"><a href="a-little-bit-of-mapping.html#cb253-9" aria-hidden="true" tabindex="-1"></a>flatplot</span>
+<span id="cb253-10"><a href="a-little-bit-of-mapping.html#cb253-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-11"><a href="a-little-bit-of-mapping.html#cb253-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-12"><a href="a-little-bit-of-mapping.html#cb253-12" aria-hidden="true" tabindex="-1"></a>terraces <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&#39;T&#39;</span>)</span>
+<span id="cb253-13"><a href="a-little-bit-of-mapping.html#cb253-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-14"><a href="a-little-bit-of-mapping.html#cb253-14" aria-hidden="true" tabindex="-1"></a>terraceplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(terraces <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb253-15"><a href="a-little-bit-of-mapping.html#cb253-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb253-16"><a href="a-little-bit-of-mapping.html#cb253-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb253-17"><a href="a-little-bit-of-mapping.html#cb253-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb253-18"><a href="a-little-bit-of-mapping.html#cb253-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb253-19"><a href="a-little-bit-of-mapping.html#cb253-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-20"><a href="a-little-bit-of-mapping.html#cb253-20" aria-hidden="true" tabindex="-1"></a>terraceplot</span></code></pre></div>
+<p>We can see how <strong>cowplot</strong> works now just with these two. We can combine multiple plots just by supplying them to <strong>plot_grid</strong>:</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="a-little-bit-of-mapping.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(flatplot,terraceplot)</span></code></pre></div>
+<p>But how to avoid having to manually create each plot? There are several options, but here’s a neat one using <strong>purrr</strong>. All this does:</p>
+<blockquote>
+<p>Uses base R’s <strong>split</strong> function to split the dataframe into each house type
+Passes each subgroup to the map function.
+Note, this is <strong>exactly the same ggplot code we just used</strong> (except we’re filtering to 2018 in the first line). The <em>only</em> other difference: we’ve <strong>replaced the dataframe name with the dot operator</strong>. The dot stands in for each of the smaller dataframes that <strong>map</strong> passes in.
+Note also the tilde (~): that’s just shorthand for passing into a function.</p>
+</blockquote>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="a-little-bit-of-mapping.html#cb255-1" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span></span>
+<span id="cb255-2"><a href="a-little-bit-of-mapping.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb255-3"><a href="a-little-bit-of-mapping.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>type) <span class="sc">%&gt;%</span> </span>
+<span id="cb255-4"><a href="a-little-bit-of-mapping.html#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(</span>
+<span id="cb255-5"><a href="a-little-bit-of-mapping.html#cb255-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span><span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb255-6"><a href="a-little-bit-of-mapping.html#cb255-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb255-7"><a href="a-little-bit-of-mapping.html#cb255-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb255-8"><a href="a-little-bit-of-mapping.html#cb255-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb255-9"><a href="a-little-bit-of-mapping.html#cb255-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_void</span>()</span>
+<span id="cb255-10"><a href="a-little-bit-of-mapping.html#cb255-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>All that’s done is map each of the plots we were previously doing manually to a list. We could view any of them by looking at the list directly. For example, here’s the first:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="a-little-bit-of-mapping.html#cb256-1" aria-hidden="true" tabindex="-1"></a>plots[[<span class="dv">1</span>]]</span></code></pre></div>
+<p>Now that whole list can just be passed directly into cowplot’s plot_grid. (We’re also now telling cowplot the number of rows and columns we want):</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="a-little-bit-of-mapping.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(<span class="at">plotlist =</span> plots, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>OK, looking good. There are a couple of things it would be nice to do now. See if you can work out how. Some hints:</p>
+<ul>
+<li>We need to label each house type. Using info from the ‘prettifying’ section, can you use <strong>ggtitle</strong> to add that in? Hint: use the ‘max’ trick, also used in the ‘pulling out multiple model values’ section to get a single value from the type column. There will only be e.g. a single ‘F’ repeated in the flats sub-dataframe, so you can pull that out be e.g. doing this. You just need to use the dot operator instead.</li>
+</ul>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="a-little-bit-of-mapping.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(flats<span class="sc">$</span>type)</span></code></pre></div>
+<ul>
+<li>Coordinates for each plot are currently different, because ggplot adjusts each to its min and max range. We could do with <strong>setting them to be the same</strong>. Hint: in the prettifying section, we used coord_cartesian and set the plots <strong>xlim</strong> values. We can set them here directly in coord_fixed. The limits we’re after are just the minimum and maximum for both eastings and northings. These could be dropped directly into the right place in coord_fixed…</li>
+</ul>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="a-little-bit-of-mapping.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(london<span class="sc">$</span>Eastings)</span>
+<span id="cb259-2"><a href="a-little-bit-of-mapping.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(london<span class="sc">$</span>Northings)</span></code></pre></div>
+<p>The result should look something like this:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-168-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="iteration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

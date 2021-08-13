@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 R-Studio | Introduction to the principles of data wrangling and visualisation in R</title>
+  <meta name="description" content="3 R-Studio | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 R-Studio | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="seankross/bookdown-start" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 R-Studio | Introduction to the principles of data wrangling and visualisation in R" />
+  
+  
+  
+
+<meta name="author" content="Dan Olner" />
+
+
+<meta name="date" content="2021-08-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="getting-r-and-rstudio.html"/>
+<link rel="next" href="introduction-1.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to the principles of data wrangling and visualisation in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="getting-r-and-rstudio.html"><a href="getting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting R and RStudio</a></li>
+<li class="chapter" data-level="3" data-path="r-studio.html"><a href="r-studio.html"><i class="fa fa-check"></i><b>3</b> R-Studio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-studio.html"><a href="r-studio.html#a-first-look-at-rstudio"><i class="fa fa-check"></i><b>3.1</b> A first look at RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="r-studio.html"><a href="r-studio.html#entering-commands-in-r"><i class="fa fa-check"></i><b>3.2</b> Entering commands in R</a></li>
+<li class="chapter" data-level="3.3" data-path="r-studio.html"><a href="r-studio.html#assigning-to-variables"><i class="fa fa-check"></i><b>3.3</b> Assigning to variables</a></li>
+<li class="chapter" data-level="3.4" data-path="r-studio.html"><a href="r-studio.html#opening-a-project-in-rstudio"><i class="fa fa-check"></i><b>3.4</b> Opening a project in RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="r-studio.html"><a href="r-studio.html#creating-a-new-script-and-running-code-in-it"><i class="fa fa-check"></i><b>3.5</b> Creating a new script and running code in it</a></li>
+<li class="chapter" data-level="3.6" data-path="r-studio.html"><a href="r-studio.html#but-will-it-make-sense-in-two-months-time-using-comments-and-sections"><i class="fa fa-check"></i><b>3.6</b> ‘But will it make sense in two month’s time…?’ Using comments and sections</a></li>
+<li class="chapter" data-level="3.7" data-path="r-studio.html"><a href="r-studio.html#its-all-about-the-libraries"><i class="fa fa-check"></i><b>3.7</b> It’s all about the libraries</a></li>
+<li class="chapter" data-level="3.8" data-path="r-studio.html"><a href="r-studio.html#loading-a-file-into-a-dataframe-and-examining-the-data"><i class="fa fa-check"></i><b>3.8</b> Loading a file into a dataframe and examining the data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>4</b> Introduction</a></li>
+<li class="chapter" data-level="5" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>5</b> Getting started</a></li>
+<li class="chapter" data-level="6" data-path="loading-the-libraries.html"><a href="loading-the-libraries.html"><i class="fa fa-check"></i><b>6</b> Loading the libraries</a></li>
+<li class="chapter" data-level="7" data-path="loading-the-house-price-data.html"><a href="loading-the-house-price-data.html"><i class="fa fa-check"></i><b>7</b> Loading the house price data</a></li>
+<li class="chapter" data-level="8" data-path="lets-jump-right-into-ggplot.html"><a href="lets-jump-right-into-ggplot.html"><i class="fa fa-check"></i><b>8</b> Let’s jump right into ggplot</a></li>
+<li class="chapter" data-level="9" data-path="the-lubridate-library.html"><a href="the-lubridate-library.html"><i class="fa fa-check"></i><b>9</b> The lubridate library</a></li>
+<li class="chapter" data-level="10" data-path="using-ggplots-own-stat-functions.html"><a href="using-ggplots-own-stat-functions.html"><i class="fa fa-check"></i><b>10</b> Using ggplot’s own stat functions</a></li>
+<li class="chapter" data-level="11" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html"><i class="fa fa-check"></i><b>11</b> Getting started with <strong>dplyr</strong> and <strong>piping</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#piping"><i class="fa fa-check"></i><b>11.1</b> Piping!</a></li>
+<li class="chapter" data-level="11.2" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#dplyrs-verbs"><i class="fa fa-check"></i><b>11.2</b> <strong>dplyr</strong>’s verbs</a></li>
+<li class="chapter" data-level="11.3" data-path="getting-started-with-dplyr-and-piping.html"><a href="getting-started-with-dplyr-and-piping.html#and-a-few-extras-while-were-here"><i class="fa fa-check"></i><b>11.3</b> And a few extras while we’re here…</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="using-scales-to-control-appearance.html"><a href="using-scales-to-control-appearance.html"><i class="fa fa-check"></i><b>12</b> Using scales to control appearance</a></li>
+<li class="chapter" data-level="13" data-path="scales-for-controlling-colour.html"><a href="scales-for-controlling-colour.html"><i class="fa fa-check"></i><b>13</b> Scales for controlling colour</a></li>
+<li class="chapter" data-level="14" data-path="using-factors-to-control-order-of-variables.html"><a href="using-factors-to-control-order-of-variables.html"><i class="fa fa-check"></i><b>14</b> Using factors to control order of variables</a></li>
+<li class="chapter" data-level="15" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html"><i class="fa fa-check"></i><b>15</b> Joining data sources together</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#gathering-into-long-form"><i class="fa fa-check"></i><b>15.1</b> `Gathering’ into long form</a></li>
+<li class="chapter" data-level="15.2" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#saving-and-reloading-the-housing-data"><i class="fa fa-check"></i><b>15.2</b> Saving and reloading the housing data</a></li>
+<li class="chapter" data-level="15.3" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#merging-the-housing-and-wages-data"><i class="fa fa-check"></i><b>15.3</b> Merging the housing and wages data</a></li>
+<li class="chapter" data-level="15.4" data-path="joining-data-sources-together.html"><a href="joining-data-sources-together.html#choosing-a-subset-based-on-some-criterion"><i class="fa fa-check"></i><b>15.4</b> Choosing a subset based on some criterion</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html"><i class="fa fa-check"></i><b>16</b> Saving ggplots as image files</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="saving-ggplots-as-image-files.html"><a href="saving-ggplots-as-image-files.html#time-for-a-pause"><i class="fa fa-check"></i><b>16.1</b> Time for a pause!</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="six-and-a-bit-options.html"><a href="six-and-a-bit-options.html"><i class="fa fa-check"></i><b>17</b> SIX (and a bit) OPTIONS</a></li>
+<li class="chapter" data-level="18" data-path="prettifying-a-graph.html"><a href="prettifying-a-graph.html"><i class="fa fa-check"></i><b>18</b> Prettifying a graph</a></li>
+<li class="chapter" data-level="19" data-path="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><a href="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible.html"><i class="fa fa-check"></i><b>19</b> Facetting and dodging: getting as much info into one graph as humanly possible</a></li>
+<li class="chapter" data-level="20" data-path="iteration.html"><a href="iteration.html"><i class="fa fa-check"></i><b>20</b> Iteration</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="iteration.html"><a href="iteration.html#outputting-multiple-plots"><i class="fa fa-check"></i><b>20.1</b> 1. Outputting multiple plots</a></li>
+<li class="chapter" data-level="20.2" data-path="iteration.html"><a href="iteration.html#pulling-out-multiple-model-values-and-visualising-them"><i class="fa fa-check"></i><b>20.2</b> 2. Pulling out multiple model values and visualising them</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html"><i class="fa fa-check"></i><b>21</b> A little bit of mapping</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms"><i class="fa fa-check"></i><b>21.1</b> One simple way to use ggplot for mapping: the 2D geoms</a></li>
+<li class="chapter" data-level="21.2" data-path="a-little-bit-of-mapping.html"><a href="a-little-bit-of-mapping.html#using-cowplot-to-get-around-the-facetting-problem"><i class="fa fa-check"></i><b>21.2</b> Using cowplot to get around the facetting problem</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><a href="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling.html"><i class="fa fa-check"></i><b>22</b> Making a map using the simple features library, tmap and a bit of wrangling</a></li>
+<li class="chapter" data-level="23" data-path="a-last-little-ggplot-mapping-example.html"><a href="a-last-little-ggplot-mapping-example.html"><i class="fa fa-check"></i><b>23</b> A last little ggplot mapping example</a></li>
+<li class="chapter" data-level="24" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>24</b> Data sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to the principles of data wrangling and visualisation in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-studio" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> R-Studio</h1>
+<div id="a-first-look-at-rstudio" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> A first look at RStudio</h2>
+<p><strong>RStudio is a self-contained environment for doing everything in R.</strong> As we’ll see throughout the day, it does a heap of different things to make programming in R as painless as possible.</p>
+<p><strong>First thing - open RStudio and have a look at what’s there. You should see something like the following. Yours may have a different colour scheme, don’t worry about that:</strong></p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>RStudio presents you with these panes:</p>
+<ul>
+<li>The <strong>console pane</strong> (left in the above image - note it says ‘console’ at the top of the window) where we can enter commands and run them immediately.</li>
+<li>The <strong>environment pane</strong> (top right): all our data and variables will appear here.</li>
+<li>A pane with a number of tabs (bottom right), currently open on <strong>files</strong>. When we first produce graphics, these will appear here in the <strong>plots</strong> pane.</li>
+</ul>
+</div>
+<div id="entering-commands-in-r" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Entering commands in R</h2>
+<p><strong>Before we do anything else, let’s get a feel for how to enter commands in R.</strong></p>
+<p>We’ll use the <strong>console</strong> to do this. If the cursor isn’t already blinking in the console, click anywhere in the console pane. The console will execute anything we put here as soon as you press enter.</p>
+<p><strong>Try some of these or something different just to get a feel for it, pressing enter after each.</strong> Any maths will be evaluated and returned.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-studio.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">80</span></span>
+<span id="cb1-2"><a href="r-studio.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">80</span><span class="sc">+</span><span class="dv">20</span></span>
+<span id="cb1-3"><a href="r-studio.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">80</span><span class="sc">*</span><span class="dv">20</span></span>
+<span id="cb1-4"><a href="r-studio.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dv">80</span><span class="sc">/</span><span class="dv">20</span></span>
+<span id="cb1-5"><a href="r-studio.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;This is some text&#39;</span></span>
+<span id="cb1-6"><a href="r-studio.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">100</span>)</span></code></pre></div>
+<p>That last one - <strong>sqrt(100)</strong> - is a <strong>function</strong>. Functions are in/out machines: in this case, stick 100 in and get its square root out. <strong>Anything you put inside brackets in R is going into a function.</strong> You can stick anything in there that will evaluate, so we could also have done:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="r-studio.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">45</span><span class="sc">+</span><span class="dv">55</span>)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="r-studio.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sqrt</span>(<span class="dv">16</span>))</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Take note of that simple point about functions when we put a function within another one: <strong>it means we can combine functions and outputs in whatever way we want.</strong> This makes R very powerful and creative.</p>
+</div>
+<div id="assigning-to-variables" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Assigning to variables</h2>
+<p><strong>Everything, whether it’s a single number, a list of numbers, a piece of text, an entire dataset or a graph, can be assigned to a variable.</strong></p>
+<p>Variable names should be a balance between brevity and clarity: you want it to say something that will make sense to you when returning to the code a month later, but it also needs to be typeable. (Although as we’ll see, <strong>RStudio removes a lot of the pain of typing for us with its autocomplete feature</strong>, so if you do want very descriptive variable names, go for it.)</p>
+<p>Here’s some examples to try in the console.</p>
+<hr />
+<blockquote>
+<p><strong>R’s assignment operator is a ‘less than’ followed by a minus: </strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Typing both of these the whole time can be a pain - <em>so RStudio has a handy shortcut key</em>:</strong></p>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>ALT + ‘minus’</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Have a go at using this shortcut key when assigning these examples:</strong></p>
+</blockquote>
+<hr />
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="r-studio.html#cb6-1" aria-hidden="true" tabindex="-1"></a>city <span class="ot">&lt;-</span> <span class="st">&#39;London&#39;</span></span>
+<span id="cb6-2"><a href="r-studio.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="r-studio.html#cb6-3" aria-hidden="true" tabindex="-1"></a>max <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb6-4"><a href="r-studio.html#cb6-4" aria-hidden="true" tabindex="-1"></a>min <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb6-5"><a href="r-studio.html#cb6-5" aria-hidden="true" tabindex="-1"></a>range <span class="ot">&lt;-</span> max <span class="sc">-</span> min</span></code></pre></div>
+<p>You’ll see when assigning to variable names in the console, it doesn’t automatically output what’s just been assigned. You will, however, see them appear in the <strong>environment pane</strong> on the right: your new variables are there, under ‘values’.</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-6-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>You can also output these assigned values by typing the variable names into the console, as we were doing with simple values before:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-studio.html#cb7-1" aria-hidden="true" tabindex="-1"></a>city</span></code></pre></div>
+<pre><code>## [1] &quot;London&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-studio.html#cb9-1" aria-hidden="true" tabindex="-1"></a>min</span></code></pre></div>
+<pre><code>## [1] 45</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-studio.html#cb11-1" aria-hidden="true" tabindex="-1"></a>max</span></code></pre></div>
+<pre><code>## [1] 150</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-studio.html#cb13-1" aria-hidden="true" tabindex="-1"></a>range</span></code></pre></div>
+<pre><code>## [1] 105</code></pre>
+<p>And of course we can then use the variable names in functions:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-studio.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(range)</span></code></pre></div>
+<pre><code>## [1] 10.24695</code></pre>
+<p>We’ll get on to putting all this into a reusable script in a moment.</p>
+</div>
+<div id="opening-a-project-in-rstudio" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Opening a project in RStudio</h2>
+<blockquote>
+<p><strong>RStudio <em>projects</em> are self-contained folders that keep everything for a particular project together in one place. They also provide a number of really useful features to help make life easier, as we’ll see.</strong></p>
+</blockquote>
+<p>The folder you unpacked to get at this PDF is also an RStudio project. Let’s open it in RStudio now.</p>
+<p><strong>Access RStudio’s project loading dialogue in the top right.</strong> It should currently just say <strong>‘project (none)’</strong>. Click to get a range of project options. You can tell RStudio that an existing folder should become a project - but we’re opening one that’s already there, so choose <strong>open project</strong>:</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-9-1.png" width="288" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p><strong>Navigate to the folder you unzipped, open the folder and double-click the <em>UBDC_R_viz_intro_primer.Rproj</em> file.</strong></p>
+</blockquote>
+<p>You may not immediately see much change - but now the whole workspace will be saved, <strong>including any variables you can see in the environment panel</strong>. As we’ll see below, now we’re in an RStudio project, we don’t have to worry about where the working directory is: <strong>RStudio sets it automatically to our project folder.</strong> As long as we’re working in that folder, there’s no need to mess around with the full path to the file. (It also allows us to move RStudio projects and give them easily to other people to use.)</p>
+<p>Note that in the top right you can now see the project name. The `files’ tab in the bottom right can also be used to access files in the folder.</p>
+</div>
+<div id="creating-a-new-script-and-running-code-in-it" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Creating a new script and running code in it</h2>
+<p><strong>You’ll program all of the work in this document into a single script file in RStudio</strong>. To get a blank script to start with, go to:</p>
+<ul>
+<li><strong>File / new file / new R-script</strong></li>
+</ul>
+<blockquote>
+<p><strong>Note how the menus tell you what shortcut key to use for a lot of actions. In this case we can see <em>Ctrl+Shift+N</em> will also create a new script.</strong></p>
+</blockquote>
+<p>The script opens in a new tab in a pane above the console. Currently it’s just named <strong>Untitled1</strong> (on the tab itself, at the top). Click in the script pane to move the cursor there.</p>
+<blockquote>
+<p><strong>Start scripting! Just add a couple of lines, whatever you like - use some of the commands we entered into the console above, for example. Note: unlike the console these lines won’t run <em>until we tell them to run</em>. So just add whatever you want to add over a few lines, pressing enter to move to the next one. We’ll run the lines in a moment.</strong></p>
+</blockquote>
+<p>Once you’ve added something, the name (currently Untitled1 still) will turn red: you can now save it.</p>
+<blockquote>
+<p><strong>Save the new script either via the menu (File/save) or CTRL + S. Give it whatever name you like. Note that it will save in the top level of your project folder. RStudio will give it the extension .R</strong></p>
+</blockquote>
+<p>Now we can run our first few commands. In a script, we have a few ways to choose, depending on what we want to do.</p>
+<hr />
+<p><strong>A quick note about the programming philosophy of R. Where some programming languages are all about writing entire programs, compiling them and running them as a whole, start to finish, <em>working with R is much more iterative and experimental</em>.</strong></p>
+<p><strong>R can run entire programs - that’s all the libraries are, after all - but it’s also designed for experimenting with and exploring data on the fly. We’ll be doing a lot of this in the workshop today.</strong></p>
+<hr />
+<p>OK, so here’s <strong>three options for running your script</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>To run a single line of code (as we were doing in the console): <strong>place your cursor anywhere on a single line you want to run. Then press CTRL + R or CTRL + ENTER. Both do the same, so whichever works for you.</strong> This will run that single line. You’ll see it echoed in the console, as well as the output of the command, same as when we ran it directly in the console.</li>
+</ol>
+<blockquote>
+<ul>
+<li>There is also the option of using the <em>run button</em> at the top right of the script pane, but that’s generally more faff than using the keyboard.</li>
+</ul>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>To run multiple lines of code: <strong>highlight more than one line of script, as you would highlight text in any text editor or word processor. Then, as before, use the keyboard ‘run’ commands, either CTRL + R or CTRL + ENTER.</strong></li>
+</ol>
+<blockquote>
+<ul>
+<li>You can highlight the text with the mouse, or use the keyboard. If using the mouse, you can also use the mouse wheel to scroll the script while highlighting.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>If you’re not familiar with keyboard shortcuts for highlighting: <strong>hold down shift then use the up and down arrows to highlight a row at a time</strong>.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Third: you can run the entire script this way just by <strong>selecting everything with CTRL + A</strong> (or right-click and select all) Personally, I pretty much never do this, which is why I’ve left it until last. When you save your RStudio workspace in the project, it will save all of the variables and progress you’ve made so far, so there is usually no reason to run an entire script from scratch every time you start work. (That doesn’t mean some things shouldn’t run in their entirety - but it’s good to put these things into functions in their own script. We won’t be doing that, but it’s worth mentioning.)</li>
+</ul>
+</blockquote>
+<hr />
+</div>
+<div id="but-will-it-make-sense-in-two-months-time-using-comments-and-sections" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> ‘But will it make sense in two month’s time…?’ Using comments and sections</h2>
+<p>Code you write today may not make the slightest bit of sense in the near future. This happens to all programmers. So be kind to your future self and let them know why you did what you did. It’s <strong>absolutely essential</strong> to take some steps to make life easier for yourself by making sure the code is readable and clear. Leave plenty of space in your code wherever you can for a start.</p>
+<p>But the most essential way to make sure it makes sense:</p>
+<ul>
+<li><strong>Comment all your code clearly</strong></li>
+<li>Don’t ever say to yourself, ‘oh, this will make sense later’.</li>
+<li>So <strong>comment all your code clearly!</strong></li>
+</ul>
+<p>R uses the <strong>#hash symbol</strong> for comments. So for your few first script lines, you can add a comment or two thus (obviously, make your comments match what script you wrote!):</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-studio.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Oh look, this is a comment! It starts with a hash</span></span>
+<span id="cb17-2"><a href="r-studio.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="r-studio.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the assignment operator</span></span>
+<span id="cb17-4"><a href="r-studio.html#cb17-4" aria-hidden="true" tabindex="-1"></a>city <span class="ot">&lt;-</span> <span class="st">&#39;London&#39;</span></span>
+<span id="cb17-5"><a href="r-studio.html#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="r-studio.html#cb17-6" aria-hidden="true" tabindex="-1"></a>max <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb17-7"><a href="r-studio.html#cb17-7" aria-hidden="true" tabindex="-1"></a>min <span class="ot">&lt;-</span> <span class="dv">45</span></span>
+<span id="cb17-8"><a href="r-studio.html#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="r-studio.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the range by substracting max from min</span></span>
+<span id="cb17-10"><a href="r-studio.html#cb17-10" aria-hidden="true" tabindex="-1"></a>range <span class="ot">&lt;-</span> max <span class="sc">-</span> min</span></code></pre></div>
+<p>RStudio also provides a hugely useful comment feature:</p>
+<ul>
+<li><strong>Adding four dashes to the end of a comment <em>automatically makes it a section</em>. Try it - add four dashes to your first comment.</strong></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-studio.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the assignment operator----</span></span></code></pre></div>
+<p>As you add the dash, you’ll see a little down-pointing triangle appear on the left. Also, at the bottom of the scripting window, the same phrase should have appeared. Once we add more sections, you can click in that area to move between them.</p>
+<ul>
+<li>Shortcut key tip: <strong>ALT + SHIFT + J brings up the section menu without having to click on it.</strong> (At the moment we’ve only got one section, mind.)</li>
+</ul>
+<p>Some people also like to make their sections more visibly distinct by doing something like the comment below. It’s a matter of personal taste - whatever helps you keep your code clear.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-studio.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb19-2"><a href="r-studio.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the assignment operator----</span></span>
+<span id="cb19-3"><a href="r-studio.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></code></pre></div>
+<p>We’ll look at a few other keeping-things-readable ideas as we go on.</p>
+<hr />
+</div>
+<div id="its-all-about-the-libraries" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> It’s all about the libraries</h2>
+<p>Commands already built into R (like the sqrt function we used above) are known as the <strong>base commands</strong>. <strong>But all the really awesome stuff in R comes from libraries.</strong> If there’s something you think you need to do in R, someone has most probably already built a library to do it.</p>
+<p>For this workshop, we’ll be (mostly) using a set of libraries developed by one person: <strong><a href="http://hadley.nz/">Hadley Wickham</a></strong>. Hadley’s designed these libraries with an underlying data philosophy - <strong>‘<a href="http://vita.had.co.nz/papers/tidy-data.pdf">tidy data</a>’</strong> - so that as much as possible there is one clean, standardised way of doing things.</p>
+<p><strong>We’ll use these libraries to get us from loading and organising data right through to visualising it in the <em>ggplot</em> library.</strong></p>
+<p>If a library isn’t already installed, you can install it with the following. (This is the first library we’ll be using, in the next section.) <strong>Do this in the console, not in your script, as it only needs running once.</strong> RStudio will download and install the library. <strong>(So you’ll need to be connected to the internet.)</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-studio.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;readr&#39;</span>)</span></code></pre></div>
+<p>Once the library is installed, you can load it ready for use with the following. <strong>This time, put this right at the top of your script, before all the code and comments you’ve just written</strong> as you’ll want to load these libraries every time you come back to the script.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-studio.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<p>Notice, just to be awkward, that when <strong>installing</strong> libraries, the name needs to be in quotes but when <strong>loading</strong> it, it’s not.</p>
+<p>As we’ll see shortly, <strong>readr</strong> gives us a nicer way of loading CSVs than base R provides.</p>
+<p>##A quick look at vectors (boring but essential for later)</p>
+<p><strong>In R, a <em>vector</em> is just a collection of numbers, characters or other R object types.</strong> This may not seem terribly exciting right now, but <strong>understanding how R uses vectors helps massively with a lot of more complex activities we’ll be looking at later</strong>. Equally, <strong>not</strong> understanding how R uses them can lead to all sorts of confusion. As we go along, we’ll return to the concept of the vector and how R uses it. <strong>It’s actually very simple but easy to misunderstand initially.</strong></p>
+<p>Here’s how they work. Where before we were assigning single numbers…</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-studio.html#cb22-1" aria-hidden="true" tabindex="-1"></a>bobsAge <span class="ot">&lt;-</span> <span class="dv">45</span></span></code></pre></div>
+<p>… a <strong>vector</strong> of numbers just looks like this. When scripting, you indicate it’s a vector with a <strong>c</strong>, enclose the values in round brackets and separate values with commas.</p>
+<blockquote>
+<p><strong>In your own script, after your previous commands, make a vector similar to this with six random ages.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-studio.html#cb23-1" aria-hidden="true" tabindex="-1"></a>everyonesAge <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">35</span>,<span class="dv">72</span>,<span class="dv">23</span>,<span class="dv">11</span>,<span class="dv">19</span>)</span></code></pre></div>
+<p>This should be familiar enough to anyone who’s ever worked with mathematical vectors. And it’s the same structure for any other variable type, like strings.</p>
+<blockquote>
+<p><strong>This time, make a vector of six names - pick whatever names you like but try and split them evenly between male and female.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-studio.html#cb24-1" aria-hidden="true" tabindex="-1"></a>everyonesName <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;bob&#39;</span>,<span class="st">&#39;gill&#39;</span>,<span class="st">&#39;geoff&#39;</span>,<span class="st">&#39;gertrude&#39;</span>,<span class="st">&#39;cecil&#39;</span>,<span class="st">&#39;zoe&#39;</span>)</span></code></pre></div>
+<p><strong>You can either run each line after you’ve written it, or write both lines first, select both of them and run them together, as explained above.</strong></p>
+<p><strong>As before for single values, if you type these variable names into the console and press enter, you’ll see the whole vector.</strong></p>
+<hr />
+<blockquote>
+<p><strong>RStudio provides excellent <a href="https://support.rstudio.com/hc/en-us/articles/205273297-Code-Completion">code completion</a> that massively helps with scripting. As an introduction to this: when you start to type either of the two variables we just made, you <em>should see</em> an autocomplete box like this:</strong></p>
+</blockquote>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-18-1.png" width="288" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p><strong>You can scroll through these with up and down arrows or use the mouse. <em>Choose one now and press enter</em> - it will be added to the code.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>You can also use CTRL + SPACE to bring up the autocomplete box at other times.</strong></p>
+</blockquote>
+<hr />
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-studio.html#cb25-1" aria-hidden="true" tabindex="-1"></a>everyonesAge</span></code></pre></div>
+<pre><code>## [1] 45 35 72 23 11 19</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-studio.html#cb27-1" aria-hidden="true" tabindex="-1"></a>everyonesName</span></code></pre></div>
+<pre><code>## [1] &quot;bob&quot;      &quot;gill&quot;     &quot;geoff&quot;    &quot;gertrude&quot; &quot;cecil&quot;    &quot;zoe&quot;</code></pre>
+<p><strong>You can also access the individual values</strong> in a vector by using its index <strong>in square brackets after the variable</strong>, where 1 is the first entry and - in this case - 6 is the last:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r-studio.html#cb29-1" aria-hidden="true" tabindex="-1"></a>everyonesAge[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 45</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-studio.html#cb31-1" aria-hidden="true" tabindex="-1"></a>everyonesAge[<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-studio.html#cb33-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;gill&quot;</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-studio.html#cb35-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;geoff&quot;</code></pre>
+<p><strong>R also has syntax for giving a range of integers. Type this directly into the console to get all numbers from 2 to 5:</strong></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-studio.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 2 3 4 5</code></pre>
+<p>So we can use this to access values in our vector. (It’s up to you whether you want to run these directly in the console or put it in your script so you can save it.)</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-studio.html#cb39-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;gill&quot;     &quot;geoff&quot;    &quot;gertrude&quot; &quot;cecil&quot;</code></pre>
+<hr />
+<p><strong>Now: an example that begins to show why vectors are so important in R.</strong> If we want to access different names in our vector of names, we do the following. Here’s all the men and women separately <strong>(note, you’ll have to check your vectors to see what index the male/female members have - don’t just copy these numbers.)</strong>:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-studio.html#cb41-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;bob&quot;   &quot;geoff&quot; &quot;cecil&quot;</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-studio.html#cb43-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;gill&quot;     &quot;gertrude&quot; &quot;zoe&quot;</code></pre>
+<p>What happened there? <strong>We used another vector of numbers to index our earlier vector. R is built on vectors in this way.</strong> As we’ve already seen that vectors can be assigned to variables, <strong>we can also do the following:</strong></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-studio.html#cb45-1" aria-hidden="true" tabindex="-1"></a>women <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>)</span>
+<span id="cb45-2"><a href="r-studio.html#cb45-2" aria-hidden="true" tabindex="-1"></a>men <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb45-3"><a href="r-studio.html#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="r-studio.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Replace the vectors with their variable representation</span></span>
+<span id="cb45-5"><a href="r-studio.html#cb45-5" aria-hidden="true" tabindex="-1"></a>everyonesName[women]</span></code></pre></div>
+<pre><code>## [1] &quot;gill&quot;     &quot;gertrude&quot; &quot;zoe&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-studio.html#cb47-1" aria-hidden="true" tabindex="-1"></a>everyonesName[men]</span></code></pre></div>
+<pre><code>## [1] &quot;bob&quot;   &quot;geoff&quot; &quot;cecil&quot;</code></pre>
+<hr />
+<p>Another way to access the contents of vectors is using R’s boolean values - <strong>that is, the values of TRUE and FALSE</strong>. If we use a vector of TRUE/FALSE values, for example, we can mark as TRUE if any of the names are female:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-studio.html#cb49-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="fu">c</span>(<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>)]</span></code></pre></div>
+<pre><code>## [1] &quot;gill&quot;     &quot;gertrude&quot; &quot;zoe&quot;</code></pre>
+<blockquote>
+<p><strong>You can also use T and F as short-hand for TRUE and FALSE in R to save typing, if you want. For either, they must be in upper-case, however:</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-studio.html#cb51-1" aria-hidden="true" tabindex="-1"></a>everyonesName[<span class="fu">c</span>(F,T,F,T,F,T)]</span></code></pre></div>
+<p>For any vector members where this is <em>TRUE</em>, it returns that value for us. <strong>Why should you care about this? Because if we can use TRUE and FALSE to access vector indices, we can ask questions of the vector using {conditionals}.</strong></p>
+<p>For example, if we assume our <strong>everyonesAge</strong> vector is telling us the age of the people in <strong>everyonesName</strong>, we can ask, <strong>‘who’s over 30 years old?’</strong> (this is why we created six ages and six names above - make sure both of your age and name vectors have six entries each):</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="r-studio.html#cb52-1" aria-hidden="true" tabindex="-1"></a>everyonesName[everyonesAge <span class="sc">&gt;</span> <span class="dv">30</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;bob&quot;   &quot;gill&quot;  &quot;geoff&quot;</code></pre>
+<p>What just happened? Nothing more than we just did above when we used a vector of TRUE/FALSE values, except that R uses a <strong>conditional</strong> to create them. If you put this directly into the console -</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="r-studio.html#cb54-1" aria-hidden="true" tabindex="-1"></a>everyonesAge <span class="sc">&gt;</span> <span class="dv">30</span></span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<ul>
+<li>that just returns a <strong>vector containing TRUE/FALSE values from asking whether the ages in <em>everyonesAge</em> are more than 30</strong>. And as before, we can just stick that vector straight into <strong>everyonesName</strong> to find out who’s over 30.</li>
+</ul>
+<p>This is the full list of <strong>logical operators</strong> that we can use to ask questions like this. Note especially the <strong>double equals</strong>: this will allow us to find exact matches for values and text.</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-29-1.png" width="240" style="display: block; margin: auto;" /></p>
+<hr />
+<p>OK, so I totally lied about that being a <strong>quick</strong> look. But it’s all going to be very useful. <strong>The ability to use vectors in this way to access our data will turn out to be essential.</strong></p>
+<p>But that’s quite enough of vectors for now. They will crop up again shortly as we look at why they’re so important to how R thinks. But onto to the marginally more exciting…</p>
+<hr />
+</div>
+<div id="loading-a-file-into-a-dataframe-and-examining-the-data" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Loading a file into a dataframe and examining the data</h2>
+<p>We’ll be keeping all of our data in <strong>dataframes</strong>. The easiest way to understand these is just to look at one. Your project folder has a sub-folder called <strong>data</strong>. All of the data you’ll use today is in there. Let’s load an <strong>example dataframe</strong> to play with.</p>
+<blockquote>
+<p><strong>Make this a new section in your script using comment code as we did above - something like the following (remembering to put in four dashes to turn it into a section):</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="r-studio.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span id="cb56-2"><a href="r-studio.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading an example dataframe----</span></span>
+<span id="cb56-3"><a href="r-studio.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></code></pre></div>
+<hr />
+<blockquote>
+<p><strong>While we’re here, time for another top tip. You’ll often be creating code that you want to copy and move - we’ll be doing this a lot shortly. RStudio has a couple of fantastic shortcut keys to help with this. If you want to practice these, use them for making the section heading / comment above. We can do this:</strong></p>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Make the first comment line - a hash followed by a line of tildes, as above. Put the cursor on your new line. Now: SHIFT + ALT + DOWN ARROW. This makes a copy of the line below.</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Lastly, move your newly copied line one down to make room for the section heading itself: just use ALT + UP or DOWN arrows to move it.</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Then just add in the final header in the middle.</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>This ability to quickly copy and move code around will come in very useful later. It’s worth having these shortcuts at your fingertips.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>RStudio has the full list of shortcut keys in the help menu. You’ll even see, pleasingly, there’s a shortcut key to get the list of shortcut keys! Note all the cheatsheets in that menu too.</strong></p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>Now, Load the example data from the CSV file from the ‘data’ folder with the following, putting it into your script below the section heading. Take care - that’s an underscore, not a full stop, between ‘read’ and ‘csv’</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-studio.html#cb57-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/averagePricePerTTWA.csv&#39;</span>)</span></code></pre></div>
+<p>The <strong>read_csv</strong> command (from the <strong>readr</strong> package you installed and loaded above) loads the CSV data, turns it into a <strong>dataframe</strong> and assigns it to our variable name, <strong>df</strong>. We can now use <strong>df</strong> to work with the data. <strong>Readr will also do its best to work out what type of data is in each column for you.</strong> So notice the message output that appears in the console when you use <strong>read_csv</strong>.</p>
+<pre><code>## Parsed with column specification:
+## cols(
+##   ttwa_name = col_character(),
+##   avHousePrice = col_double(),
+##   numberOfSales = col_double()
+## )</code></pre>
+<p>As with our last assignments, the dataframe also appears in the environment pane under <em>data</em>, telling us there are <em>166 observations</em> and <em>3 variables</em>.</p>
+<blockquote>
+<p><strong>Here’s another really useful RStudio autocomplete feature too: if you’re trying to get a file that’s in the project folder, once you’ve typed your quote marks, CTRL+SPACE will give you file autocomplete options. So for example, if you type the following and then, after the slash, press CTRL+SPACE, the full csv name will appear, as it’s the only file in the folder. If there are many files, RStudio provides a list.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="r-studio.html#cb59-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/&#39;</span>)</span></code></pre></div>
+<p>We can look directly at this data in a few ways. A really useful one is this:</p>
+<ul>
+<li><strong>Click anywhere on the df variable name, or to the right of it, in its line in the environment pane. When you’re in the right place, the cursor will turn into a hand. <em>This opens the dataframe in its own tab</em>. You can scroll through the data.</strong></li>
+</ul>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-34-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>This shows us the basic structure of the dataframe, familiar enough from programs like Excel: <strong>variable names are in columns</strong> and <strong>each row is an observation</strong>. So we’ve got <strong>ttwa_name</strong>: TTWA is short for ‘Travel to Work Area’. These have towns and cities at their centre and include the surrounding area from which most people commute. There’s also the average house price and a count of sales.</p>
+<blockquote>
+<p>So going back to that output to the console when we loaded the CSV: we can see it told us not only the column names but the <strong>variable type</strong> that <strong>read_csv</strong> assigned it. <strong>ttwa_name</strong> is a character column, <strong>avHousePrice</strong> is ‘double’ (can have many decimal places) and numberOfSales are <strong>integers</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>If you have data with dates in, read_csv also does some other clever type assignment that makes dates easy to work with. R’s base CSV loader (read.csv uses a dot not an underscore) won’t do this for us. Manually formatting dates is a pain to be avoided!</strong></p>
+</blockquote>
+<p>We can also peek at the data using code. These two functions will show you the top and bottom few values if you input the dataframe into them. <strong>(This is the kind of quick looking at data that the console is good for.)</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="r-studio.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Look at the top and bottom of the dataframe</span></span>
+<span id="cb60-2"><a href="r-studio.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
+<span id="cb60-3"><a href="r-studio.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(df)</span></code></pre></div>
+<hr />
+<blockquote>
+<p><strong>We have another great autocomplete feature for dataframes. In the console, type the name of the dataframe and then a dollar sign…</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="r-studio.html#cb61-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span></span></code></pre></div>
+<p>You <em>should</em> see a list of the dataframe’s variable names appear, as below. You can access these as we did with the variable names above. <strong>Choose one now and press enter</strong> - it will be added to the code. Press enter again to run the line: R will output all 166 values for that variable to the console.</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-37-1.png" width="288" style="display: block; margin: auto;" /></p>
+<hr />
+<p><strong>How do we access particular observations or values in a dataframe?</strong> The syntax is similar to what we used with vectors: <strong>square brackets after the df variable name</strong>. Except it’s now <strong>two dimensions</strong>. Dataframes are referenced like this:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="r-studio.html#cb62-1" aria-hidden="true" tabindex="-1"></a>df[row,column]</span></code></pre></div>
+<p>So to access the price of the property in the first row:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="r-studio.html#cb63-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
+<p>You can also access entire rows or columns. To look at the first row, for example:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="r-studio.html#cb64-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span>,]</span></code></pre></div>
+<p>We just leave the column index blank, meaning ‘show all columns’. The same applies for columns… but with a slightly confusing difference, <strong>so to access whole columns, for now, just stick to using e.g. ‘df$ttwa_name’ as we did above.</strong></p>
+<hr />
+<p>We can use <strong>conditionals</strong> in our dataframe indices in <strong>exactly the same way we did with vectors</strong>. Say, for example, we want to keep <strong>only those cities that had over 100,000 sales</strong>. Just use the conditional in the <strong>row index</strong> (remembering the comma so we get all columns):</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="r-studio.html#cb65-1" aria-hidden="true" tabindex="-1"></a>highSalesCount <span class="ot">&lt;-</span> df[df<span class="sc">$</span>numberOfSales <span class="sc">&gt;</span> <span class="dv">100000</span>,]</span></code></pre></div>
+<p>Checking in the <strong>environment panel</strong>, This new dataframe has <strong>63</strong> cities/towns compared to <strong>166</strong> in the original <strong>df</strong>.</p>
+<hr />
+<p><strong>All</strong> of these methods for <strong>examining what’s in the dataframe</strong> can <strong>also be used for assigning TO the dataframe</strong>.</p>
+<p>If we want to add a new column, for example, it’s a simple matter:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="r-studio.html#cb66-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>newcolumn <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>Looking back at the dataframe view tab shows this new column is now present:</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-43-1.png" width="412.8" style="display: block; margin: auto;" /></p>
+<p>It’s not a very exciting column, admittedly: we’ve just added a 1 to all rows. But <strong>note R’s behaviour when we asked it to do this</strong>: we passed it a single number and R took this as a request to add it to every row in our new column.</p>
+<p>This can be used if we combine it with <strong>conditionals</strong> to ask questions about the data. We already saw how to ask a simple vector about something - we found people over the age of 30. Now we can do the same with a dataframe, because:</p>
+<blockquote>
+<p><strong>Dataframe columns are just vectors. So everything we can do with <em>everyonesName</em> we can also do with <em>df$avHousePrice</em> and the other columns.</strong></p>
+</blockquote>
+<p><strong>Say we want to know which cities have an average house price above £150,000.</strong> First we can just add another single-value column, as we just did, and fill it with zeroes to start with:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="r-studio.html#cb67-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>priceAbove150K <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
+<p>Then we can <strong>overwrite rows above that value with a flag</strong> by selecting the elements of the vector with a <strong>conditional</strong> just as we did above with ages:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="r-studio.html#cb68-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>priceAbove150K[df<span class="sc">$</span>avHousePrice <span class="sc">&gt;</span> <span class="dv">150000</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>Our new column now contains the original zeroes - and ones in those rows that met our price condition:</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-46-1.png" width="412.8" style="display: block; margin: auto;" /></p>
+<p>Just the same as before, when we do this in the console, you can see it returns a vector of TRUE/FALSE values:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="r-studio.html#cb69-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>avHousePrice <span class="sc">&gt;</span> <span class="dv">150000</span></span></code></pre></div>
+<blockquote>
+<p><strong>But this time we’ve used our TRUE/FALSES to assign a value to those members of the vector</strong></p>
+</blockquote>
+<p>Now we’ve done that, we can use <strong>the table function</strong> to <strong>give us a count of how many</strong> cities/towns are above and below our price difference:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="r-studio.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>priceAbove150K)</span></code></pre></div>
+<pre><code>## 
+##  0  1 
+## 85 81</code></pre>
+<p><strong>So 81 TTWAs have an average house price above £150,000.</strong></p>
+<p>It’s worth taking some time to check it makes sense: <strong>that the same principles for basic vectors apply to dataframe columns, which are themselves also just vectors.</strong></p>
+<p>We can prove that just by showing how you build a dataframe from scratch rather than loading it. We could use our previous two vectors thus:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="r-studio.html#cb72-1" aria-hidden="true" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ages =</span> everyonesAge, <span class="at">names =</span> everyonesName)</span></code></pre></div>
+<p>You’ll see a <strong>people</strong> dataframe appear top-right in the environment pane, along with the dataframe we loaded. We can look at it as we did before:</p>
+<p><img src="01_basics_files/figure-html/unnamed-chunk-50-1.png" width="144" style="display: block; margin: auto;" /></p>
+<hr />
+<blockquote>
+<p><strong>OK, that’s all the basics we need to cover. Look forward to seeing you!</strong></p>
+</blockquote>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
