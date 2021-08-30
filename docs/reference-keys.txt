@@ -1,6 +1,6 @@
-introduction
+essentials
+getting-the-course-project-folder-and-data
 getting-r-and-rstudio
-r-studio
 a-first-look-at-rstudio
 entering-commands-in-r
 assigning-to-variables
@@ -9,7 +9,8 @@ creating-a-new-script-and-running-code-in-it
 but-will-it-make-sense-in-two-months-time-using-comments-and-sections
 its-all-about-the-libraries
 loading-a-file-into-a-dataframe-and-examining-the-data
-introduction-1
+data-wrangling-visualisation
+the-first-principle-of-data-visualisation
 getting-started
 loading-the-libraries
 loading-the-house-price-data
@@ -17,7 +18,6 @@ lets-jump-right-into-ggplot
 the-lubridate-library
 using-ggplots-own-stat-functions
 getting-started-with-dplyr-and-piping
-piping
 dplyrs-verbs
 and-a-few-extras-while-were-here
 using-scales-to-control-appearance
@@ -30,7 +30,8 @@ merging-the-housing-and-wages-data
 choosing-a-subset-based-on-some-criterion
 saving-ggplots-as-image-files
 time-for-a-pause
-six-and-a-bit-options
+freeform-1-work-on-new-ideas-together
+freeform-2-six-other-options-to-play-with
 prettifying-a-graph
 facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible
 iteration

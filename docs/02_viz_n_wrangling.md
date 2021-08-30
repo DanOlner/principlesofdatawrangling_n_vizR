@@ -2,42 +2,42 @@
 
 
 
+# DATA WRANGLING & VISUALISATION
 
+## The first principle of data visualisation...
 
-# Introduction
-
-the principles of shaping data in preparation for visualising in **ggplot**. The first principle is: **shaping the data is an essential part of building visualisations**. It's not just an annoyance: your visualisation goals will dictate the kind of shape the data needs to be made into.
+The first principle of data visualisation is: **shaping the data is an essential part of building visualisations**. It's not just an annoyance: your visualisation goals will dictate the kind of shape the data needs to be made into.
 
 We'll use libraries from the **tidyverse** to do this. As [Hadley Wickham says](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html), 'by constraining your options, it simplifies how you can think about common data manipulation tasks'.
 
 We'll be looking at **two cheatsheets** as guides to the two main libraries we will use: **ggplot** and **dplyr**. These two are the [yin and yang](https://en.wikipedia.org/wiki/Yin_and_yang) of data visualisation in R. With **dplyr**, we'll shape and squeeze our data into the right form to visualise what we want in **ggplot**.
 
-We're obviously not going to try and look at everything on these sheets. We'll pick out a small number of examples to illustrate the underlying principles, with the hope that **by the end of the day, you should have enough of an understanding of them to carry on your learning from them.**
+We're obviously not going to try and look at everything on these sheets. We'll pick out a small number of examples to illustrate the underlying principles, with the hope that **by the end of the course, you should have enough of an understanding of them to carry on your learning from them.**
 
 You've got copies of each of the cheat sheets. If you need them in future, they're both available via **RStudio's help menu** (or search for them online).
 
 
 *****
 
-The day is split roughly into two:
+This part of the course is split roughly into two:
 
 1. **We'll learn some of the essential concepts of data wrangling in preparation for visualising** by **walking through a few typical script creation scenarios**: getting our data, processing it, deciding what we want to do with it to prepare for visualising.
 
-> **For this part of the day, I'll be working through the material with you step by step, carrying out exactly the same tasks.** Things will doubtless go wrong, often just misplaced brackets and the like - **please ask if you're stuck.** 
+> **For this part of the course, I'll be working through the material with you step by step, carrying out exactly the same tasks.** Things will doubtless go wrong, often just misplaced brackets and the like - **please ask if you're stuck.** 
 
-2. The **second part** will be more free-form. There are **a range of choices** for you to pick in this half of the day. You'll get to work through whichever you like, with help on hand (and you'll get a break from me talking the whole time.) **If there's anything else you want to have a go at, let me know and I'll try to help.**
+2. The **second part** will be more free-form. There are **a range of choices** for you to play with. You'll get to work through whichever you like, with help on hand (and you'll get a break from me talking the whole time.) **If there's anything else you want to have a go at, let me know and I'll try to help.**
 
 *****
 
-**We're going to try and fit a lot into one day: don't worry too much if not all of it makes sense** as long as the overall picture you get *does* make sense. I'll try and make sure that everyone knows which bits they *really* need to have taken in.
+**We're going to try and fit a lot into one course: don't worry too much if not all of it makes sense** as long as the overall picture you get *does* make sense. I'll try and make sure that everyone knows which bits they *really* need to have taken in.
 
 **We'll only scratch the surface of what R and the tidyverse can do.** But it should be a solid foundation for further exploration.
 
-**We'll check in after every chunk of work** to make sure everyone's OK with where we've got to. Each part of the day builds on the other - it's important that you feel like it's making enough sense that you don't get lost as we move on. **Please do ask if anything is confusing. Any new programming concepts, even for experienced programmers is always confusing.** I learned Java before R: that didn't stop R being baffling for a long while.
+**We'll check in after every chunk of work** to make sure everyone's OK with where we've got to. Each part of the course builds on the other - it's important that you feel like it's making enough sense that you don't get lost as we move on. **Please do ask if anything is confusing. Any new programming concepts, even for experienced programmers is always confusing.** I learned Java before R: that didn't stop R being baffling for a long while.
 
 *****
 
-> **Our data for the day: *Land registry data on house prices in England*. (We'll also look at some other data and link it.)**
+> **Our data for the course: *Land registry data on house prices in England*. (We'll also look at some other data and link it.)**
 
 > **All of the data for the workshop is open access**: you can download it yourself for free. I've provided links and notes at the end of this document for that.
 
@@ -47,9 +47,9 @@ The day is split roughly into two:
 
 Some random tips before we get started properly:
 
-* I'd recommend typing out as many of the R commands we'll be working with where you can in the first part of the day - **it's by far the best way to learn and understand the code**. But if you get bored of that, or for some of the larger chunks of code later, feel free to use any of the code sources I've supplied. **The digital PDF and webpage also have links** to the topics we're covering, if you want to look at any of those during the day.
+* I'd recommend typing out as many of the R commands we'll be working with where you can in the first part of the course - **it's by far the best way to learn and understand the code**. But if you get bored of that, or for some of the larger chunks of code later, feel free to use any of the code sources I've supplied. **The digital PDF and webpage also have links** to the topics we're covering, if you want to look at any of those during the course.
 
-* **Learning some keyboard shortcuts helps massively**. You don't have to use them but, once learned, they're hugely useful in R-Studio. I'll explain them as we go along. I've also included a **keyboard shortcut sheet** for the ones you might want to use today.
+* **Learning some keyboard shortcuts helps massively**. You don't have to use them but, once learned, they're hugely useful in R-Studio. I'll explain them as we go along. I've also included a **keyboard shortcut sheet** for the ones you might want to use.
 
 * Oh and... **what's data wrangling?** I [refer you to Wikipedia](https://en.wikipedia.org/wiki/Data_wrangling). Really, it just means re-arranging data until it's the shape we need. It has its own word now because **we spend far more time doing this re-arranging than actual analysis.**
 
@@ -57,19 +57,19 @@ Right! --->
 
 ******
 
-# Getting started
+## Getting started
 
 OK, let's start by **sorting out our project folder** so we can access the data we're all going to be working from. We'll first need to **copy the data folder to our own machines**. Once you've done that, I'd recommend **making it a new RStudio project** via the top right button:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-2-1.png" width="768" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-2-1.png" width="768" />
 
-Navigate to your copied files and make a new project there. **We can now access all the files and save our R script and visualisations here**. Once you're done today, you can copy all this over to your USB stick or keep on your own drive.
+Navigate to your copied files and make a new project there. **We can now access all the files and save our R script and visualisations here**. Once you're done, you can copy all this over to your USB stick or keep on your own drive.
 
-So now: **create a new R script for your day's programming and we can begin.** Either use the menu (**file/new**) or the shortcut **CTRL+SHIFT+N**.
+So now: **create a new R script for your programming and we can begin.** Either use the menu (**file/new**) or the shortcut **CTRL+SHIFT+N**.
 
 *****
 
-# Loading the libraries
+## Loading the libraries
 
 Many of the most important **tidyverse** libraries are packaged into one - including **ggplot** and **dplyr**, the two we'll be using most heavily. We'll start our script by loading this library. **Stick this, and any later library loads, right at the top of your script:**
 
@@ -80,7 +80,7 @@ library(tidyverse)
 
 When it loads, you'll see the many different libraries that come in the tidyverse displayed in the console.
 
-If the library isn't yet installed, you'll get an error. You'll need to install it first. Because this only needs doing once, it's best to do it in the console. If you discover any other libraries we use today are not yet installed, it's same procedure. 
+If the library isn't yet installed, you'll get an error. You'll need to install it first. Because this only needs doing once, it's best to do it in the console. If you discover any other libraries we use in the course are not yet installed, it's same procedure. 
 
 > Note: **when installing, the library name needs to be in quote marks**. But it's **not in quote marks when we actually load the library.**
 
@@ -90,7 +90,7 @@ install.packages('tidyverse')
 ```
 
 
-# Loading the house price data
+## Loading the house price data
 
 **OK, let's get stuck in to the data we're going to use.** You can use the **file** pane, bottom-right, to have a look at the files. **Click on the 'data' folder**: as well as the little example dataframe we just looked at, this folder contains the following file:
 
@@ -114,7 +114,7 @@ head(sales)
 
 ... and will look something like this:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
 Each row is a **single property sale**. As you can see, the data has **eleven columns** with the following variables:
 
@@ -147,7 +147,7 @@ We'll get to know the geographies better as we visualise them. But first...
 
 *****
 
-# Let's jump right into ggplot 
+## Let's jump right into ggplot 
 
 We can start making some **ggplots** immediately: **these won't be pretty, but we can use them to illustrate the basics of how *ggplot* works, step by step.**
 
@@ -172,7 +172,7 @@ ggplot(saleSample, aes(x = Eastings, y = Northings)) +
   geom_point()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-10-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-10-1.png" width="595.2" />
 
 So we can see house sales in different locations across England. But how did that work? Take a look at the cheatsheet: **basics** on page one has a little template explaining what ggplot **requires** to plot. It needs just the **three things we supplied**:
 
@@ -183,7 +183,7 @@ So we can see house sales in different locations across England. But how did tha
 * **the geometry.** Again, look at your cheat sheet, page 1. Almost all of the first page **gives you all the different geometries ggplot can use**. We used **geom_point** so that x and y are mapped to points.
 * You can also get a quick guide to the geoms using RStudio's autocomplete. This will list them all and give a little help overview. 
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-11-1.png" width="360" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-11-1.png" width="360" />
 
 As with all other functions, for the full help page, use e.g.:
 
@@ -206,7 +206,7 @@ ggplot(saleSample, aes(x = Eastings, y = Northings, colour = ttwa)) +
   geom_point()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-13-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-13-1.png" width="595.2" />
 
 This is not a good map! But it illustrates how **aes** works. There are a few other new things here.
 
@@ -218,7 +218,7 @@ So back to the most important principle: **ggplot wants each variable in its own
 
 Here's a little illustration to help with the intuition. If we've mapped **ttwa** to the **colour aesthetic** then**ggplot** will **work out how to map a colour** to each discrete group within that variable. If the variable had been continuous, **ggplot** would have supplied a continuous scale.
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-14-1.png" width="360" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-14-1.png" width="360" />
 
 Later, we'll look at what to do if your data isn't already in long form.
 
@@ -232,7 +232,7 @@ ggplot(saleSample, aes(x = ttwa, y = price)) +
   geom_point()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-15-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-15-1.png" width="595.2" />
 
 Again - **ggplot** knows it's discrete and labels each place. **The plot itself is, again, fairly awful: overlapping points and labels, poor axis ticks etc**. We'll come back to all the prettifying things like labelling later, but let's stick to the essentials for now.
 
@@ -253,23 +253,23 @@ ggplot(saleSample, aes(x = date, y = price)) +
   geom_point() 
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-16-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-16-1.png" width="595.2" />
 
 **ggplot** can plot dates correctly and provides axis ticks - but using each day is far too messy. We need to do two things to fix this:
 
-1. **Create a better date category - we'll break the data down by year.**
+1. **Create a better date category - we'll break the data down by year.**4
 2. **Summarise the housing data based on this.**
 
 There are two ways to summarise data for **ggplot**: 
 
 * **ggplot**'s own **stat** functions (more on these after the next section...)
-* **Wrangling into the right shape ourselves** using **dplyr** and other R functions. While rather more work, this is the only way to fully control what you want to visualise. **Learning about wrangling and dplyr will be a big chunk of the day.**
+* **Wrangling into the right shape ourselves** using **dplyr** and other R functions. While rather more work, this is the only way to fully control what you want to visualise. **Learning about wrangling and dplyr will be a big chunk of the course.**
 
 First-up though: **making a useable date column.**
 
 *****
 
-# The lubridate library
+## The lubridate library
 
 > **Time for another library: lubridate**. As you'd expect, this makes working with dates a lot easier. Put this library call with the others at the top of the script.
 
@@ -297,7 +297,7 @@ sales$year <- year(sales$date)
 
 If you go back to your dataframe view tab or use the console, you'll see it's been added:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-20-1.png" width="360" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-20-1.png" width="360" />
 
 We can use the **table** function to get a quick look at the result, counting the number of sales per year:
 
@@ -316,7 +316,7 @@ table(sales$year, sales$type)
 
 *******
 
-# Using ggplot's own stat functions
+## Using ggplot's own stat functions
 
 Now there's a year column, we can start **summarising the data for each year.** Going back to the original question - what impact did the 2007/8 crash have on the housing market - we can start by asking:
 
@@ -334,7 +334,7 @@ ggplot(sales, aes(x = year)) +
   geom_bar()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-23-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-23-1.png" width="595.2" />
 
 So it looks like, for these TTWAs, **the number of sales halved after the crash** and never recovered. As before, we can assign the TTWA to the bar colour - though this time it's **fill** ('colour' is the bar outline). London has vastly more sales per year than any other TTWA. 
 
@@ -344,7 +344,7 @@ ggplot(sales, aes(x = year, fill = ttwa)) +
   geom_bar()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-24-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-24-1.png" width="595.2" />
 
 There are a few principles going on here:
 
@@ -356,7 +356,7 @@ ggplot(sales, aes(x = year, y = price, fill = ttwa)) +
   geom_bar()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-26-1.png" width="576" />
 
 2. Some geometries use **ggplot stats**, others will plot your data directly. How to tell the difference?
   + You'll become familiar with the ones used for summary stats - on the cheatsheet, a lot of them are under **one variable**, **discrete x, continuous y** and **continuous bivariate distribution**. We'll cover some more in a moment.
@@ -387,7 +387,7 @@ ggplot(sales, aes(x = year, fill = ttwa)) +
   geom_bar(position = 'fill')
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-29-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-29-1.png" width="595.2" />
 
 In comparison, look again at the help for **geom_point**, that we used to begin with:
 
@@ -414,7 +414,7 @@ ggplot(sales, aes(x = date)) +
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-31-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-31-1.png" width="595.2" />
 
 > **There are a lot of different stat functions, each with their own default geoms.** When first learning **ggplot**, it's just a matter of getting to know them through use. **ggplot's help** is really helpful! It'll help for working out what default stats each of them uses.
 
@@ -428,19 +428,17 @@ We'll come back to one or two of these later. For now, on to **using dplyr** to 
 
 
 
-# Getting started with **dplyr** and **piping**
+## Getting started with **dplyr** and **piping**
 
 We're going to be mainly using **dplyr** to reshape our data into different forms for the visualisations. (We've already loaded this library as part of the **tidyverse** package.) 
 
-Before we get to **dplyr** itself - 
-
-## Piping! 
+Before we get to **dplyr** itself - Piping! 
 
 > **Piping is *magic*: it will make everything spectacularly easier and tidier.** 
 
 > Specifically, this is **the pipe operator**. It loads with **dplyr** and looks like this: 
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-32-1.png" width="192" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-32-1.png" width="192" />
 
 A quick recap: **pretty much everything in R is a function**. For example, to find the square root of a number, use the **sqrt** function:
 
@@ -554,13 +552,13 @@ sales %>%
 
 The **filter** verb uses **logical operators** to query each row in the data. The full list of these **is on the data wrangling cheatsheet**. Here they are again:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-38-1.png" width="240" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-38-1.png" width="240" />
 
 Note especially the **double equals** we just used: this allows us to find exact matches for values and text (in this case, matching to 2015).
 
 **A quick reminder of how R uses logical operators to create TRUE/FALSE vectors**. (TRUE/FALSE values are also known as **boolean** values.) Here's an illustration of two logical operators checking their condition against each row of the chosen variable:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-39-1.png" width="384" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-39-1.png" width="384" />
 
 
 
@@ -662,7 +660,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   geom_point()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-47-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-47-1.png" width="595.2" />
 
 
 
@@ -683,7 +681,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   geom_line()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-48-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-48-1.png" width="595.2" />
 
 ```r
   #geom_point()
@@ -703,7 +701,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   geom_point()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-49-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-49-1.png" width="595.2" />
 
 Note that our **aesthetic mapping of colour to TTWA has applied to both lines and points.** More on that shortly.
 
@@ -730,7 +728,7 @@ saleSummary <- sales %>%
 
 You'll see we now have **countOfSales** as well as **meanPrice**:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-51-1.png" width="384" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-51-1.png" width="384" />
 
 **What does n() do?** It's **dplyr** shorthand for 'number of observations': if we've grouped the data, **it will give us the number of observations per group**. (You can see this and other **summarise** functions on page 2 of the **dplyr** cheatsheet.)
 
@@ -743,7 +741,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   geom_point(aes(size = countOfSales))
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-52-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-52-1.png" width="595.2" />
 
 The **size of the points** now represents **count of sales**. **ggplot** gives it its own legend.
 
@@ -768,7 +766,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   geom_point(aes(size = countOfSales), colour = 'grey')
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-53-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-53-1.png" width="595.2" />
 
 The general principle here:
 
@@ -788,11 +786,11 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   geom_line() # <<< moved this down one line and moved the plus too
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-54-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-54-1.png" width="595.2" />
 
 *****
 
-# Using scales to control appearance
+## Using scales to control appearance
 
 The last graph was getting there: it's possible to see that **prices were rising up until the crash** - we'll need some more tweaks to properly compare places with different average house prices.
 
@@ -823,7 +821,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   scale_y_log10() # <<< new log y scale
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-55-1.png" width="672" />
 
 Where previously there appeared to be a marked difference in the post-crash response, the **log scale shows that is perhaps not the case**. London is still its own thing, as always.
 
@@ -842,7 +840,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
   scale_size_continuous(range = c(0,10))
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-56-1.png" width="672" />
 
 > Another note: for things like scale changes, **it doesn't matter where in the ggplot argument order they go. Line order only makes a difference for the order that geoms draw in.**
 
@@ -860,7 +858,7 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
   scale_size_continuous(range = c(0,10))
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-57-1.png" width="672" />
 
 **Why did all the points become larger?** Because the top of the range was previously London prices, making all the others **relatively lower.** Removing London changes that.
 
@@ -878,7 +876,7 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
   scale_size_continuous(range = c(0,10))
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-58-1.png" width="672" />
 
 Well, that's messy! One more option that can sometimes make otherwise unreadable graphs workable: **we change change alpha. This controls transparency:**
 
@@ -897,11 +895,11 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
   scale_size_continuous(range = c(0,10))
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-59-1.png" width="672" />
 
 
 
-# Scales for controlling colour
+## Scales for controlling colour
 
 We've been using ggplot's default colour scheme so far but - as with other scales - we can choose a colour scheme for the **colour mapping** ourselves. There are a huge number of options here, many on **page 2 of the ggplot cheatsheet** - let's just cover two.
 
@@ -938,7 +936,7 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
   scale_color_brewer(palette = 'Paired')
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-62-1.png" width="672" />
 
 Another option is to **set the colours manually.** There are a **huge number of pre-defined colour names** in **ggplot**. This website has the full reference: sape.inf.usi.ch/quick-reference/ggplot2/colour
 
@@ -968,11 +966,11 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
   scale_color_manual(values = newcols)
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-65-1.png" width="672" />
 
 *****
 
-# Using factors to control order of variables
+## Using factors to control order of variables
 
 Up to now, the TTWAs **have appeared in alphabetical order in the legend** - which is a bit visually confusing, as **the highest prices are nearer the top**. It would be nice if the legend matched this.
 
@@ -995,7 +993,7 @@ ggplot(saleSummary,
   scale_size_continuous(range = c(0,10))
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-67-1.png" width="672" />
 
 > We'll look a bit more at what fct_reorder does when covering the **dplyr mutate verb** below.
 
@@ -1019,7 +1017,7 @@ ggplot(saleSummary,
   coord_cartesian(xlim = c(2000,2008)) # <<< set the view window
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-68-1.png" width="672" />
 
 **Second-up:** how to control the legends? If they're in the wrong order, or you want to remove them entirely, **use the guides function.**
 
@@ -1043,7 +1041,7 @@ There'll be a lot more info on controlling appearance later.
 
 ***********************************************
 
-#  Joining data sources together
+##  Joining data sources together
 
 
 It would be very useful to be able to **adjust our house price data to something that's consistent over time**. But how? We could use some value for inflation, but this doesn't actually include house price change and would only provide a single adjustment figure for the whole of England.
@@ -1099,7 +1097,7 @@ ggplot(wagesLong, aes(x = year, y = medianwage)) +
   geom_boxplot()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-73-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-73-1.png" width="595.2" />
 
 **A boxplot** can help get a quick look at the shape of the data. In this case, it's easy to see median wages going up over time - so the data looks sensible.
 
@@ -1165,7 +1163,7 @@ Looking at the result, **we can see this matches the structure of *wagesLong*: o
 
 **The dplyr cheatsheet has a neat diagram showing our various joining options.** We want to use an **inner join** because we only want to **keep local authorities that the two dataframes have in common.**
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-78-1.png" width="288" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-78-1.png" width="288" />
 
 *****
 > **When doing joins, it's generally wise to make a new variable. Joins often go wrong on first attempts: it's useful to be able to compare with the previous data to make sure it's done what you wanted it to.**
@@ -1194,7 +1192,7 @@ price_n_wage <- inner_join(
 
 Ah: the *year* variable in one of them is in character format, not number. But which? Looking in the environment panel, we can **click on the arrow symbol to look**. This reveals, under wagesLong:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-80-1.png" width="576" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-80-1.png" width="576" />
 
 The **`chr'** next to *year* show it's a character column. So **when we gathered the year column names, they were kept as characters.** Before we can merge, we have to make them the same format:
 
@@ -1277,7 +1275,7 @@ ggplot(price_n_wage, aes(x = year, y = wagemultiple, colour = Area)) +
   guides(colour = F)
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-87-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-87-1.png" width="595.2" />
 
 So: **we now have house prices as a ratio of median yearly wages.** And there's one crazily high outlier and it's difficult to see any effect from the crash. But there are a lot of local authorities here - **how to pick out ones we want to look at?**
 
@@ -1340,7 +1338,7 @@ ggplot(price_n_wage %>% filter(Area %in% zoneselection$Area),
   geom_line() 
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-91-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-91-1.png" width="595.2" />
 
 > The **%in% operator** is fantastic: it can be used for multiple selections. As with everything else in R, it **works with vectors** - we just passed it a dataframe column, which is a vector. If we wanted to pass a vector directly, we could - e.g.:
 
@@ -1379,7 +1377,7 @@ ggplot(price_n_wage %>% filter(Area %in% zoneselection$Area),
   labs(colour = 'area')
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-94-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-94-1.png" width="595.2" />
 
 > **The advantage of using a selection dataframe or vector like this: the *ggplot* code doesn't need to change. You just need to change the selection.**
 
@@ -1398,7 +1396,7 @@ ggplot(price_n_wage2018, aes(x = wagemultiple, y = medianwage)) +
   geom_point()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-95-1.png" width="595.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-95-1.png" width="595.2" />
 
 ... while there's mostly a linear positive relationship, there are outliers in both directions: Kensington and Chelsea we've already seen, that's the point on the right. But there are *also* places with very low wage multiples but **high median wages**. How might you dig into that further?
 
@@ -1406,7 +1404,7 @@ ggplot(price_n_wage2018, aes(x = wagemultiple, y = medianwage)) +
 
 ******
 
-# Saving ggplots as image files
+## Saving ggplots as image files
 
 Lastly, **let's save a plot as an image file**. To do this, we need to assign the plot to its own variable. If we re-run the previous **ggplot** of top and bottom wage multiples, it's done like this - assigning to a variable as we would with any other assignment:
 
@@ -1462,7 +1460,7 @@ ggsave('images/topAndBottomLAs_wageMultiples_lowres.png',
 
 ## Time for a pause!
 
-So you've successfully loaded data, wrangled it and visualised it. Just a quick reflection on how we did that, before moving on to the second part of the day:
+So you've successfully loaded data, wrangled it and visualised it. Just a quick reflection on how we did that, before moving on to the second part of this section:
 
 * **We used a bunch of *tidyverse* libraries** to process and visualise data. These are all designed with the same philosophy of `constrain to simplify'.
 
@@ -1470,7 +1468,7 @@ So you've successfully loaded data, wrangled it and visualised it. Just a quick 
 
 *****
 
-OK, so next - you've got **six (and a bit) options** to have a go at. For this part of the day I'm going to let you work independently from this booklet and be on hand to help. If anything important comes up, I'll work through it on the screen again.
+OK, so next - you've got **six (and a bit) options** to have a go at. For this part of the course I'm going to let you work independently from this booklet and be on hand to help. If anything important comes up, I'll work through it on the screen again.
 
 1. **Working on prettifying the plot you've just made.** This covers some of the most common options for customising plots.
 
@@ -1494,9 +1492,13 @@ And this one doesn't have its own section below: you're on your own! Work with t
 
 *****
 
-# SIX (and a bit) OPTIONS
+# FREEFORM 1: WORK ON NEW IDEAS TOGETHER...
 
-# Prettifying a graph
+From here on, we can either look at some more examples below, or work on other data ideas e.g. perhaps some Sheffield-specific data sources. Here are six other options if we want to look at those:
+
+# FREEFORM 2: SIX OTHER OPTIONS TO PLAY WITH
+
+## Prettifying a graph
 
 So we made some graphs, but they're lacking finesse. **ggplot** provides many ways to customise its appearance to make it more presentable. **In this option, we'll look at some of the most common functions used to do this.** So here's the plot we were just working on, for reference - **but feel free to go and grab code for the earlier plots if you'd prefer.** This will all apply to those too.
 
@@ -1659,7 +1661,7 @@ ggplot(price_n_wage %>% filter(Area %in% zoneselection$Area),
         axis.title.x=element_blank())
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-113-1.png" width="691.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-113-1.png" width="691.2" />
 
 <!-- > **Prettifying a log scale** -->
 
@@ -1708,7 +1710,7 @@ ggplot(price_n_wage %>% filter(Area %in% zoneselection$Area),
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-# Facetting and dodging: getting as much info into one graph as humanly possible
+## Facetting and dodging: getting as much info into one graph as humanly possible
 
 There's a quote about visualisation doing the rounds:
 
@@ -1812,7 +1814,7 @@ geom_col(position = 'dodge')
 
 **Ah ha! Each value is now side-by-side and makes sense against the y axis.** But it would be useful to tell **ggplot** to place all the facets on one row to make it easier to compare the y-axis between categories. How? **Use autocomplete to get your list of facet options. Put a comma after year then press CTRL+SPACE**. Use the mouse or cursor: the help tells you how to use **ncol, nrow** and **scales**:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-119-1.png" width="576" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-119-1.png" width="576" />
 
 So we can set all the facets on one row with:
 
@@ -1936,11 +1938,11 @@ You could also try **coord-flip** - this can work well with categorical x axes.
 
 
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-129-1.png" width="883.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-129-1.png" width="883.2" />
 
 And - because we're using three different categorical variables, try different combinations of **mapping them to fill, facet and x axis.**  What works best? For example, if we **swap year with Area** and **set a free y scale**, we can look at changes within local authorities over time. Though you **need to be careful to note that they're less visually comparable**, if a scale is free, **ggplot** will add individual tick marks for each.
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-130-1.png" width="883.2" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-130-1.png" width="883.2" />
 
 
 **facet_wrap** has a [range of other options](http://docs.ggplot2.org/current/facet_wrap.html). Also useful is **scales**. As the link above explains (and as we saw in the autocomplete) this can be **scales = 'free'**. Or also **'free_y'**, **'free_x'** to control them separately. In this case, 'free_y' would allow **ggplot** to adjust each separately to fill the graph (but at the cost of the **wage multiple** not being as comparable.)
@@ -1949,7 +1951,7 @@ And - because we're using three different categorical variables, try different c
 
 *****
 
-# Iteration
+## Iteration
 
 
 *****
@@ -2098,7 +2100,7 @@ for(grp in groupsToPrint){
 
 *****
 
-## 2. Pulling out multiple model values and visualising them
+### 2. Pulling out multiple model values and visualising them
 
 
 This section is inspired by code from the excellent book [R for Data Science](http://r4ds.had.co.nz/) and the section on mapping with the **purrr** library (another one that comes packaged with the **tidyverse library**).
@@ -2263,7 +2265,7 @@ plot(log(testinz$meanprice) ~ testinz$percentEmployed)
 abline(rez)
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-144-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-144-1.png" width="672" />
 
 In Bradford in 2001, an employment increase of 1% was associated with a house price increase of about 6.6%.
 
@@ -2426,7 +2428,7 @@ ggplot(alloutput, aes(x = fct_reorder(names,-coeffs), y = coeffs)) +
   coord_flip()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-151-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-151-1.png" width="672" />
 
 As a last exercise: **how would you go about running the models for both decades and then comparing?** The aim, as with all **ggplots**, would be to have **year in its own column** so it can be mapped to an aesthetic. You could also use **dodge**.
 
@@ -2503,13 +2505,13 @@ bothmodels <- rbind(model01,model11)
 
 And with the addition of **position = 'dodge'** in **geom_errorbar**, this could be used to create the following. Note here we're setting **dodge spacing** directly so we can control the point **and** error bar position to both match each other:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-155-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-155-1.png" width="672" />
 
 Again, the **R for Data Science** book has a lot more on functional programming - hopefully this gives a hint of its power.
 
 ***********
 
-# A little bit of mapping
+## A little bit of mapping
 
 In this section, we'll take a quick look at three different ways to make maps from the housing data:
 
@@ -2520,7 +2522,7 @@ The **sf library** is relatively new: it's particularly great because it works e
 
 
 
-## One simple way to use ggplot for mapping: the 2D geoms
+### One simple way to use ggplot for mapping: the 2D geoms
 
 A really simple way to make quick maps is to use ggplot's **2D geoms**. One of these included on the ggplot cheatsheet - **geom_bin2d** - does a single job: as the help says, if you have two dimensions of continuous data, it:
 
@@ -2561,7 +2563,7 @@ ggplot(london %>% filter(year == 2018), aes(x = Eastings, y = Northings)) +
   theme_void()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-158-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-158-1.png" width="672" />
 
 **But what about things other than count?**
 
@@ -2581,7 +2583,7 @@ ggplot(london %>% filter(year == 2018), aes(x = Eastings, y = Northings, z = pri
   theme_void()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-159-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-159-1.png" width="672" />
 
 Try finding the **minimum** and **maximum** property value per square (using the min and max functions). This reveals something interesting about the difference in property types in the centre versus the outskirts.
 
@@ -2590,7 +2592,7 @@ Try finding the **minimum** and **maximum** property value per square (using the
 > Or the last part of this section just shows quickly how to use the **map** function from the **purrr** library (also used in the 'pulling out multiple values' section) to get around a problem with using facet (see the facet section).
 
 
-## Using cowplot to get around the facetting problem
+### Using cowplot to get around the facetting problem
 
 As the section above on facetting shows, **ggplot** can be used to 'facet' produce many sub-plots based on a factor, like property type. However, facets all **keep the same colour scale**. This can be a problem if e.g. the count of flats and detached houses is very different: each individual map will have its scale compressed and look flat and boring.
 
@@ -2692,11 +2694,11 @@ range(london$Northings)
 
 The result should look something like this:
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-168-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-168-1.png" width="672" />
 
 *****
 
-# Making a map using the simple features library, tmap and a bit of wrangling
+## Making a map using the simple features library, tmap and a bit of wrangling
 
 Another way to map data is the **simple features library**. As always, if it's not installed, do so with:
 
@@ -2861,11 +2863,11 @@ And because we've assigned the map to a variable, we can also save it:
 tmap_save(tm, filename = "images/londonhouseprices_ward2018.png")
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-180-1.png" width="576" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-180-1.png" width="576" />
 
 *****
 
-# A last little ggplot mapping example
+### A last little ggplot mapping example
 
 
 We've already seen at the start, if you have point coordinates you can map these to the x and y axes to get an idea of the geography of your data.
@@ -2945,7 +2947,7 @@ ggplot(cityModalTypes,aes(x = Eastings,y = Northings, colour = mode2)) +
   theme_void()
 ```
 
-<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-185-1.png" width="672" style="display: block; margin: auto;" />
+<img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-185-1.png" width="672" />
 
 
 

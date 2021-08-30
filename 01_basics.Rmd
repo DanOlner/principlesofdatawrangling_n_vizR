@@ -1,5 +1,5 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, fig.align = 'center')
 #Fig align not supported for word output. We can look at PDF output...?
 #knitr::opts_chunk$set(echo = TRUE)
 #opts_chunk$set(fig.align='center') 
@@ -23,29 +23,23 @@ library(tidyr)
 ```
 
 
-# Introduction
+<!-- If you have any problems or questions, feel free to get in touch with me: d.olner@sheffield.ac.uk - though please do try google as well, if you can! And **Look out for simple typos** in your code, if it's not working. Experienced programmers suffer from this as much as anyone else - be vigilant, double-check all the dots, brackets etc. -->
 
-The basics this document covers are:
-
-* Using RStudio and RStudio projects
-
-* Starting to script
-
-* Using libraries
-
-* Vectors and why they're boring-but-important
-
-* Using dataframes and loading simple data
-
-If you have any problems or questions, feel free to get in touch with me: d.olner@sheffield.ac.uk - though please do try google as well, if you can! And **look out for simple typos** in your code, if it's not working. Experienced programmers suffer from this as much as anyone else - be vigilant, double-check all the dots, brackets etc.
-
-Completing the whole doc from scratch will probably take about three hours at a gentle pace. Everything you need is in the folder you unzipped, including the PDF you're reading. **We'll be using that folder again below so don't delete it**. Right, let's jump right in.
+<!-- Completing the whole doc from scratch will probably take about three hours at a gentle pace. Everything you need is in the folder you unzipped, including the PDF you're reading. **We'll be using that folder again below so don't delete it**. Right, let's jump right in. -->
 
 *****
 
-# Getting R and RStudio
+# ESSENTIALS
 
-In order to learn the basics, you'll need a computer with R and RStudio installed. If you need to install these, it's very easy. Either use the following links or use google to find them:
+## Getting the course project folder and data
+
+**TO BE DONE, INCLUDING HOW TO IMPORT PROJECT FOLDER INTO RSTUDIO.CLOUD**
+
+## Getting R and RStudio
+
+**TO ADD: SECTION EXPLAINING HOW TO USE RSTUDIO.CLOUD for e.g. people with Chromebooks**
+
+You'll need a computer with R and RStudio installed. If you need to install these, it's very easy. Either use the following links or use google to find them:
 
 * Install RStudio with the download appropriate to your operating system at the bottom of this page: https://www.rstudio.com/products/rstudio/download/
 
@@ -55,11 +49,9 @@ Both of these will provide you with self-installers, there should be nothing awk
 
 *****
 
-# R-Studio
-
 ## A first look at RStudio
 
-**RStudio is a self-contained environment for doing everything in R.** As we'll see throughout the day, it does a heap of different things to make programming in R as painless as possible.
+**RStudio is a self-contained environment for doing everything in R.** As we'll see throughout the course, it does a heap of different things to make programming in R as painless as possible.
 
 **First thing - open RStudio and have a look at what's there. You should see something like the following. Yours may have a different colour scheme, don't worry about that:**
 
@@ -193,7 +185,7 @@ Now we can run our first few commands. In a script, we have a few ways to choose
 ******
 **A quick note about the programming philosophy of R. Where some programming languages are all about writing entire programs, compiling them and running them as a whole, start to finish, *working with R is much more iterative and experimental*.** 
 
-**R can run entire programs - that's all the libraries are, after all - but it's also designed for experimenting with and exploring data on the fly. We'll be doing a lot of this in the workshop today.**
+**R can run entire programs - that's all the libraries are, after all - but it's also designed for experimenting with and exploring data on the fly. We'll be doing a lot of this in the course.**
 
 ******
 
@@ -216,7 +208,7 @@ OK, so here's **three options for running your script**:
 
 ## 'But will it make sense in two month's time...?' Using comments and sections
 
-Code you write today may not make the slightest bit of sense in the near future. This happens to all programmers. So be kind to your future self and let them know why you did what you did. It's **absolutely essential** to take some steps to make life easier for yourself by making sure the code is readable and clear. Leave plenty of space in your code wherever you can for a start.
+Code you write during the course may not make the slightest bit of sense in the near future. This happens to all programmers. So be kind to your future self and let them know why you did what you did. It's **absolutely essential** to take some steps to make life easier for yourself by making sure the code is readable and clear. Leave plenty of space in your code wherever you can for a start.
 
 But the most essential way to make sure it makes sense:
 
@@ -428,7 +420,7 @@ But that's quite enough of vectors for now. They will crop up again shortly as w
 
 ## Loading a file into a dataframe and examining the data
 
-We'll be keeping all of our data in **dataframes**. The easiest way to understand these is just to look at one. Your project folder has a sub-folder called **data**. All of the data you'll use today is in there. Let's load an **example dataframe** to play with. 
+We'll be keeping all of our data in **dataframes**. The easiest way to understand these is just to look at one. Your project folder has a sub-folder called **data**. All of the data you'll use in the course is in there. Let's load an **example dataframe** to play with. 
 
 > **Make this a new section in your script using comment code as we did above - something like the following (remembering to put in four dashes to turn it into a section):**
 

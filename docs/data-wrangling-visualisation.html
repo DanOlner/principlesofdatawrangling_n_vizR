@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 DATA WRANGLING &amp; VISUALISATION | Introduction to the principles of data wrangling and visualisation in R</title>
+  <meta name="description" content="2 DATA WRANGLING &amp; VISUALISATION | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 DATA WRANGLING &amp; VISUALISATION | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="seankross/bookdown-start" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 DATA WRANGLING &amp; VISUALISATION | Introduction to the principles of data wrangling and visualisation in R" />
+  
+  
+  
+
+<meta name="author" content="Dan Olner" />
+
+
+<meta name="date" content="2021-08-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="essentials.html"/>
+<link rel="next" href="freeform-1-work-on-new-ideas-together.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to the principles of data wrangling and visualisation in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="essentials.html"><a href="essentials.html"><i class="fa fa-check"></i><b>1</b> ESSENTIALS</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="essentials.html"><a href="essentials.html#getting-the-course-project-folder-and-data"><i class="fa fa-check"></i><b>1.1</b> Getting the course project folder and data</a></li>
+<li class="chapter" data-level="1.2" data-path="essentials.html"><a href="essentials.html#getting-r-and-rstudio"><i class="fa fa-check"></i><b>1.2</b> Getting R and RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="essentials.html"><a href="essentials.html#a-first-look-at-rstudio"><i class="fa fa-check"></i><b>1.3</b> A first look at RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="essentials.html"><a href="essentials.html#entering-commands-in-r"><i class="fa fa-check"></i><b>1.4</b> Entering commands in R</a></li>
+<li class="chapter" data-level="1.5" data-path="essentials.html"><a href="essentials.html#assigning-to-variables"><i class="fa fa-check"></i><b>1.5</b> Assigning to variables</a></li>
+<li class="chapter" data-level="1.6" data-path="essentials.html"><a href="essentials.html#opening-a-project-in-rstudio"><i class="fa fa-check"></i><b>1.6</b> Opening a project in RStudio</a></li>
+<li class="chapter" data-level="1.7" data-path="essentials.html"><a href="essentials.html#creating-a-new-script-and-running-code-in-it"><i class="fa fa-check"></i><b>1.7</b> Creating a new script and running code in it</a></li>
+<li class="chapter" data-level="1.8" data-path="essentials.html"><a href="essentials.html#but-will-it-make-sense-in-two-months-time-using-comments-and-sections"><i class="fa fa-check"></i><b>1.8</b> ‘But will it make sense in two month’s time…?’ Using comments and sections</a></li>
+<li class="chapter" data-level="1.9" data-path="essentials.html"><a href="essentials.html#its-all-about-the-libraries"><i class="fa fa-check"></i><b>1.9</b> It’s all about the libraries</a></li>
+<li class="chapter" data-level="1.10" data-path="essentials.html"><a href="essentials.html#loading-a-file-into-a-dataframe-and-examining-the-data"><i class="fa fa-check"></i><b>1.10</b> Loading a file into a dataframe and examining the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html"><i class="fa fa-check"></i><b>2</b> DATA WRANGLING &amp; VISUALISATION</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#the-first-principle-of-data-visualisation"><i class="fa fa-check"></i><b>2.1</b> The first principle of data visualisation…</a></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting started</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#loading-the-libraries"><i class="fa fa-check"></i><b>2.3</b> Loading the libraries</a></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#loading-the-house-price-data"><i class="fa fa-check"></i><b>2.4</b> Loading the house price data</a></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#lets-jump-right-into-ggplot"><i class="fa fa-check"></i><b>2.5</b> Let’s jump right into ggplot</a></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#the-lubridate-library"><i class="fa fa-check"></i><b>2.6</b> The lubridate library</a></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#using-ggplots-own-stat-functions"><i class="fa fa-check"></i><b>2.7</b> Using ggplot’s own stat functions</a></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#getting-started-with-dplyr-and-piping"><i class="fa fa-check"></i><b>2.8</b> Getting started with <strong>dplyr</strong> and <strong>piping</strong></a></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#dplyrs-verbs"><i class="fa fa-check"></i><b>2.9</b> <strong>dplyr</strong>’s verbs</a></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#and-a-few-extras-while-were-here"><i class="fa fa-check"></i><b>2.10</b> And a few extras while we’re here…</a></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#using-scales-to-control-appearance"><i class="fa fa-check"></i><b>2.11</b> Using scales to control appearance</a></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#scales-for-controlling-colour"><i class="fa fa-check"></i><b>2.12</b> Scales for controlling colour</a></li>
+<li class="chapter" data-level="2.13" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#using-factors-to-control-order-of-variables"><i class="fa fa-check"></i><b>2.13</b> Using factors to control order of variables</a></li>
+<li class="chapter" data-level="2.14" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#joining-data-sources-together"><i class="fa fa-check"></i><b>2.14</b> Joining data sources together</a></li>
+<li class="chapter" data-level="2.15" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#gathering-into-long-form"><i class="fa fa-check"></i><b>2.15</b> `Gathering’ into long form</a></li>
+<li class="chapter" data-level="2.16" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#saving-and-reloading-the-housing-data"><i class="fa fa-check"></i><b>2.16</b> Saving and reloading the housing data</a></li>
+<li class="chapter" data-level="2.17" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#merging-the-housing-and-wages-data"><i class="fa fa-check"></i><b>2.17</b> Merging the housing and wages data</a></li>
+<li class="chapter" data-level="2.18" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#choosing-a-subset-based-on-some-criterion"><i class="fa fa-check"></i><b>2.18</b> Choosing a subset based on some criterion</a></li>
+<li class="chapter" data-level="2.19" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#saving-ggplots-as-image-files"><i class="fa fa-check"></i><b>2.19</b> Saving ggplots as image files</a></li>
+<li class="chapter" data-level="2.20" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#time-for-a-pause"><i class="fa fa-check"></i><b>2.20</b> Time for a pause!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="freeform-1-work-on-new-ideas-together.html"><a href="freeform-1-work-on-new-ideas-together.html"><i class="fa fa-check"></i><b>3</b> FREEFORM 1: WORK ON NEW IDEAS TOGETHER…</a></li>
+<li class="chapter" data-level="4" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html"><i class="fa fa-check"></i><b>4</b> FREEFORM 2: SIX OTHER OPTIONS TO PLAY WITH</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#prettifying-a-graph"><i class="fa fa-check"></i><b>4.1</b> Prettifying a graph</a></li>
+<li class="chapter" data-level="4.2" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible"><i class="fa fa-check"></i><b>4.2</b> Facetting and dodging: getting as much info into one graph as humanly possible</a></li>
+<li class="chapter" data-level="4.3" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#iteration"><i class="fa fa-check"></i><b>4.3</b> Iteration</a></li>
+<li class="chapter" data-level="4.4" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#outputting-multiple-plots"><i class="fa fa-check"></i><b>4.4</b> 1. Outputting multiple plots</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#pulling-out-multiple-model-values-and-visualising-them"><i class="fa fa-check"></i><b>4.4.1</b> 2. Pulling out multiple model values and visualising them</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#a-little-bit-of-mapping"><i class="fa fa-check"></i><b>4.5</b> A little bit of mapping</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms"><i class="fa fa-check"></i><b>4.5.1</b> One simple way to use ggplot for mapping: the 2D geoms</a></li>
+<li class="chapter" data-level="4.5.2" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#using-cowplot-to-get-around-the-facetting-problem"><i class="fa fa-check"></i><b>4.5.2</b> Using cowplot to get around the facetting problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling"><i class="fa fa-check"></i><b>4.6</b> Making a map using the simple features library, tmap and a bit of wrangling</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="freeform-2-six-other-options-to-play-with.html"><a href="freeform-2-six-other-options-to-play-with.html#a-last-little-ggplot-mapping-example"><i class="fa fa-check"></i><b>4.6.1</b> A last little ggplot mapping example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>5</b> Data sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to the principles of data wrangling and visualisation in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-wrangling-visualisation" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> DATA WRANGLING &amp; VISUALISATION</h1>
+<div id="the-first-principle-of-data-visualisation" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> The first principle of data visualisation…</h2>
+<p>The first principle of data visualisation is: <strong>shaping the data is an essential part of building visualisations</strong>. It’s not just an annoyance: your visualisation goals will dictate the kind of shape the data needs to be made into.</p>
+<p>We’ll use libraries from the <strong>tidyverse</strong> to do this. As <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">Hadley Wickham says</a>, ‘by constraining your options, it simplifies how you can think about common data manipulation tasks’.</p>
+<p>We’ll be looking at <strong>two cheatsheets</strong> as guides to the two main libraries we will use: <strong>ggplot</strong> and <strong>dplyr</strong>. These two are the <a href="https://en.wikipedia.org/wiki/Yin_and_yang">yin and yang</a> of data visualisation in R. With <strong>dplyr</strong>, we’ll shape and squeeze our data into the right form to visualise what we want in <strong>ggplot</strong>.</p>
+<p>We’re obviously not going to try and look at everything on these sheets. We’ll pick out a small number of examples to illustrate the underlying principles, with the hope that <strong>by the end of the course, you should have enough of an understanding of them to carry on your learning from them.</strong></p>
+<p>You’ve got copies of each of the cheat sheets. If you need them in future, they’re both available via <strong>RStudio’s help menu</strong> (or search for them online).</p>
+<hr />
+<p>This part of the course is split roughly into two:</p>
+<ol style="list-style-type: decimal">
+<li><strong>We’ll learn some of the essential concepts of data wrangling in preparation for visualising</strong> by <strong>walking through a few typical script creation scenarios</strong>: getting our data, processing it, deciding what we want to do with it to prepare for visualising.</li>
+</ol>
+<blockquote>
+<p><strong>For this part of the course, I’ll be working through the material with you step by step, carrying out exactly the same tasks.</strong> Things will doubtless go wrong, often just misplaced brackets and the like - <strong>please ask if you’re stuck.</strong></p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>The <strong>second part</strong> will be more free-form. There are <strong>a range of choices</strong> for you to play with. You’ll get to work through whichever you like, with help on hand (and you’ll get a break from me talking the whole time.) <strong>If there’s anything else you want to have a go at, let me know and I’ll try to help.</strong></li>
+</ol>
+<hr />
+<p><strong>We’re going to try and fit a lot into one course: don’t worry too much if not all of it makes sense</strong> as long as the overall picture you get <em>does</em> make sense. I’ll try and make sure that everyone knows which bits they <em>really</em> need to have taken in.</p>
+<p><strong>We’ll only scratch the surface of what R and the tidyverse can do.</strong> But it should be a solid foundation for further exploration.</p>
+<p><strong>We’ll check in after every chunk of work</strong> to make sure everyone’s OK with where we’ve got to. Each part of the course builds on the other - it’s important that you feel like it’s making enough sense that you don’t get lost as we move on. <strong>Please do ask if anything is confusing. Any new programming concepts, even for experienced programmers is always confusing.</strong> I learned Java before R: that didn’t stop R being baffling for a long while.</p>
+<hr />
+<blockquote>
+<p><strong>Our data for the course: <em>Land registry data on house prices in England</em>. (We’ll also look at some other data and link it.)</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>All of the data for the workshop is open access</strong>: you can download it yourself for free. I’ve provided links and notes at the end of this document for that.</p>
+</blockquote>
+<blockquote>
+<p><strong>Our guiding question for digging into the data will be simple: can we see what impact the 2007/8 financial crash had on the English housing market?</strong> We won’t be using any sophisticated methods - the plan is just to see what visualising the data might show us.</p>
+</blockquote>
+<hr />
+<p>Some random tips before we get started properly:</p>
+<ul>
+<li><p>I’d recommend typing out as many of the R commands we’ll be working with where you can in the first part of the course - <strong>it’s by far the best way to learn and understand the code</strong>. But if you get bored of that, or for some of the larger chunks of code later, feel free to use any of the code sources I’ve supplied. <strong>The digital PDF and webpage also have links</strong> to the topics we’re covering, if you want to look at any of those during the course.</p></li>
+<li><p><strong>Learning some keyboard shortcuts helps massively</strong>. You don’t have to use them but, once learned, they’re hugely useful in R-Studio. I’ll explain them as we go along. I’ve also included a <strong>keyboard shortcut sheet</strong> for the ones you might want to use.</p></li>
+<li><p>Oh and… <strong>what’s data wrangling?</strong> I <a href="https://en.wikipedia.org/wiki/Data_wrangling">refer you to Wikipedia</a>. Really, it just means re-arranging data until it’s the shape we need. It has its own word now because <strong>we spend far more time doing this re-arranging than actual analysis.</strong></p></li>
+</ul>
+<p>Right! —&gt;</p>
+<hr />
+</div>
+<div id="getting-started" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Getting started</h2>
+<p>OK, let’s start by <strong>sorting out our project folder</strong> so we can access the data we’re all going to be working from. We’ll first need to <strong>copy the data folder to our own machines</strong>. Once you’ve done that, I’d recommend <strong>making it a new RStudio project</strong> via the top right button:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+<p>Navigate to your copied files and make a new project there. <strong>We can now access all the files and save our R script and visualisations here</strong>. Once you’re done, you can copy all this over to your USB stick or keep on your own drive.</p>
+<p>So now: <strong>create a new R script for your programming and we can begin.</strong> Either use the menu (<strong>file/new</strong>) or the shortcut <strong>CTRL+SHIFT+N</strong>.</p>
+<hr />
+</div>
+<div id="loading-the-libraries" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Loading the libraries</h2>
+<p>Many of the most important <strong>tidyverse</strong> libraries are packaged into one - including <strong>ggplot</strong> and <strong>dplyr</strong>, the two we’ll be using most heavily. We’ll start our script by loading this library. <strong>Stick this, and any later library loads, right at the top of your script:</strong></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="data-wrangling-visualisation.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>When it loads, you’ll see the many different libraries that come in the tidyverse displayed in the console.</p>
+<p>If the library isn’t yet installed, you’ll get an error. You’ll need to install it first. Because this only needs doing once, it’s best to do it in the console. If you discover any other libraries we use in the course are not yet installed, it’s same procedure.</p>
+<blockquote>
+<p>Note: <strong>when installing, the library name needs to be in quote marks</strong>. But it’s <strong>not in quote marks when we actually load the library.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="data-wrangling-visualisation.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)</span></code></pre></div>
+</div>
+<div id="loading-the-house-price-data" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Loading the house price data</h2>
+<p><strong>OK, let’s get stuck in to the data we’re going to use.</strong> You can use the <strong>file</strong> pane, bottom-right, to have a look at the files. <strong>Click on the ‘data’ folder</strong>: as well as the little example dataframe we just looked at, this folder contains the following file:</p>
+<ul>
+<li><strong>landRegistryPricePaidTopTTWAs.rds</strong>: a selection of England’s ten largest cities (by count of sales).</li>
+</ul>
+<p><strong>It is in RDS format</strong>: these are compressed R objects - they’re much smaller files than CSVs would be.</p>
+<blockquote>
+<p>Let’s load the data. Try a hugely useful autocomplete feature: when typing the file name, get ‘data/land’ typed and then <strong>press CTRL + SPACE</strong>: this should list file names in the data directory. We’re after this one:</p>
+</blockquote>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="data-wrangling-visualisation.html#cb75-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaidTopTTWAs.rds&#39;</span>)</span></code></pre></div>
+<p>The <strong>head</strong> function will show the top few rows …</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="data-wrangling-visualisation.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sales)</span></code></pre></div>
+<p>… and will look something like this:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+<p>Each row is a <strong>single property sale</strong>. As you can see, the data has <strong>eleven columns</strong> with the following variables:</p>
+<ul>
+<li><strong>price</strong>: the final sale value of the property</li>
+<li><strong>date</strong>: when it was sold, to the day. This field is in a format that R knows is a date.</li>
+<li><strong>postcode</strong>: the location of the property being sold</li>
+<li><strong>type</strong>: whether the property is a <strong>detached house (D)</strong>, a <strong>semi-detached house (S)</strong>, a <strong>terraced house (T)</strong> or a <strong>flat (F)</strong>.</li>
+</ul>
+<p>Those four are all from the Land Registry data. Then we also have some extra <strong>location information</strong>:</p>
+<ul>
+<li><strong>Eastings and Northings</strong>: these two columns give the exact geographical location for the postcode. (Its centroid.)</li>
+<li><strong>wardcode</strong>: these are codes for the <strong>English ward</strong> the sale is in. There are many of these for each city and town.</li>
+<li><strong>ttwa</strong> and <strong>ttwa_code</strong>: these are the <strong>travel to work area</strong> the sale is in. TTWAs are designed to capture each commuting area, so cities and towns will usually be at the centre of them.</li>
+<li><strong>localauthority</strong> and <strong>localauthoritycode</strong>: we’ll use this later to match to wage data and work out a consistent house price metric.</li>
+</ul>
+<p>Checking what time period the data covers with the <strong>range function</strong>, we can see we’ve got house sales from 1995 up until mid-June this year (2017) - we’ve got a bit more than two decades worth:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="data-wrangling-visualisation.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(sales<span class="sc">$</span>date)</span></code></pre></div>
+<pre><code>## [1] &quot;1995-01-01 UTC&quot; &quot;2018-12-23 UTC&quot;</code></pre>
+<blockquote>
+<p>TIP! If you need to read data in from a flat file like a comma-separated variable file, use the <strong>readr</strong> package from the tidyverse. <strong>We’ll be using this later.</strong> Base R reads csvs in with <strong>read.csv()</strong>. readr uses <strong>read_csv</strong> - using an underscore not a dot. Why use <strong>readr?</strong> It takes care of several otherwise annoying data format issues - most usefully for us, if you have dates in there, it makes them ready to be used straight away.</p>
+</blockquote>
+<p>We’ll get to know the geographies better as we visualise them. But first…</p>
+<hr />
+</div>
+<div id="lets-jump-right-into-ggplot" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Let’s jump right into ggplot</h2>
+<p>We can start making some <strong>ggplots</strong> immediately: <strong>these won’t be pretty, but we can use them to illustrate the basics of how <em>ggplot</em> works, step by step.</strong></p>
+<p>You should have <strong>ggplot already loaded</strong> as part of the tidyverse.</p>
+<blockquote>
+<p>All we’ll do to start with: <strong>plot the locations of some of the sales, so we can see what the overall geographical reach of the data is.</strong></p>
+</blockquote>
+<p>As you can see from the environment pane, there are <strong>several million sales</strong> in the data (one sale per row). That would take a long time to plot, so we’re just going to <strong>take a smaller sample using dplyr’s sample_n function</strong>. This takes a random sample of rows from the dataframe. We’ll store the sample in a new variable. Here, we’re just getting ten thousand rows / sales.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="data-wrangling-visualisation.html#cb79-1" aria-hidden="true" tabindex="-1"></a>saleSample <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(sales,<span class="dv">10000</span>)</span></code></pre></div>
+<blockquote>
+<p>Let’s plot our sample of sales using ggplot. <strong>Get this coded first, then we’ll talk through what we just did.</strong></p>
+</blockquote>
+<blockquote>
+<p>Another new thing to note here: the second line follows a plus at the end of the first. <strong>If you type the plus then press enter, RStudio will automatically indent the next line for you</strong>. ggplot is fussy about this plus - it needs to be <strong>at the end of the line</strong>, it can’t be at the beginning of the next one:</p>
+</blockquote>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="data-wrangling-visualisation.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSample, <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb80-2"><a href="data-wrangling-visualisation.html#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-10-1.png" width="595.2" /></p>
+<p>So we can see house sales in different locations across England. But how did that work? Take a look at the cheatsheet: <strong>basics</strong> on page one has a little template explaining what ggplot <strong>requires</strong> to plot. It needs just the <strong>three things we supplied</strong>:</p>
+<ul>
+<li><strong>The data.</strong> In this case, saleSample. That goes first.</li>
+<li><strong>The mapping.</strong> This is done in the <strong>aesthetic function</strong>. (That’s what <strong>aes</strong> is short for.) In <strong>aes</strong>, we <strong>map</strong> our variables to the graphics’ aesthetics.
+<ul>
+<li><strong>The important principle here: <em>each mapping requires a single column of data.</em> This one requirement dictates how we must shape our data for ggplot.</strong> This is so important we’ll go over it again in a moment!</li>
+<li>Here, we’ve mapped two variables to the <em>x and y aesthetics</em> (which we’d usually think of as just a graph’s x and y axes) - but there are bunch of others. More on that next.</li>
+</ul></li>
+<li><strong>the geometry.</strong> Again, look at your cheat sheet, page 1. Almost all of the first page <strong>gives you all the different geometries ggplot can use</strong>. We used <strong>geom_point</strong> so that x and y are mapped to points.</li>
+<li>You can also get a quick guide to the geoms using RStudio’s autocomplete. This will list them all and give a little help overview.</li>
+</ul>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-11-1.png" width="360" /></p>
+<p>As with all other functions, for the full help page, use e.g.:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="data-wrangling-visualisation.html#cb81-1" aria-hidden="true" tabindex="-1"></a>?geom_point</span></code></pre></div>
+<blockquote>
+<p>While we’re here: <strong>try the zoom button and export button above the plot. Each of the options will give you a pop-out version of the plot that can be re-sized with the corner handle. It can then either be saved or copied to the clipboard. We’ll look at how to save the plot programmatically shortly.</strong></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>If you look at geom_point on the cheatsheet, you’ll see this list: ‘alpha, colour, fill, shape, size, stroke’. <strong>This is the list of other aesthetics you can map variables to when you’re using the point geometry.</strong> This list differs depending on what you use - <strong>the cheatsheet tells you which you can use for each geometry type</strong>.</p>
+</blockquote>
+<p>These mappings all happen in the <strong>aes</strong> function, same as we did for x and y. So, for example, we can map colours to the TTWA / city.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="data-wrangling-visualisation.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSample, <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb82-2"><a href="data-wrangling-visualisation.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-13-1.png" width="595.2" /></p>
+<p>This is not a good map! But it illustrates how <strong>aes</strong> works. There are a few other new things here.</p>
+<ul>
+<li><p>the <strong>ttwa</strong> variable is <strong>discrete</strong>: it’s a list of different places. <strong>ggplot</strong> figures this out and assigns one colour per category. We’ll look at what happens with continuous variables below.</p></li>
+<li><p><strong>ggplot</strong> has also <strong>automatically added a legend</strong>.</p></li>
+</ul>
+<p>So back to the most important principle: <strong>ggplot wants each variable in its own column, in `long form’.</strong> This applies to each variable you map to an aesthetic.</p>
+<p>Here’s a little illustration to help with the intuition. If we’ve mapped <strong>ttwa</strong> to the <strong>colour aesthetic</strong> then<strong>ggplot</strong> will <strong>work out how to map a colour</strong> to each discrete group within that variable. If the variable had been continuous, <strong>ggplot</strong> would have supplied a continuous scale.</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-14-1.png" width="360" /></p>
+<p>Later, we’ll look at what to do if your data isn’t already in long form.</p>
+<hr />
+<p>You can of course choose what values to assign to x and y. And notice <strong>what happens if you assign a discrete variable</strong> to one of the axes. Here we put <strong>property sale price on y and ttwa on x:</strong></p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="data-wrangling-visualisation.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSample, <span class="fu">aes</span>(<span class="at">x =</span> ttwa, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb83-2"><a href="data-wrangling-visualisation.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-15-1.png" width="595.2" /></p>
+<p>Again - <strong>ggplot</strong> knows it’s discrete and labels each place. <strong>The plot itself is, again, fairly awful: overlapping points and labels, poor axis ticks etc</strong>. We’ll come back to all the prettifying things like labelling later, but let’s stick to the essentials for now.</p>
+<hr />
+<p>So if we want to know something about the impact of the crash, we’ll need to start using dates. But using them raw isn’t a great idea:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="data-wrangling-visualisation.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSample, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb84-2"><a href="data-wrangling-visualisation.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-16-1.png" width="595.2" /></p>
+<p><strong>ggplot</strong> can plot dates correctly and provides axis ticks - but using each day is far too messy. We need to do two things to fix this:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Create a better date category - we’ll break the data down by year.</strong>4</li>
+<li><strong>Summarise the housing data based on this.</strong></li>
+</ol>
+<p>There are two ways to summarise data for <strong>ggplot</strong>:</p>
+<ul>
+<li><strong>ggplot</strong>’s own <strong>stat</strong> functions (more on these after the next section…)</li>
+<li><strong>Wrangling into the right shape ourselves</strong> using <strong>dplyr</strong> and other R functions. While rather more work, this is the only way to fully control what you want to visualise. <strong>Learning about wrangling and dplyr will be a big chunk of the course.</strong></li>
+</ul>
+<p>First-up though: <strong>making a useable date column.</strong></p>
+<hr />
+</div>
+<div id="the-lubridate-library" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> The lubridate library</h2>
+<blockquote>
+<p><strong>Time for another library: lubridate</strong>. As you’d expect, this makes working with dates a lot easier. Put this library call with the others at the top of the script.</p>
+</blockquote>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="data-wrangling-visualisation.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<p>Again, if it’s not already installed, do so in the console:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data-wrangling-visualisation.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)</span></code></pre></div>
+<p>The <strong>date</strong> column in the original data is already in <strong><em>datetime</em> format. This is handy: formatting this ourselves is a faff.</strong> (See the tip above about using <strong>readr</strong> to make sure dates load in this format.) It means that we can now use the <strong>lubridate</strong> library to add a column containing the <strong>year</strong> of the property sale:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-wrangling-visualisation.html#cb87-1" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sales<span class="sc">$</span>date)</span></code></pre></div>
+<p>If you go back to your dataframe view tab or use the console, you’ll see it’s been added:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-20-1.png" width="360" /></p>
+<p>We can use the <strong>table</strong> function to get a quick look at the result, counting the number of sales per year:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-wrangling-visualisation.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sales<span class="sc">$</span>year)</span></code></pre></div>
+<p>You can also get sales per year by type:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-wrangling-visualisation.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sales<span class="sc">$</span>year, sales<span class="sc">$</span>type)</span></code></pre></div>
+<hr />
+</div>
+<div id="using-ggplots-own-stat-functions" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Using ggplot’s own stat functions</h2>
+<p>Now there’s a year column, we can start <strong>summarising the data for each year.</strong> Going back to the original question - what impact did the 2007/8 crash have on the housing market - we can start by asking:</p>
+<blockquote>
+<p><strong>What happened to the number of sales?</strong> To find this out, we can just <strong>count the number of sales per year.</strong></p>
+</blockquote>
+<p>As mentioned, one way to do this is to <strong>use ggplot’s own summarising functions</strong>. These can be a really useful way to quickly get an overview of the data.</p>
+<p>For the plots done so far, all mappings have taken the variable’s value and <strong>mapped it directly to a value on the graph.</strong> Instead, <strong>ggplot</strong> stats create a <strong>summary variable first</strong> and then plot it.</p>
+<p>This makes more sense when seen in practice. Here’s a simple bar chart: all it’s doing is <strong>counting the number of sales in each year</strong>:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-wrangling-visualisation.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> year)) <span class="sc">+</span></span>
+<span id="cb90-2"><a href="data-wrangling-visualisation.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-23-1.png" width="595.2" /></p>
+<p>So it looks like, for these TTWAs, <strong>the number of sales halved after the crash</strong> and never recovered. As before, we can assign the TTWA to the bar colour - though this time it’s <strong>fill</strong> (‘colour’ is the bar outline). London has vastly more sales per year than any other TTWA.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-wrangling-visualisation.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">fill =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb91-2"><a href="data-wrangling-visualisation.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-24-1.png" width="595.2" /></p>
+<p>There are a few principles going on here:</p>
+<ol style="list-style-type: decimal">
+<li><strong>ggplot will use defaults where it can.</strong> In this case, we’ve <strong>not included a y-axis variable mapping in aes</strong> because <strong>the stat in geom_bar counts the number of observations in each year</strong> and so doesn’t need it. Indeed, if you try and give it a y variable, it will throw an error:</li>
+</ol>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-wrangling-visualisation.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> price, <span class="at">fill =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb92-2"><a href="data-wrangling-visualisation.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-26-1.png" width="576" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Some geometries use <strong>ggplot stats</strong>, others will plot your data directly. How to tell the difference?</li>
+</ol>
+<ul>
+<li>You’ll become familiar with the ones used for summary stats - on the cheatsheet, a lot of them are under <strong>one variable</strong>, <strong>discrete x, continuous y</strong> and <strong>continuous bivariate distribution</strong>. We’ll cover some more in a moment.</li>
+<li><strong>But there’s a principle at work: every geom has a stat</strong>. It’s just that some have <strong>stat = “identity”</strong>, telling them to plot the data directly. Take a look at the help for <strong>geom_bar</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-wrangling-visualisation.html#cb93-1" aria-hidden="true" tabindex="-1"></a>?geom_bar</span></code></pre></div>
+<p>The <strong>stat</strong> argument is actually telling the <strong>geom</strong> to use a specific <strong>stat</strong> function: <strong>these are all listed in the left bar of page 2 of the cheatsheet</strong>. In the help file for <strong>geom_bar</strong>, its stat function is also there: <strong>stat_count</strong>. These can actually be used interchangeably. Note that <strong>stat_count’s default geom is “bar”</strong>:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-wrangling-visualisation.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">fill =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb94-2"><a href="data-wrangling-visualisation.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_count</span>()</span></code></pre></div>
+<p>Under <strong>usage</strong>, the help page lists all of <strong>geom_bar’s</strong> arguments: the ones given here <strong>are its defaults</strong>. These are the two most important:</p>
+<ul>
+<li><strong>stat = “count”:</strong> tells geom_bar to count observations in each group</li>
+<li><strong>position = “stack”:</strong> if there are groups, this tells geom_bar to stack them on top of each other. <strong>The cheatsheet lists these on page 2</strong>. We can <strong>override the default simply.</strong> For example, telling geom_bar to find the <em>proportion</em> of sales in each year by filling from top to bottom:</li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-wrangling-visualisation.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">fill =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb95-2"><a href="data-wrangling-visualisation.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&#39;fill&#39;</span>)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-29-1.png" width="595.2" /></p>
+<p>In comparison, look again at the help for <strong>geom_point</strong>, that we used to begin with:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-wrangling-visualisation.html#cb96-1" aria-hidden="true" tabindex="-1"></a>?geom_point</span></code></pre></div>
+<p>Its <strong>default stat is “identity”</strong>: this mean it maps data points directly to the aesthetic.</p>
+<p>Another principle here:</p>
+<ol start="3" style="list-style-type: decimal">
+<li>We’ve said that <strong>ggplot</strong> will attempt to plot your data if it can, but <strong>certain geometries require certain types of data</strong>. As with <strong>geom_bar</strong> - it requires a categorical x variable, in this case we’ve given it each year.</li>
+</ol>
+<p>If we’d wanted to plot a <strong>continuous x variable</strong> as a bar chart, there’s one under ‘one variable continuous’ on the cheat sheet. So say we wanted to use <strong>date</strong> directly, <strong>geom_histogram</strong> will put them into equal sized bins:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-wrangling-visualisation.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> date)) <span class="sc">+</span></span>
+<span id="cb97-2"><a href="data-wrangling-visualisation.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-31-1.png" width="595.2" /></p>
+<blockquote>
+<p><strong>There are a lot of different stat functions, each with their own default geoms.</strong> When first learning <strong>ggplot</strong>, it’s just a matter of getting to know them through use. <strong>ggplot’s help</strong> is really helpful! It’ll help for working out what default stats each of them uses.</p>
+</blockquote>
+<p>We’ll come back to one or two of these later. For now, on to <strong>using dplyr</strong> to shape data for visualising:</p>
+<hr />
+</div>
+<div id="getting-started-with-dplyr-and-piping" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Getting started with <strong>dplyr</strong> and <strong>piping</strong></h2>
+<p>We’re going to be mainly using <strong>dplyr</strong> to reshape our data into different forms for the visualisations. (We’ve already loaded this library as part of the <strong>tidyverse</strong> package.)</p>
+<p>Before we get to <strong>dplyr</strong> itself - Piping!</p>
+<blockquote>
+<p><strong>Piping is <em>magic</em>: it will make everything spectacularly easier and tidier.</strong></p>
+</blockquote>
+<blockquote>
+<p>Specifically, this is <strong>the pipe operator</strong>. It loads with <strong>dplyr</strong> and looks like this:</p>
+</blockquote>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-32-1.png" width="192" /></p>
+<p>A quick recap: <strong>pretty much everything in R is a function</strong>. For example, to find the square root of a number, use the <strong>sqrt</strong> function:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-wrangling-visualisation.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>Functions can nest in functions. If, for some reason, you wanted to find the base 10 log of the square root of 100, you could nest like this:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="data-wrangling-visualisation.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="fu">sqrt</span>(<span class="dv">100</span>))</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>And so on, if you had more complex things to accomplish. <strong>The pipe operator makes this much more intuitive and readable</strong>. So instead of the above, we can do this:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="data-wrangling-visualisation.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="data-wrangling-visualisation.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span> <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>() <span class="sc">%&gt;%</span> <span class="fu">log10</span>()</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>So what we’re doing here: <strong>piping the result from one function into the next until we get the output we’re after</strong>. The number 100 is <strong>piped</strong> into the <strong>sqrt</strong> function - the output from that function (10) is <strong>piped</strong> into the <strong>log</strong> function.</p>
+<p>The power of this is:</p>
+<ul>
+<li>It lets us create a conveyor belt for what we do with data in a way that can very easily be changed at any stage in the process.</li>
+<li><strong>dplyr</strong> is designed with this in mind.</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>As with the assignment operator, typing percent-more-than-percent every time you want the pipe operator is a pain: so RStudio has another shortcut key.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>This time it’s: CTRL + SHIFT + M. Try this in the next bit of coding.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>This is also on your one page shortcut key guide.</strong></p>
+</blockquote>
+<hr />
+</div>
+<div id="dplyrs-verbs" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> <strong>dplyr</strong>’s verbs</h2>
+<p>We can use the <strong>pipe operator</strong> to link <strong>dplyr verbs</strong> together - these are <strong>functions that reshape the data in various useful ways</strong>. We’ll go through them one by one and end with a <strong>ggplot</strong>.</p>
+<p>Let’s start by <strong>finding a summary statistic</strong>. We’ll find the average price in the housing data.</p>
+<blockquote>
+<p><strong>It’s good practice to have each dplyr verb on its own line. Notice how RStudio helps with this too: pressing return at the end of one line, after the pipe, automatically indents the next line. We’ll do the same with ggplot in the next section.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="data-wrangling-visualisation.html#cb107-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span> </span>
+<span id="cb107-2"><a href="data-wrangling-visualisation.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `mean(price)`
+##           &lt;dbl&gt;
+## 1       225522.</code></pre>
+<hr />
+<blockquote>
+<p><strong><em>Verb 1: summarise</em>. This passes all values from the column name you pass - in this case price - and we tell it to find the mean. It then gives you a <em>single row back</em> with the summary in.</strong></p>
+</blockquote>
+<hr />
+<p>Notice here: <strong>dplyr</strong> (like almost all <strong>tidyverse</strong> functions) takes in <strong>bare variable names.</strong> It knows the variable is from <strong>sales</strong> as we’ve just piped that in.</p>
+<p>But that’s the average price for the whole time range - <strong>what about one year?</strong></p>
+<hr />
+<blockquote>
+<p><strong><em>Verb 2: filter</em>. We can filter by year. So we’ve now got <em>two</em> pipe operators:</strong></p>
+</blockquote>
+<hr />
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="data-wrangling-visualisation.html#cb109-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span> </span>
+<span id="cb109-2"><a href="data-wrangling-visualisation.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb109-3"><a href="data-wrangling-visualisation.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   `mean(price)`
+##           &lt;dbl&gt;
+## 1       390511.</code></pre>
+<p>The <strong>filter</strong> verb uses <strong>logical operators</strong> to query each row in the data. The full list of these <strong>is on the data wrangling cheatsheet</strong>. Here they are again:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-38-1.png" width="240" /></p>
+<p>Note especially the <strong>double equals</strong> we just used: this allows us to find exact matches for values and text (in this case, matching to 2015).</p>
+<p><strong>A quick reminder of how R uses logical operators to create TRUE/FALSE vectors</strong>. (TRUE/FALSE values are also known as <strong>boolean</strong> values.) Here’s an illustration of two logical operators checking their condition against each row of the chosen variable:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-39-1.png" width="384" /></p>
+<p>So all <strong>filter</strong> does is take in a vector like this …</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="data-wrangling-visualisation.html#cb111-1" aria-hidden="true" tabindex="-1"></a>ttwa<span class="sc">==</span><span class="st">&#39;Bradford&#39;</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<p>… and then use that to <strong>keep the TRUE values</strong>. This is worth repeating, as once that’s clear, you can produce <strong>any kind of boolean vector you like</strong> to filter the data. More on this shortly.</p>
+<p>So: <strong>filter</strong> picked out one particular year. But what if we want average price <strong>for each year?</strong></p>
+<hr />
+<blockquote>
+<p><strong><em>Verb 3: group_by</em>. This will <em>group the data by the category or categories we give it</em>. The next function will then <em>apply to each group.</em> You’ll get one row per group with the mean in:</strong></p>
+</blockquote>
+<hr />
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="data-wrangling-visualisation.html#cb113-1" aria-hidden="true" tabindex="-1"></a>sales <span class="sc">%&gt;%</span> </span>
+<span id="cb113-2"><a href="data-wrangling-visualisation.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb113-3"><a href="data-wrangling-visualisation.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## # A tibble: 24 x 2
+##     year `mean(price)`
+##    &lt;dbl&gt;         &lt;dbl&gt;
+##  1  1995        79425.
+##  2  1996        84693.
+##  3  1997        94675.
+##  4  1998       104499.
+##  5  1999       120137.
+##  6  2000       137448.
+##  7  2001       151563.
+##  8  2002       173274.
+##  9  2003       188621.
+## 10  2004       212300.
+## # ... with 14 more rows</code></pre>
+<p>That’s given us average price per year - but has just showed some of them in the console. <strong>To be able to work with this returned dataframe, we need to assign it to a variable name:</strong></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="data-wrangling-visualisation.html#cb115-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb115-2"><a href="data-wrangling-visualisation.html#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-3"><a href="data-wrangling-visualisation.html#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(price))</span></code></pre></div>
+<p>You’ll see <strong>saleSummary</strong> has appeared in the environment pane: <strong>click on it to view the new summary data.</strong></p>
+<hr />
+<p>One more thing before making another graph: if we want to find out average price per year <strong>and per city/ttwa</strong>, just include both in the <strong>group_by</strong> function.</p>
+<p>We’ll add one more thing here too. <strong>dplyr</strong> defaults the summary variable name to <strong>mean(price)</strong> - but we can <strong>set the name ourselves in summarise</strong> if we want something more sensible:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="data-wrangling-visualisation.html#cb116-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb116-2"><a href="data-wrangling-visualisation.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ttwa,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb116-3"><a href="data-wrangling-visualisation.html#cb116-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;ttwa&#39;. You can override using the `.groups` argument.</code></pre>
+<p>saleSummary now has <strong>one column each for ttwa and year in long format</strong>, each with a price average. <strong>Which is exactly what we need to map each of those to aesthetics in ggplot.</strong></p>
+<p>Note also: an advantage of this separate-line approach to coding is: it’s easy to try different things, keep them and comment them out. So for instance, for the previous code, we could have kept the <strong>filter</strong> verb in place in case we wanted to come back to it:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="data-wrangling-visualisation.html#cb118-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb118-2"><a href="data-wrangling-visualisation.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(year == 2018) %&gt;% </span></span>
+<span id="cb118-3"><a href="data-wrangling-visualisation.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ttwa,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb118-4"><a href="data-wrangling-visualisation.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price))</span></code></pre></div>
+<hr />
+<p><strong>This can now go straight into ggplot:</strong></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="data-wrangling-visualisation.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb119-2"><a href="data-wrangling-visualisation.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-47-1.png" width="595.2" /></p>
+</div>
+<div id="and-a-few-extras-while-were-here" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> And a few extras while we’re here…</h2>
+<p>There are a number of other <strong>dplyr</strong> verbs and we’ll cover some of them below, but for now, let’s just make some additions to what we’ve done, to introduce some new ideas.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Using another geometry</strong></li>
+</ol>
+<p>First: <strong>we can use a different geometry</strong> - we don’t have to stick to points. With data over time, it makes sense to link time points with a <strong>line</strong>. As you might guess, the <strong>geom_line</strong> geometry will do this. Comment out <strong>geom_point</strong> for now and add it:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-wrangling-visualisation.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb120-2"><a href="data-wrangling-visualisation.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-48-1.png" width="595.2" /></p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-wrangling-visualisation.html#cb121-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_point()</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Layering geometries</strong></li>
+</ol>
+<p>You’re not limited to one geometry: <strong>you can layer them.</strong> So if we just <strong>un-comment geom_point</strong> (and make sure <strong>there’s a plus</strong> at the end of geom_line):</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-wrangling-visualisation.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb122-2"><a href="data-wrangling-visualisation.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb122-3"><a href="data-wrangling-visualisation.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-49-1.png" width="595.2" /></p>
+<p>Note that our <strong>aesthetic mapping of colour to TTWA has applied to both lines and points.</strong> More on that shortly.</p>
+<p>What if we want <strong>geom_point</strong> to represent something different? Well…</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Summarising for more than one variable</strong></li>
+</ol>
+<p>Say we want to show the <strong>number of sales for each TTWA in each year</strong>. The first thing to do is <strong>count the sales via dplyr’s summarise</strong>. This requires an update to our previous <strong>dplyr</strong> code - <strong>just add another summary variable to the summarise function:</strong></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-wrangling-visualisation.html#cb123-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb123-2"><a href="data-wrangling-visualisation.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ttwa,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-3"><a href="data-wrangling-visualisation.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price), <span class="at">countOfSales =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;ttwa&#39;. You can override using the `.groups` argument.</code></pre>
+<p>You’ll see we now have <strong>countOfSales</strong> as well as <strong>meanPrice</strong>:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-51-1.png" width="384" /></p>
+<p><strong>What does n() do?</strong> It’s <strong>dplyr</strong> shorthand for ‘number of observations’: if we’ve grouped the data, <strong>it will give us the number of observations per group</strong>. (You can see this and other <strong>summarise</strong> functions on page 2 of the <strong>dplyr</strong> cheatsheet.)</p>
+<blockquote>
+<p><strong>Now we have a count of sales, we can use this directly in <em>geom_point</em>.</strong> This is done by <strong>using the aes function in the geometry itself:</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-wrangling-visualisation.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb125-2"><a href="data-wrangling-visualisation.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb125-3"><a href="data-wrangling-visualisation.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-52-1.png" width="595.2" /></p>
+<p>The <strong>size of the points</strong> now represents <strong>count of sales</strong>. <strong>ggplot</strong> gives it its own legend.</p>
+<p>Two things to note here:</p>
+<ul>
+<li>If you’ve mapped an aesthetic in the top <strong>ggplot</strong> function <strong>it will cascade to all other geometries.</strong> However, we can <strong>over-ride this within those geometries using their own aes function.</strong></li>
+<li><strong>The order of geometries determines which draws first.</strong> This can be used to control the look. We’ll do that next.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>The order of drawing and deciding where to map aesthetics</strong></li>
+</ol>
+<p>Say we don’t want colour to be mapped to both points and lines. There are a couple of options - one (the most flexible) is to <strong>overwrite the colour mapping in geom_point</strong> by <strong>choosing our own colour directly</strong>.</p>
+<ul>
+<li>We do this by setting the points’ colour <strong>outside of aes</strong> to what we want. We’re not mapping to any variable this time, just setting it to a single value. There are a <strong>list of named colours we can use</strong>, including ‘grey’ (more on this list below):</li>
+</ul>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-wrangling-visualisation.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb126-2"><a href="data-wrangling-visualisation.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb126-3"><a href="data-wrangling-visualisation.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-53-1.png" width="595.2" /></p>
+<p>The general principle here:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Each list of aesthetics under the geometries on the cheatsheet can be <em>either</em> mapped to a variable (by including them in the <em>aes</em> function ) <em>or</em> set directly to a single type.</strong></li>
+<li>Setting these within a <strong>geom</strong> has the effect of <strong>over-riding</strong> the cascading value.</li>
+</ol>
+<hr />
+<p>In this graph, <strong>points are drawn over the lines.</strong> This might look better if they were under them. <strong>To do this, just change the order.</strong> Having everything on separate lines makes this a little easier, though <strong>be careful to make sure pluses are in the right place</strong>.</p>
+<p>Also: <strong>remember you can use ALT + up/down arrows to move lines of code.</strong> So, shifting <strong>geom_point</strong> behind <strong>geom_line</strong> (and remembering to shift the <strong>plus</strong> as well…):</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-wrangling-visualisation.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb127-2"><a href="data-wrangling-visualisation.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb127-3"><a href="data-wrangling-visualisation.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="co"># &lt;&lt;&lt; moved this down one line and moved the plus too</span></span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-54-1.png" width="595.2" /></p>
+<hr />
+</div>
+<div id="using-scales-to-control-appearance" class="section level2" number="2.11">
+<h2><span class="header-section-number">2.11</span> Using scales to control appearance</h2>
+<p>The last graph was getting there: it’s possible to see that <strong>prices were rising up until the crash</strong> - we’ll need some more tweaks to properly compare places with different average house prices.</p>
+<p>(The count of sales isn’t the clearest way to show that the rate dropped - our earlier <strong>geom_bar</strong> did that better, but it illustrates using two geoms.)</p>
+<p>It would be good to change a few things to make this more clear. One of the most essential ways of controlling appearance is through <strong>scales</strong>. The principle here is:</p>
+<blockquote>
+<p><strong>Every aesthetic mapping has its own scale. Each of these can be controlled.</strong></p>
+</blockquote>
+<p>This is true for the <strong>x and y mappings</strong> as well as everything else, including the <strong>colour, fill and size mappings we’ve used so far.</strong></p>
+<p>The basics are:</p>
+<ul>
+<li><strong>All scales are controlled using functions that begin with scale_. Page 2 of the ggplot cheatsheet lists them.</strong></li>
+<li>As the cheatsheet shows, the format is (for example) **scale_*_continuous** - replacing the asterisk with the mapping we want to control.</li>
+</ul>
+<p>The most obvious kind of scale control you’ll want to do is <strong>on the x and y axes mappings.</strong> Particularly with prices, the most common of these has its own function: <strong>scale_y_log10</strong> and <strong>scale_x_log10</strong> both change the scales to log (base 10).</p>
+<p><strong>For house prices, this is ideal: it makes proportional change comparable</strong> so that (e.g.) London’s much higher prices can be visually compared to cheaper TTWAs.</p>
+<p>This scale can be added with one line:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-wrangling-visualisation.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb128-2"><a href="data-wrangling-visualisation.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb128-3"><a href="data-wrangling-visualisation.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb128-4"><a href="data-wrangling-visualisation.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="co"># &lt;&lt;&lt; new log y scale</span></span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>Where previously there appeared to be a marked difference in the post-crash response, the <strong>log scale shows that is perhaps not the case</strong>. London is still its own thing, as always.</p>
+<blockquote>
+<p><strong>Note: these are 10 of the richest areas. There will be a chance later to compare richer and poorer TTWAs to see if there was any difference.</strong></p>
+</blockquote>
+<hr />
+<p>Scale changes for other aesthetics have a range of options. An example will make this more clear. Say you want to <strong>control the size range for the points</strong> in the previous plot. Add the following scale code.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-wrangling-visualisation.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb129-2"><a href="data-wrangling-visualisation.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb129-3"><a href="data-wrangling-visualisation.html#cb129-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb129-4"><a href="data-wrangling-visualisation.html#cb129-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb129-5"><a href="data-wrangling-visualisation.html#cb129-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<blockquote>
+<p>Another note: for things like scale changes, <strong>it doesn’t matter where in the ggplot argument order they go. Line order only makes a difference for the order that geoms draw in.</strong></p>
+</blockquote>
+<p><strong>geom_point’s</strong> circles are larger - but London is dominating, having by far the most sales. One option is to <strong>remove London to see what the others look like</strong>.</p>
+<p>We can use the <strong>dplyr</strong> verb <strong>filter</strong> to do this: it’s just a function, so as with anything else in R, it can be used anywhere. Here, we tell <strong>filter</strong> to give us <strong>all ttwas <em>except</em> London</strong>:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-wrangling-visualisation.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">!=</span><span class="st">&#39;London&#39;</span>), </span>
+<span id="cb130-2"><a href="data-wrangling-visualisation.html#cb130-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb130-3"><a href="data-wrangling-visualisation.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>) <span class="sc">+</span></span>
+<span id="cb130-4"><a href="data-wrangling-visualisation.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb130-5"><a href="data-wrangling-visualisation.html#cb130-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb130-6"><a href="data-wrangling-visualisation.html#cb130-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><strong>Why did all the points become larger?</strong> Because the top of the range was previously London prices, making all the others <strong>relatively lower.</strong> Removing London changes that.</p>
+<p>Note, the range size’s appearance will vary <strong>depending on the size of the overall plot.</strong> This can be seen if you look at it via <strong>zoom or export/copy to clipboard</strong>.</p>
+<p><strong>Is grey really working?</strong> If we want to try those points coloured by ttwa again, just <strong>remove the override</strong> (delete <em>colour = ‘grey’</em>):</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="data-wrangling-visualisation.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">!=</span><span class="st">&#39;London&#39;</span>), </span>
+<span id="cb131-2"><a href="data-wrangling-visualisation.html#cb131-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb131-3"><a href="data-wrangling-visualisation.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales)) <span class="sc">+</span> <span class="co">#&lt;&lt;&lt; removing colour = &#39;grey&#39;</span></span>
+<span id="cb131-4"><a href="data-wrangling-visualisation.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb131-5"><a href="data-wrangling-visualisation.html#cb131-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb131-6"><a href="data-wrangling-visualisation.html#cb131-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p>Well, that’s messy! One more option that can sometimes make otherwise unreadable graphs workable: <strong>we change change alpha. This controls transparency:</strong></p>
+<ul>
+<li><strong>alpha = 1 means perfectly opaque</strong></li>
+<li><strong>alpha = 0 means perfectly transparent</strong></li>
+</ul>
+<p>So giving <strong>geom_point a value between those two</strong> (and note, we’re setting it directly so it’s <strong>outside of the aes function</strong>):</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-wrangling-visualisation.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">!=</span><span class="st">&#39;London&#39;</span>), </span>
+<span id="cb132-2"><a href="data-wrangling-visualisation.html#cb132-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb132-3"><a href="data-wrangling-visualisation.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;&lt; adding alpha value here</span></span>
+<span id="cb132-4"><a href="data-wrangling-visualisation.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb132-5"><a href="data-wrangling-visualisation.html#cb132-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb132-6"><a href="data-wrangling-visualisation.html#cb132-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+</div>
+<div id="scales-for-controlling-colour" class="section level2" number="2.12">
+<h2><span class="header-section-number">2.12</span> Scales for controlling colour</h2>
+<p>We’ve been using ggplot’s default colour scheme so far but - as with other scales - we can choose a colour scheme for the <strong>colour mapping</strong> ourselves. There are a huge number of options here, many on <strong>page 2 of the ggplot cheatsheet</strong> - let’s just cover two.</p>
+<p>As before, we select the aesthetic by having <strong>colour</strong> in the middle of the function name (or <strong>fill</strong> if you’re working with, for example, the colour fill of bars.) We’ll look at these two options:</p>
+<ul>
+<li><strong>scale_colour_brewer</strong></li>
+<li><strong>scale_colour_manual</strong></li>
+</ul>
+<p>The first of these <strong>gives us a range of pre-set palettes to choose from</strong>, based on the <a href="http://colorbrewer2.org/">colour brewer palettes</a>. They’re broken into three types: <strong>sequential, qualitative and diverging.</strong> There is <strong>a function for viewing them</strong> (this is also on the ggplot cheatsheet) but you need to load the <strong>RColorBrewer</strong> package:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-wrangling-visualisation.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb133-2"><a href="data-wrangling-visualisation.html#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="data-wrangling-visualisation.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code></pre></div>
+<p>To apply one of these to our data, we just need to add the following. Pick a palette name from the list then add this to the end of your previous <strong>ggplot</strong> code (remembering the plus on the previous line!) -&gt;</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-wrangling-visualisation.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&#39;Paired&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-wrangling-visualisation.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">!=</span><span class="st">&#39;London&#39;</span>), </span>
+<span id="cb135-2"><a href="data-wrangling-visualisation.html#cb135-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb135-3"><a href="data-wrangling-visualisation.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;&lt; adding alpha value here</span></span>
+<span id="cb135-4"><a href="data-wrangling-visualisation.html#cb135-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb135-5"><a href="data-wrangling-visualisation.html#cb135-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb135-6"><a href="data-wrangling-visualisation.html#cb135-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb135-7"><a href="data-wrangling-visualisation.html#cb135-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&#39;Paired&#39;</span>)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p>Another option is to <strong>set the colours manually.</strong> There are a <strong>huge number of pre-defined colour names</strong> in <strong>ggplot</strong>. This website has the full reference: sape.inf.usi.ch/quick-reference/ggplot2/colour</p>
+<p>Or you can also use <strong>hex values</strong>. Here’s some I took from www.color-hex.com. We have nine TTWAs to colour so I’ve got nine values. Either set them directly in <strong>ggplot</strong> or put them in a vector to keep the code tidy.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-wrangling-visualisation.html#cb136-1" aria-hidden="true" tabindex="-1"></a>newcols <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;#ff9500&#39;</span>,<span class="st">&#39;#154935&#39;</span>,<span class="st">&#39;#f7786b&#39;</span>,<span class="st">&#39;#410c37&#39;</span>,</span>
+<span id="cb136-2"><a href="data-wrangling-visualisation.html#cb136-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;#1242b6&#39;</span>,<span class="st">&#39;#cc554c&#39;</span>,<span class="st">&#39;#946b2d&#39;</span>,<span class="st">&#39;#e0301e&#39;</span>,<span class="st">&#39;#607d8b&#39;</span>)</span></code></pre></div>
+<p>Then use <strong>scale_colour_manual</strong> to apply them:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-wrangling-visualisation.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_manual</span>(<span class="at">values =</span> newcols)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-wrangling-visualisation.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">!=</span><span class="st">&#39;London&#39;</span>), </span>
+<span id="cb138-2"><a href="data-wrangling-visualisation.html#cb138-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> ttwa)) <span class="sc">+</span></span>
+<span id="cb138-3"><a href="data-wrangling-visualisation.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> <span class="co">#&lt;&lt;&lt; adding alpha value here</span></span>
+<span id="cb138-4"><a href="data-wrangling-visualisation.html#cb138-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb138-5"><a href="data-wrangling-visualisation.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb138-6"><a href="data-wrangling-visualisation.html#cb138-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb138-7"><a href="data-wrangling-visualisation.html#cb138-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> newcols)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="using-factors-to-control-order-of-variables" class="section level2" number="2.13">
+<h2><span class="header-section-number">2.13</span> Using factors to control order of variables</h2>
+<p>Up to now, the TTWAs <strong>have appeared in alphabetical order in the legend</strong> - which is a bit visually confusing, as <strong>the highest prices are nearer the top</strong>. It would be nice if the legend matched this.</p>
+<p>This is usually a pain to deal with in R but, again - <strong>tidyverse to the rescue</strong>. The <strong>forcats</strong> library helps us with categorical data like place names. Let’s load it and see what it does:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-wrangling-visualisation.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span></code></pre></div>
+<p>If you don’t want to think about what it’s doing, you can just use <strong>forcats</strong> to re-arrange the order of TTWAs <strong>directly in ggplot</strong>. Building on our previous graph (though <strong>adding London back in</strong>), we can just use the <strong>fct_reorder</strong> function directly in <strong>ggplot</strong>. Give it the <strong>variable</strong> to reorder and <strong>another variable to reorder by</strong>, in this case <strong>meanPrice</strong>. Notice the <strong>minus sign</strong>: this will make it <strong>descending order.</strong></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-wrangling-visualisation.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, </span>
+<span id="cb140-2"><a href="data-wrangling-visualisation.html#cb140-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(ttwa,<span class="sc">-</span>meanPrice))) <span class="sc">+</span></span>
+<span id="cb140-3"><a href="data-wrangling-visualisation.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb140-4"><a href="data-wrangling-visualisation.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb140-5"><a href="data-wrangling-visualisation.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb140-6"><a href="data-wrangling-visualisation.html#cb140-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>))</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<blockquote>
+<p>We’ll look a bit more at what fct_reorder does when covering the <strong>dplyr mutate verb</strong> below.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>There’s a lot more about controlling graph appearance to talk about, but a last couple of tips for controlling graph view before moving on for now…</p>
+</blockquote>
+<p><strong>First-up:</strong> if you want to <strong>control the part of the data that’s viewable</strong>, you can use one of the <strong>coordinate functions</strong>. With <strong>coord_cartesian</strong>, the exact window can be set.</p>
+<p>So say we only want to look at <strong>data between the years 2000 and 2008:</strong></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="data-wrangling-visualisation.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(saleSummary, </span>
+<span id="cb141-2"><a href="data-wrangling-visualisation.html#cb141-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> meanPrice, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(ttwa,<span class="sc">-</span>meanPrice))) <span class="sc">+</span></span>
+<span id="cb141-3"><a href="data-wrangling-visualisation.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> countOfSales), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb141-4"><a href="data-wrangling-visualisation.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb141-5"><a href="data-wrangling-visualisation.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb141-6"><a href="data-wrangling-visualisation.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb141-7"><a href="data-wrangling-visualisation.html#cb141-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2008</span>)) <span class="co"># &lt;&lt;&lt; set the view window</span></span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><strong>Second-up:</strong> how to control the legends? If they’re in the wrong order, or you want to remove them entirely, <strong>use the guides function.</strong></p>
+<p>If we want to force the <strong>count of sales size legend</strong> below the TTWA colour guide, set the order directly by adding this to the ggplot code:</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-wrangling-visualisation.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">order =</span> <span class="dv">1</span>),</span>
+<span id="cb142-2"><a href="data-wrangling-visualisation.html#cb142-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">order =</span> <span class="dv">2</span>))</span></code></pre></div>
+<p><strong>Or to get rid of a legend entirely, just use its aesthetic name and set it to FALSE (or F for short - both work):</strong></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="data-wrangling-visualisation.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guides</span>(<span class="at">size =</span> F)</span></code></pre></div>
+<p>There’ll be a lot more info on controlling appearance later.</p>
+<hr />
+</div>
+<div id="joining-data-sources-together" class="section level2" number="2.14">
+<h2><span class="header-section-number">2.14</span> Joining data sources together</h2>
+<p>It would be very useful to be able to <strong>adjust our house price data to something that’s consistent over time</strong>. But how? We could use some value for inflation, but this doesn’t actually include house price change and would only provide a single adjustment figure for the whole of England.</p>
+<p><strong>Another option is to use wages over time</strong>. Not only does this give a simple measure of house cost - <strong>house price as a multiple of the average wage</strong> - but it varies by region, giving a much more localised measure.</p>
+<p>To do this, <strong>we need to link the housing data to wage data</strong>. Linking two datasets together is often an essential part of visualisation when there is a need to compare or supplement information.</p>
+<p>R’s base commands are not bad for this, but <strong>dplyr’s join functions</strong> do the job a little bit quicker.</p>
+<p>So first, let’s <strong>load the wage data</strong> (taken from NOMIS). It’s in CSV format and we’ll use the <strong>readr library</strong> mentioned earlier, loaded as part of the <strong>tidyverse package</strong>. Again, remember - you can type ‘data/med’ and use autocomplete to get the rest of the file name.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="data-wrangling-visualisation.html#cb144-1" aria-hidden="true" tabindex="-1"></a>wages <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/medianWages_localAuthority.csv&#39;</span>)</span></code></pre></div>
+<p><strong>Click on the new dataframe in the environment panel:</strong> it consists of:</p>
+<ul>
+<li>a column each for the <strong>local authority name and code (the ‘mnemonic’ column)</strong></li>
+<li>One column per year <strong>from 1997 to 2018</strong></li>
+</ul>
+</div>
+<div id="gathering-into-long-form" class="section level2" number="2.15">
+<h2><span class="header-section-number">2.15</span> `Gathering’ into long form</h2>
+<p>We want to <strong>merge this with the housing data summary</strong> so that each median wage per year per local authority is matched against the average price at that time and place.</p>
+<p>But this is currently <strong>wide data</strong> - the year variable is spread across columns. So the first thing to do: <strong>gather the years into their own column</strong> so that it matches the single year column in the house sales data.</p>
+<p>This can be done with another <strong>tidyverse</strong> library: <strong>tidyr</strong>. This just requires <em>two</em> things:</p>
+<ul>
+<li>Give <strong>tidyr</strong> a name for the <strong>key</strong> and <strong>value</strong> columns. You can decide on these names. Let’s go for a key of <strong>year</strong> and value column name as <strong>medianwage</strong>.</li>
+<li>Tell it which columns to gather.</li>
+</ul>
+<p>We can use the pipe operator. This looks like:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="data-wrangling-visualisation.html#cb145-1" aria-hidden="true" tabindex="-1"></a>wagesLong <span class="ot">&lt;-</span> wages <span class="sc">%&gt;%</span> </span>
+<span id="cb145-2"><a href="data-wrangling-visualisation.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> year, <span class="at">value =</span> medianwage, <span class="st">`</span><span class="at">1997</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2018</span><span class="st">`</span>)</span></code></pre></div>
+<blockquote>
+<p><strong>Note: in this case, the column names in the range we passed in needed surrounding with backticks (very top left on the keyboard). Why? If column names are numbers, R can’t parse them well - the tick marks are needed to pass in the names correctly. If they had been plain text, the ticks marks wouldn’t be needed. Another joyous R foible.</strong></p>
+</blockquote>
+<p>Take a look via the environment pane: we now have the <strong>wage data in long form</strong>. Note: we didn’t have to say anything about the remaining local authority columns: <strong>tidyr</strong> automatically repeats these for us.</p>
+<p>Now it’s in long form, here’s an opportunity to use another <strong>stat</strong> from <strong>ggplot</strong></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="data-wrangling-visualisation.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wagesLong, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> medianwage)) <span class="sc">+</span></span>
+<span id="cb146-2"><a href="data-wrangling-visualisation.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-73-1.png" width="595.2" /></p>
+<p><strong>A boxplot</strong> can help get a quick look at the shape of the data. In this case, it’s easy to see median wages going up over time - so the data looks sensible.</p>
+</div>
+<div id="saving-and-reloading-the-housing-data" class="section level2" number="2.16">
+<h2><span class="header-section-number">2.16</span> Saving and reloading the housing data</h2>
+<p>Because memory is a little tight, let’s <strong>load a different selection of the housing data.</strong> This is in exactly the same format as before, it’s just <strong>sales from a selection of local authorities</strong>, rather than TTWAs.</p>
+<p><strong>If you want to save your previous sales data or any of your other dataframes, now would be a good time. We can then overwrite some of these files without fear of losing anything. Although we’ve only added the year field so far, so nothing drastic will be lost.</strong></p>
+<p>The <strong>saveRDS function</strong> is a good way to do this: it saves the dataframes as compressed objects that (a) are very compact and (b) reload in exactly the same form. So for instance, saving to our data folder:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="data-wrangling-visualisation.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(sales,<span class="st">&#39;data/salesTTWAwithYearAdded.rds&#39;</span>)</span></code></pre></div>
+<p><strong>And feel free to save any other dataframes you want to return to.</strong></p>
+<p>We can then <strong>overwrite the sales variable with the new price data</strong>. Again, it’s a long file name so use autocomplete again!</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="data-wrangling-visualisation.html#cb148-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaidLocalAuthoritySelection.rds&#39;</span>)</span></code></pre></div>
+<p>And we’ll also need to <strong>re-add the year column:</strong></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="data-wrangling-visualisation.html#cb149-1" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sales<span class="sc">$</span>date)</span></code></pre></div>
+<hr />
+</div>
+<div id="merging-the-housing-and-wages-data" class="section level2" number="2.17">
+<h2><span class="header-section-number">2.17</span> Merging the housing and wages data</h2>
+<p>Now we’ve got both of our datasets to combine, let’s stop for a moment and think through what we’re aiming for.</p>
+<ul>
+<li>The (long) wage data gives us <strong>the median wage for each year and each local authority</strong> - one row for each of these combinations.</li>
+<li>We want to know <strong>how many multiples of this wage</strong> you’d pay for the <strong>average-priced house in each local authority.</strong></li>
+<li>Which means, first - we need to <strong>repeat our dplyr summarising, but this time at the local authority level</strong>, so it matches our wage data. We want it to <strong>also</strong> have one row per year / local authority combination.</li>
+</ul>
+<p>So we first need to <strong>summarise the sales data</strong> as we did before. <strong>Notice how dplyr makes this a simple change compared to before. We just replace ttwa with the new geography:</strong></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-wrangling-visualisation.html#cb150-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb150-2"><a href="data-wrangling-visualisation.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(localauthority,year) <span class="sc">%&gt;%</span> </span>
+<span id="cb150-3"><a href="data-wrangling-visualisation.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;localauthority&#39;. You can override using the `.groups` argument.</code></pre>
+<p>Looking at the result, <strong>we can see this matches the structure of <em>wagesLong</em>: one column for year and one for the local authority.</strong></p>
+<blockquote>
+<p>This stuff is (for me at any rate!) <strong>always a little confusing!</strong>. It is rarely an intuitive process! Taking the time to <strong>look at the data</strong> in the View panel can be really helpful for making sense of what’s going on.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>We’re now ready to merge in the median wages.</strong></p>
+</blockquote>
+<p><strong>The dplyr cheatsheet has a neat diagram showing our various joining options.</strong> We want to use an <strong>inner join</strong> because we only want to <strong>keep local authorities that the two dataframes have in common.</strong></p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-78-1.png" width="288" /></p>
+<hr />
+<blockquote>
+<p><strong>When doing joins, it’s generally wise to make a new variable. Joins often go wrong on first attempts: it’s useful to be able to compare with the previous data to make sure it’s done what you wanted it to.</strong></p>
+</blockquote>
+<blockquote>
+<p>Note also: when merging/joining, it’s often necessary to do some checks that the data is formatted in the same way in both cases for the join fields, especially for variables like postcodes that may contain spaces. We’ll see an example of this in a moment…</p>
+</blockquote>
+<hr />
+<p>The <strong>dplyr cheatsheet</strong> shows how to use join to merge on single variables - that’s nice and straightforward. But there are two more things to consider here:</p>
+<ul>
+<li><strong>We want to join on both year <em>and</em> local authority.</strong> This is solved by passing in a <strong>vector of the columns to join on</strong>.</li>
+<li><strong>The variable name containing the local authorities is <em>not the same</em> in both dataframes.</strong> This is solved by <strong>supplying both names connected with an equals</strong>.</li>
+</ul>
+<p>This looks like this, and <em>should</em> work…</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-wrangling-visualisation.html#cb152-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(</span>
+<span id="cb152-2"><a href="data-wrangling-visualisation.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  wagesLong,</span>
+<span id="cb152-3"><a href="data-wrangling-visualisation.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  saleSummary,</span>
+<span id="cb152-4"><a href="data-wrangling-visualisation.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;year&#39;</span>, <span class="st">&#39;Area&#39;</span> <span class="ot">=</span> <span class="st">&#39;localauthority&#39;</span>)</span>
+<span id="cb152-5"><a href="data-wrangling-visualisation.html#cb152-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>… but, oh dear, not quite. What went wrong? <strong>This is a rare occasion when an R error message is actually informative: <em>``Can’t join on ‘year’ x ‘year’ because of incompatible types (character / numeric)’’</em> </strong></p>
+<p>Ah: the <em>year</em> variable in one of them is in character format, not number. But which? Looking in the environment panel, we can <strong>click on the arrow symbol to look</strong>. This reveals, under wagesLong:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-80-1.png" width="576" /></p>
+<p>The <strong>`chr’</strong> next to <em>year</em> show it’s a character column. So <strong>when we gathered the year column names, they were kept as characters.</strong> Before we can merge, we have to make them the same format:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-wrangling-visualisation.html#cb153-1" aria-hidden="true" tabindex="-1"></a>wagesLong<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wagesLong<span class="sc">$</span>year)</span></code></pre></div>
+<p>Looking back in the environment panel, wagesLong’s year column is now showing itself as <strong>num</strong>. And now we should be able to join:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-wrangling-visualisation.html#cb154-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(</span>
+<span id="cb154-2"><a href="data-wrangling-visualisation.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  wagesLong,</span>
+<span id="cb154-3"><a href="data-wrangling-visualisation.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  saleSummary,</span>
+<span id="cb154-4"><a href="data-wrangling-visualisation.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;year&#39;</span>, <span class="st">&#39;Area&#39;</span> <span class="ot">=</span> <span class="st">&#39;localauthority&#39;</span>)</span>
+<span id="cb154-5"><a href="data-wrangling-visualisation.html#cb154-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Check <strong>price_n_wage</strong> via the environment panel: <strong>we’ve now got mean price and median wage in the same rows.</strong></p>
+<hr />
+<p>Now we’ve got those columns together, there are two more things to do:</p>
+<ul>
+<li><strong>It’s currently the <em>weekly</em> median wage. We want yearly, to get house price as a multiple of yearly pay.</strong></li>
+<li>Once we’ve got yearly pay, turn the house prices into a multiple of this.</li>
+</ul>
+<p>How? Time for:</p>
+<hr />
+<blockquote>
+<p><strong><em>Verb 4: mutate</em>. This allows us to make whole new variables and attach them to our existing dataframe.</strong></p>
+</blockquote>
+<hr />
+<p>All mutate does: it <strong>creates new variables and attaches them to the existing dataframe.</strong> This can be something as simple as a single value. Or, say we want to create a <em>flag</em> indicating areas with a median wage above £300 a week. Using the pipe operator, that would look like:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-wrangling-visualisation.html#cb155-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb155-2"><a href="data-wrangling-visualisation.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wages_above_300 =</span> medianwage <span class="sc">&gt;</span> <span class="dv">300</span>)</span></code></pre></div>
+<p>Incidentally, we don’t really need that column, so we can drop it with <strong>select</strong> and using a minus:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-wrangling-visualisation.html#cb156-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb156-2"><a href="data-wrangling-visualisation.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>wages_above_300)</span></code></pre></div>
+<p>We want to use mutate for those two jobs: <strong>convert the weekly wage to a yearly one</strong>, and <strong>divide the mean property price by the yearly wage to get a wage multiple value as a house price index.</strong></p>
+<p>As with summarise, <strong>mutate</strong> can do multiple variables at the same time. And, very handily, <strong>dplyr</strong> is also a <strong>lazyeval</strong> function. Which means what? This:</p>
+<blockquote>
+<p><strong>We can define one variable and then use it immediately in the next one.</strong> So we can work out yearly pay, then immediately use that to find the house price multiple. Thus:</p>
+</blockquote>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-wrangling-visualisation.html#cb157-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb157-2"><a href="data-wrangling-visualisation.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb157-3"><a href="data-wrangling-visualisation.html#cb157-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">medianwageyearly =</span> medianwage <span class="sc">*</span> <span class="dv">52</span>, <span class="co"># weekly wage to yearly wage</span></span>
+<span id="cb157-4"><a href="data-wrangling-visualisation.html#cb157-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wagemultiple =</span> meanPrice <span class="sc">/</span> medianwageyearly <span class="co"># house price as multiple of that yearly wage</span></span>
+<span id="cb157-5"><a href="data-wrangling-visualisation.html#cb157-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<p><strong>Look again the the price_n_wage</strong> dataframe to check it’s done what we wanted - and then we can <strong>try a plot.</strong></p>
+<p>There are too many local authorities to fit in a legend, so we can <strong>use the guides code mentioned above</strong> when we plot, to <strong>remove the legend</strong> so we can get a look at all the data together without the legend messing up the plot. (Try it without the <strong>guides</strong> function to see what I mean.)</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-wrangling-visualisation.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> Area)) <span class="sc">+</span></span>
+<span id="cb158-2"><a href="data-wrangling-visualisation.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb158-3"><a href="data-wrangling-visualisation.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> F)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-87-1.png" width="595.2" /></p>
+<p>So: <strong>we now have house prices as a ratio of median yearly wages.</strong> And there’s one crazily high outlier and it’s difficult to see any effect from the crash. But there are a lot of local authorities here - <strong>how to pick out ones we want to look at?</strong></p>
+</div>
+<div id="choosing-a-subset-based-on-some-criterion" class="section level2" number="2.18">
+<h2><span class="header-section-number">2.18</span> Choosing a subset based on some criterion</h2>
+<p>A useful first step to deciding how to pare down your data is to <strong>make an ordered list</strong> of some variable of interest to look at. So say we want to see:</p>
+<ul>
+<li><strong>The order of wage multiples in the final full year of the data</strong></li>
+</ul>
+<p>The advantage of making a separate list is: <strong>we can then use it as a tool for selection</strong>. But first, let’s make it. We can just use <strong>filter</strong> to pick out the year we want - but here’s a new verb:</p>
+<hr />
+<blockquote>
+<p><strong><em>Verb 5: arrange</em>. This re-orders the <em>actual dataframe</em> much as <em>sort</em> does in Excel. That’s quite different to anything else we’ve look at, where the actual row order of the data itself didn’t really matter. (It has no impact on grouping or the order of category drawing, for instance).</strong></p>
+</blockquote>
+<hr />
+<p>This is really useful for two reasons: first, if we actually want to <strong>see</strong> the order ourselves. Second, there <em>are</em> some functions that depend on data order, such as <strong>lag</strong> (see the <strong>window functions</strong> on the dplyr cheatsheet).</p>
+<p>So here’s the code:</p>
+<ul>
+<li><strong>use filter to get 2018 only</strong> then</li>
+<li><strong>use arrange to sort the whole dataframe by the wage multiple.</strong> Make it <strong>in descending order with the minus.</strong></li>
+</ul>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-wrangling-visualisation.html#cb159-1" aria-hidden="true" tabindex="-1"></a>price_n_wage2018 <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb159-2"><a href="data-wrangling-visualisation.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb159-3"><a href="data-wrangling-visualisation.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>wagemultiple)</span></code></pre></div>
+<p><strong>Take a look at the new dataframe: the highest wage multiple is at the top and we can see what local authority it applies to.</strong> No surprise, London local authorities dominate the top of the list. And right at the top, way out in the lead, is <strong>Kensington and Chelsea.</strong> Could this be a combination of England’s most expensive housing with a mixed population (so a lower median wage)?</p>
+<blockquote>
+<p><strong>We can use a dataframe like this to guide subsetting decisions for graphs.</strong> The essential principle is to <strong>use our selecting dataframe to subset the zones we want.</strong></p>
+</blockquote>
+<hr />
+<p>Say we want to look only at the <strong>ten local authorities with the lowest wage multiple in 2018.</strong> By looking at the data, we can see this is <strong>those with a wage multiple below 5.78.</strong></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-wrangling-visualisation.html#cb160-1" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(wagemultiple <span class="sc">&lt;</span> <span class="fl">5.78</span>)</span></code></pre></div>
+<p>Or, because the data is <strong>ordered by wage multiple</strong>, we could just grab the bottom ten from the dataframe using the <strong>tail function</strong> (the opposite of head, this gives us the last rows):</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-wrangling-visualisation.html#cb161-1" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">tail</span>(<span class="dv">10</span>)</span></code></pre></div>
+<p>Once have this selection, we can tell <strong>ggplot</strong>: <em>``filter areas by those <strong>%in%</strong> our zone selection’’.</em> This is the same principle as when we removed London - using a logical operator in filter:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-wrangling-visualisation.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb162-2"><a href="data-wrangling-visualisation.html#cb162-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> Area)) <span class="sc">+</span></span>
+<span id="cb162-3"><a href="data-wrangling-visualisation.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() </span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-91-1.png" width="595.2" /></p>
+<blockquote>
+<p>The <strong>%in% operator</strong> is fantastic: it can be used for multiple selections. As with everything else in R, it <strong>works with vectors</strong> - we just passed it a dataframe column, which is a vector. If we wanted to pass a vector directly, we could - e.g.:</p>
+</blockquote>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-wrangling-visualisation.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Camden&#39;</span>,<span class="st">&#39;Oxford&#39;</span>,<span class="st">&#39;Wirral&#39;</span>,<span class="st">&#39;Liverpool&#39;</span>)), </span>
+<span id="cb163-2"><a href="data-wrangling-visualisation.html#cb163-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> Area)) <span class="sc">+</span></span>
+<span id="cb163-3"><a href="data-wrangling-visualisation.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() </span></code></pre></div>
+<blockquote>
+<p><strong>So the impact of the crash appears to be quite apparent in some of the local authorities with the cheapest housing. Wage multiples appear to have <em>decreased over time</em> since the crash.</strong></p>
+</blockquote>
+<hr />
+<p>You might also want to <strong>select particular row numbers</strong> based on the data you can see in the View panel. Row numbers are shown on the left. Say we want to look at the <strong>top and bottom five</strong> but <strong>exclude Kensington and Chelsea</strong>. We can use a <strong>new dplyr verb:</strong></p>
+<blockquote>
+<p><strong><em>Verb 6: slice</em>. Pass in the row numbers you want - simple. Put a minus before the selection to keep all <em>but</em> those. Place in a vector for multiple selections.</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-wrangling-visualisation.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top ten, excluding Kensington and Chelsea (no vector function needed)</span></span>
+<span id="cb164-2"><a href="data-wrangling-visualisation.html#cb164-2" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>)</span>
+<span id="cb164-3"><a href="data-wrangling-visualisation.html#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-4"><a href="data-wrangling-visualisation.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Top and bottom five, excluding Kensington and Chelsea</span></span>
+<span id="cb164-5"><a href="data-wrangling-visualisation.html#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Use a vector function for multiple selection</span></span>
+<span id="cb164-6"><a href="data-wrangling-visualisation.html#cb164-6" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">72</span><span class="sc">:</span><span class="dv">76</span>))</span></code></pre></div>
+<p>So: plotting our selected top and bottom five. Let’s also <strong>add the fct_reorder code</strong> we used before to make the legend order more readable. And we’ll <strong>relabel the legend</strong> while we’re at it.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="data-wrangling-visualisation.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb165-2"><a href="data-wrangling-visualisation.html#cb165-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb165-3"><a href="data-wrangling-visualisation.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb165-4"><a href="data-wrangling-visualisation.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;area&#39;</span>)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-94-1.png" width="595.2" /></p>
+<blockquote>
+<p><strong>The advantage of using a selection dataframe or vector like this: the <em>ggplot</em> code doesn’t need to change. You just need to change the selection.</strong></p>
+</blockquote>
+<hr />
+<p>Pausing for a moment: looking at the plot of top and bottom local authorities by wage multiple, it’s easier to see something about the impact of the crash: <strong>places with cheaper housing have seen a drop in value, relative to wages. Pricier areas have carried on their upward climb, after a brief dip.</strong></p>
+<blockquote>
+<p><strong>We’ll come back to the wage multiple data in the facets section later, if you want to look at this in more detail.</strong></p>
+</blockquote>
+<p>We’ll stop there, but it’s worth mulling the following: if we plot <strong>wage multiple of house price versus the actual wage</strong>…</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-wrangling-visualisation.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage2018, <span class="fu">aes</span>(<span class="at">x =</span> wagemultiple, <span class="at">y =</span> medianwage)) <span class="sc">+</span></span>
+<span id="cb166-2"><a href="data-wrangling-visualisation.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-95-1.png" width="595.2" /></p>
+<p>… while there’s mostly a linear positive relationship, there are outliers in both directions: Kensington and Chelsea we’ve already seen, that’s the point on the right. But there are <em>also</em> places with very low wage multiples but <strong>high median wages</strong>. How might you dig into that further?</p>
+<hr />
+</div>
+<div id="saving-ggplots-as-image-files" class="section level2" number="2.19">
+<h2><span class="header-section-number">2.19</span> Saving ggplots as image files</h2>
+<p>Lastly, <strong>let’s save a plot as an image file</strong>. To do this, we need to assign the plot to its own variable. If we re-run the previous <strong>ggplot</strong> of top and bottom wage multiples, it’s done like this - assigning to a variable as we would with any other assignment:</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-wrangling-visualisation.html#cb167-1" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">72</span><span class="sc">:</span><span class="dv">76</span>))</span>
+<span id="cb167-2"><a href="data-wrangling-visualisation.html#cb167-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-3"><a href="data-wrangling-visualisation.html#cb167-3" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb167-4"><a href="data-wrangling-visualisation.html#cb167-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb167-5"><a href="data-wrangling-visualisation.html#cb167-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb167-6"><a href="data-wrangling-visualisation.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;area&#39;</span>)</span></code></pre></div>
+<p>If you run that, you’ll see the plot does <strong>not immmediately output to the plot window.</strong> To do this, just call the variable, as we’ve done with any other in the console. This will output our plot:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-wrangling-visualisation.html#cb168-1" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
+<p>Now that we’ve got the plot assigned to <strong>output</strong>, we can <strong>use it to save as an image.</strong> If there isn’t already a (currently empty) <strong>images</strong> folder in your project root folder, create one now. You can do that within RStudio using the <strong>New Folder</strong> option in the <strong>Files</strong> tab. Our <strong>output</strong> variable containing the plot goes into the <strong>ggsave</strong> function:</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-wrangling-visualisation.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;images/topAndBottomLAs_wageMultiples.png&#39;</span>, output, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p>Some other points about ggsave:</p>
+<ul>
+<li><p><strong>It works out what image format to save from the file name.</strong> In this case, it saves a PNG.</p></li>
+<li><p><strong>DPI</strong> controls ‘dots per inch’. Higher values will be higher-resolution.</p></li>
+<li><p><strong>Width and height will determine the relative size of text and features in the plot, not dpi.</strong> So, for example, see what happens when doubling both width and height:</p></li>
+</ul>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-wrangling-visualisation.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;images/topAndBottomLAs_wageMultiples_large.png&#39;</span>, output, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">width =</span> <span class="dv">14</span>, <span class="at">height =</span> <span class="dv">8</span>)</span></code></pre></div>
+<p>Whereas if we make a low-res version but keep the dimensions the same:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-wrangling-visualisation.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&#39;images/topAndBottomLAs_wageMultiples_lowres.png&#39;</span>, </span>
+<span id="cb171-2"><a href="data-wrangling-visualisation.html#cb171-2" aria-hidden="true" tabindex="-1"></a>       output, <span class="at">dpi =</span> <span class="dv">75</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="time-for-a-pause" class="section level2" number="2.20">
+<h2><span class="header-section-number">2.20</span> Time for a pause!</h2>
+<p>So you’ve successfully loaded data, wrangled it and visualised it. Just a quick reflection on how we did that, before moving on to the second part of this section:</p>
+<ul>
+<li><p><strong>We used a bunch of <em>tidyverse</em> libraries</strong> to process and visualise data. These are all designed with the same philosophy of `constrain to simplify’.</p></li>
+<li><p><strong>ggplot works with ‘long’ data: a single column maps to a single aesthetic</strong>. For any particular feature, we fed it a <strong>single variable in a dataframe column</strong>. If that column contained a bunch of categories that we wanted to give a colour to, we just told <strong>ggplot</strong>: <em>colour = variable</em>. Same for any other aesthetic, including x and y coordinates.</p></li>
+</ul>
+<hr />
+<p>OK, so next - you’ve got <strong>six (and a bit) options</strong> to have a go at. For this part of the course I’m going to let you work independently from this booklet and be on hand to help. If anything important comes up, I’ll work through it on the screen again.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Working on prettifying the plot you’ve just made.</strong> This covers some of the most common options for customising plots.</p></li>
+<li><p><strong>Facetting and dodging</strong>: facetting is a way to use <strong>ggplot’s</strong> aesthetics to create multiple plots in one. Dodging is a draw-position function that allows side-by-side comparison of a variable. This section puts both together and looks at house type versus wage multiple.</p></li>
+</ol>
+<p>Then we have two options for working on <strong>iteration:</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p><strong>Outputting multiple plots.</strong> Rather than having to manually output individual plots, this introduces a programmatic way to loop through all the data you want to output, giving each its own plot and saving them all to a folder.</p></li>
+<li><p><strong>Pulling out model values and using them to plot, including error rates.</strong> (And a quick look at functional programming.) ggplot has specific geoms for plotting ranges and error rates. This section looks at pulling coefficients and standard errors from a series of models into one dataframe, so they can all be plotted. <strong>There’s also a look at creating your own functions as a way of repeating the same similar tasks. (This is the ‘and a bit’)</strong></p></li>
+</ol>
+<p>And lastly a little exercise using dplyr to summarise some geographical data and find a group’s modal value:</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p><strong>Mapping!</strong> This section introduces two ways to make maps from your data: first, using <strong>ggplot</strong> itself and, second, using the <strong>simple features</strong> package - an amazing spatial analysis tool that plays nicely with the <strong>tidyverse</strong>.</p></li>
+<li><p>Freestyle! <strong>Working from the cheatsheets, try and find another way to play with and visualise the data. Or repeat what we’ve already done with some different data.</strong> In order to aid this process, if you want to try it, there’s a <strong>different set of data in the data folder</strong> to the one we originally used. Rather than a selection of largest TTWAs (in terms of their number of sales) this one contains <strong>ten of the largest <em>and</em> smallest</strong>, some of which are TTWAs with <strong>much lower house prices</strong>. So this is a chance to ask: <strong>is there a difference in how the richest and poorest areas in England (in terms of house price) responded to the crash?</strong> We’ve already seen some evidence of a difference - and there’s more on this in option 4.</p></li>
+</ol>
+<p>The file is called: <strong>landRegistryPricePaidTopBottomTTWAs.rds</strong></p>
+<p>And this one doesn’t have its own section below: you’re on your own! Work with the code above and the cheatsheets. <strong>A start would be just swapping the RDS file in the first section and seeing how different it looks.</strong></p>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="essentials.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="freeform-1-work-on-new-ideas-together.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

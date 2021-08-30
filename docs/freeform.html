@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 FREEFORM | Introduction to the principles of data wrangling and visualisation in R</title>
+  <meta name="description" content="3 FREEFORM | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 FREEFORM | Introduction to the principles of data wrangling and visualisation in R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://seankross.com/bookdown-start/" />
+  
+  
+  <meta name="github-repo" content="seankross/bookdown-start" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 FREEFORM | Introduction to the principles of data wrangling and visualisation in R" />
+  
+  
+  
+
+<meta name="author" content="Dan Olner" />
+
+
+<meta name="date" content="2021-08-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-wrangling-visualisation.html"/>
+<link rel="next" href="data-sources.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to the principles of data wrangling and visualisation in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="essentials.html"><a href="essentials.html"><i class="fa fa-check"></i><b>1</b> ESSENTIALS</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="essentials.html"><a href="essentials.html#getting-the-course-project-folder-and-data"><i class="fa fa-check"></i><b>1.1</b> Getting the course project folder and data</a></li>
+<li class="chapter" data-level="1.2" data-path="essentials.html"><a href="essentials.html#getting-r-and-rstudio"><i class="fa fa-check"></i><b>1.2</b> Getting R and RStudio</a></li>
+<li class="chapter" data-level="1.3" data-path="essentials.html"><a href="essentials.html#a-first-look-at-rstudio"><i class="fa fa-check"></i><b>1.3</b> A first look at RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="essentials.html"><a href="essentials.html#entering-commands-in-r"><i class="fa fa-check"></i><b>1.4</b> Entering commands in R</a></li>
+<li class="chapter" data-level="1.5" data-path="essentials.html"><a href="essentials.html#assigning-to-variables"><i class="fa fa-check"></i><b>1.5</b> Assigning to variables</a></li>
+<li class="chapter" data-level="1.6" data-path="essentials.html"><a href="essentials.html#opening-a-project-in-rstudio"><i class="fa fa-check"></i><b>1.6</b> Opening a project in RStudio</a></li>
+<li class="chapter" data-level="1.7" data-path="essentials.html"><a href="essentials.html#creating-a-new-script-and-running-code-in-it"><i class="fa fa-check"></i><b>1.7</b> Creating a new script and running code in it</a></li>
+<li class="chapter" data-level="1.8" data-path="essentials.html"><a href="essentials.html#but-will-it-make-sense-in-two-months-time-using-comments-and-sections"><i class="fa fa-check"></i><b>1.8</b> ‘But will it make sense in two month’s time…?’ Using comments and sections</a></li>
+<li class="chapter" data-level="1.9" data-path="essentials.html"><a href="essentials.html#its-all-about-the-libraries"><i class="fa fa-check"></i><b>1.9</b> It’s all about the libraries</a></li>
+<li class="chapter" data-level="1.10" data-path="essentials.html"><a href="essentials.html#loading-a-file-into-a-dataframe-and-examining-the-data"><i class="fa fa-check"></i><b>1.10</b> Loading a file into a dataframe and examining the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html"><i class="fa fa-check"></i><b>2</b> DATA WRANGLING &amp; VISUALISATION</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#the-first-principle-of-data-visualisation"><i class="fa fa-check"></i><b>2.1</b> The first principle of data visualisation…</a></li>
+<li class="chapter" data-level="2.2" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#getting-started"><i class="fa fa-check"></i><b>2.2</b> Getting started</a></li>
+<li class="chapter" data-level="2.3" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#loading-the-libraries"><i class="fa fa-check"></i><b>2.3</b> Loading the libraries</a></li>
+<li class="chapter" data-level="2.4" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#loading-the-house-price-data"><i class="fa fa-check"></i><b>2.4</b> Loading the house price data</a></li>
+<li class="chapter" data-level="2.5" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#lets-jump-right-into-ggplot"><i class="fa fa-check"></i><b>2.5</b> Let’s jump right into ggplot</a></li>
+<li class="chapter" data-level="2.6" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#the-lubridate-library"><i class="fa fa-check"></i><b>2.6</b> The lubridate library</a></li>
+<li class="chapter" data-level="2.7" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#using-ggplots-own-stat-functions"><i class="fa fa-check"></i><b>2.7</b> Using ggplot’s own stat functions</a></li>
+<li class="chapter" data-level="2.8" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#getting-started-with-dplyr-and-piping"><i class="fa fa-check"></i><b>2.8</b> Getting started with <strong>dplyr</strong> and <strong>piping</strong></a></li>
+<li class="chapter" data-level="2.9" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#dplyrs-verbs"><i class="fa fa-check"></i><b>2.9</b> <strong>dplyr</strong>’s verbs</a></li>
+<li class="chapter" data-level="2.10" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#and-a-few-extras-while-were-here"><i class="fa fa-check"></i><b>2.10</b> And a few extras while we’re here…</a></li>
+<li class="chapter" data-level="2.11" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#using-scales-to-control-appearance"><i class="fa fa-check"></i><b>2.11</b> Using scales to control appearance</a></li>
+<li class="chapter" data-level="2.12" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#scales-for-controlling-colour"><i class="fa fa-check"></i><b>2.12</b> Scales for controlling colour</a></li>
+<li class="chapter" data-level="2.13" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#using-factors-to-control-order-of-variables"><i class="fa fa-check"></i><b>2.13</b> Using factors to control order of variables</a></li>
+<li class="chapter" data-level="2.14" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#joining-data-sources-together"><i class="fa fa-check"></i><b>2.14</b> Joining data sources together</a></li>
+<li class="chapter" data-level="2.15" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#gathering-into-long-form"><i class="fa fa-check"></i><b>2.15</b> `Gathering’ into long form</a></li>
+<li class="chapter" data-level="2.16" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#saving-and-reloading-the-housing-data"><i class="fa fa-check"></i><b>2.16</b> Saving and reloading the housing data</a></li>
+<li class="chapter" data-level="2.17" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#merging-the-housing-and-wages-data"><i class="fa fa-check"></i><b>2.17</b> Merging the housing and wages data</a></li>
+<li class="chapter" data-level="2.18" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#choosing-a-subset-based-on-some-criterion"><i class="fa fa-check"></i><b>2.18</b> Choosing a subset based on some criterion</a></li>
+<li class="chapter" data-level="2.19" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#saving-ggplots-as-image-files"><i class="fa fa-check"></i><b>2.19</b> Saving ggplots as image files</a></li>
+<li class="chapter" data-level="2.20" data-path="data-wrangling-visualisation.html"><a href="data-wrangling-visualisation.html#time-for-a-pause"><i class="fa fa-check"></i><b>2.20</b> Time for a pause!</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="freeform.html"><a href="freeform.html"><i class="fa fa-check"></i><b>3</b> FREEFORM</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="freeform.html"><a href="freeform.html#prettifying-a-graph"><i class="fa fa-check"></i><b>3.1</b> Prettifying a graph</a></li>
+<li class="chapter" data-level="3.2" data-path="freeform.html"><a href="freeform.html#facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible"><i class="fa fa-check"></i><b>3.2</b> Facetting and dodging: getting as much info into one graph as humanly possible</a></li>
+<li class="chapter" data-level="3.3" data-path="freeform.html"><a href="freeform.html#iteration"><i class="fa fa-check"></i><b>3.3</b> Iteration</a></li>
+<li class="chapter" data-level="3.4" data-path="freeform.html"><a href="freeform.html#outputting-multiple-plots"><i class="fa fa-check"></i><b>3.4</b> 1. Outputting multiple plots</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="freeform.html"><a href="freeform.html#pulling-out-multiple-model-values-and-visualising-them"><i class="fa fa-check"></i><b>3.4.1</b> 2. Pulling out multiple model values and visualising them</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="freeform.html"><a href="freeform.html#a-little-bit-of-mapping"><i class="fa fa-check"></i><b>3.5</b> A little bit of mapping</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="freeform.html"><a href="freeform.html#one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms"><i class="fa fa-check"></i><b>3.5.1</b> One simple way to use ggplot for mapping: the 2D geoms</a></li>
+<li class="chapter" data-level="3.5.2" data-path="freeform.html"><a href="freeform.html#using-cowplot-to-get-around-the-facetting-problem"><i class="fa fa-check"></i><b>3.5.2</b> Using cowplot to get around the facetting problem</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="freeform.html"><a href="freeform.html#making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling"><i class="fa fa-check"></i><b>3.6</b> Making a map using the simple features library, tmap and a bit of wrangling</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="freeform.html"><a href="freeform.html#a-last-little-ggplot-mapping-example"><i class="fa fa-check"></i><b>3.6.1</b> A last little ggplot mapping example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>4</b> Data sources</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to the principles of data wrangling and visualisation in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="freeform" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> FREEFORM</h1>
+<p>From here on, we can either look at some more examples below, or work on other data ideas e.g. perhaps some Sheffield-specific data sources. Here are six other options if we want to look at those:</p>
+<div id="prettifying-a-graph" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Prettifying a graph</h2>
+<p>So we made some graphs, but they’re lacking finesse. <strong>ggplot</strong> provides many ways to customise its appearance to make it more presentable. <strong>In this option, we’ll look at some of the most common functions used to do this.</strong> So here’s the plot we were just working on, for reference - <strong>but feel free to go and grab code for the earlier plots if you’d prefer.</strong> This will all apply to those too.</p>
+<p><strong>Here we’ll look at the top and bottom local authorities’ wage multiple</strong> (excluding Kensington and Chelsea, as we did before).</p>
+<p><strong>Note: this section uses the same <em>price_n_wage</em> dataframe from the section on merging. If you’ve done the facet option before this one, you may have over-written it. If so, here’s a quick option to reload. (Or run the code for that section again, whichever you prefer.)</strong></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="freeform.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reload price_n_wage data we previously made, if it&#39;s been over-written with anything</span></span>
+<span id="cb172-2"><a href="freeform.html#cb172-2" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/price_n_wage_fromjoinsection.rds&#39;</span>)</span>
+<span id="cb172-3"><a href="freeform.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-4"><a href="freeform.html#cb172-4" aria-hidden="true" tabindex="-1"></a>price_n_wage2018 <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb172-5"><a href="freeform.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb172-6"><a href="freeform.html#cb172-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>wagemultiple)</span>
+<span id="cb172-7"><a href="freeform.html#cb172-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-8"><a href="freeform.html#cb172-8" aria-hidden="true" tabindex="-1"></a><span class="co">#choose whichever zone selection option you want. Here&#39;s the previous three.</span></span>
+<span id="cb172-9"><a href="freeform.html#cb172-9" aria-hidden="true" tabindex="-1"></a><span class="co">#zoneselection &lt;- price_n_wage2018 %&gt;% filter(wagemultiple &lt; 5.78)</span></span>
+<span id="cb172-10"><a href="freeform.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="co">#zoneselection &lt;- price_n_wage2018 %&gt;% slice(2:11)</span></span>
+<span id="cb172-11"><a href="freeform.html#cb172-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-12"><a href="freeform.html#cb172-12" aria-hidden="true" tabindex="-1"></a><span class="co">#We&#39;ll use this one here.</span></span>
+<span id="cb172-13"><a href="freeform.html#cb172-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Top and bottom five, excluding Kensington and Chelsea</span></span>
+<span id="cb172-14"><a href="freeform.html#cb172-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Use a vector function for multiple selection</span></span>
+<span id="cb172-15"><a href="freeform.html#cb172-15" aria-hidden="true" tabindex="-1"></a>zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">72</span><span class="sc">:</span><span class="dv">76</span>))</span></code></pre></div>
+<p>We’ve already seen how to change the label for the legends using <strong>labs</strong> and control legend order using <strong>fact_reorder</strong> - these are included here:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="freeform.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb173-2"><a href="freeform.html#cb173-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb173-3"><a href="freeform.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb173-4"><a href="freeform.html#cb173-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;area&#39;</span>)</span></code></pre></div>
+<blockquote>
+<p><strong>The basic principle is to add cumulatively to a ggplot: just add a <em>plus</em> at the end of a line and then include our new tweak on its own line.</strong> An advantage of it being on its own line: <em>we can comment out any particular feature easily to play around with the output.</em></p>
+</blockquote>
+<p><strong>Try any / all of the following. If you want to see them all together, skip ahead a few pages.</strong></p>
+<hr />
+<blockquote>
+<ul>
+<li><strong>Change the axis labels</strong></li>
+</ul>
+</blockquote>
+<p>The x and y axis labels can be changed with the <strong>xlab</strong> and <strong>ylab</strong> functions. So updating the y axis would look like:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="freeform.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">&#39;wage multiple&#39;</span>) </span></code></pre></div>
+<blockquote>
+<ul>
+<li><strong>Add some better ticks to the y axis scale</strong></li>
+</ul>
+</blockquote>
+<p>You can set any scale ticks completely manually. This can be done by adding a <strong>scale_y_continuous</strong> function.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="freeform.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>))</span></code></pre></div>
+<p>It’s also possible to <strong>over-ride the labels used for those ticks</strong>. Be careful to make sure both of these vectors are same length - it needs a one-to-one correspondence:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="freeform.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>),</span>
+<span id="cb176-2"><a href="freeform.html#cb176-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;0&#39;</span>,<span class="st">&#39;5x&#39;</span>,<span class="st">&#39;10x&#39;</span>,<span class="st">&#39;15x&#39;</span>,<span class="st">&#39;20x&#39;</span>,<span class="st">&#39;25x&#39;</span>,<span class="st">&#39;30x&#39;</span>))</span></code></pre></div>
+<p>This tells <strong>ggplot</strong> exactly <em>which</em> breaks we want and how to label them. (The labels can be text or numbers.) So we have very fine control of these.</p>
+<blockquote>
+<ul>
+<li><strong>Giving the plot a title</strong></li>
+</ul>
+</blockquote>
+<p>I always forget how to do this and need to google it! I invariably <a href="http://www.cookbook-r.com/Graphs/Titles_(ggplot2)/">copy the code from here</a> and amend it. We add a <strong>ggtitle</strong> and then make it bold by changing the <strong>theme</strong>.</p>
+<p>The latest <strong>ggplot</strong> aligns titles to the left by default - you can include an <strong>hjust</strong> value in theme</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="freeform.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;House prices as multiple of yearly wage top and bottom five English local authorities&quot;</span>) <span class="sc">+</span></span>
+<span id="cb177-2"><a href="freeform.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><strong>That’s a stupidly long title.</strong> You can wrap lines in the title by using <strong>backslash n</strong> where the lines should break. It’s hard to spot here: the <strong>backslash n</strong> is after <em>wage</em> and before <em>top</em>:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="freeform.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;House prices as multiple of yearly wage</span><span class="sc">\n</span><span class="st">top and bottom five English local authorities&quot;</span>) </span></code></pre></div>
+<blockquote>
+<ul>
+<li><strong>Removing axis titles entirely</strong></li>
+</ul>
+</blockquote>
+<p>One might think having the ‘year’ title for the x axis is a bit superfluous: years are self-explanatory. (Many say axes must always be labelled, mind!) Anyway, if you don’t like it, the <strong>theme</strong> function can again be used. <strong>Note here, we’re adding the to theme formatting we did for title above.</strong></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="freeform.html#cb179-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>)),</span>
+<span id="cb179-2"><a href="freeform.html#cb179-2" aria-hidden="true" tabindex="-1"></a>        axis.title.x<span class="ot">=</span><span class="fu">element_blank</span>()<span class="er">)</span></span></code></pre></div>
+<p>The same can be done with text and ticks using <strong>axis.text.x</strong> and <strong>axis.ticks.x</strong> (or y).</p>
+<blockquote>
+<ul>
+<li><strong>Changing the line type and size</strong></li>
+</ul>
+</blockquote>
+<p>As we did when changing the sales count circles to grey, the line type and size can be altered in the <strong>geom_line</strong> function directly. <a href="http://docs.ggplot2.org/0.9.3.1/aes_linetype_size_shape.html">Here’s a reference</a> for the <strong>linetype</strong> number:</p>
+<blockquote>
+<p><strong>0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="freeform.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">5</span>)</span></code></pre></div>
+<blockquote>
+<ul>
+<li><strong>Quickly creating a flag for a new aesthetic mapping</strong></li>
+</ul>
+</blockquote>
+<p>Perhaps you want to mark out which local authorities are in London. All we need for this: <strong>a single column marking which of the local authorities are in London.</strong> We could then use <strong>linetype</strong> to mark this.</p>
+<p>In the current data, the three London zones are <strong>Camden</strong>, <strong>Islington</strong> and <strong>Hackney</strong>. You could obviously use some more sophisticated way to pick out your group but let’s just make it directly:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="freeform.html#cb181-1" aria-hidden="true" tabindex="-1"></a>londonzones <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Camden&#39;</span>,<span class="st">&#39;Islington&#39;</span>,<span class="st">&#39;Hackney&#39;</span>)</span></code></pre></div>
+<p>We can then use <strong>dplyr</strong> to make a <strong>flag column</strong> (with actual labels rather than just a zero and one, as is common with flag columns.)</p>
+<p>There’s a new function here: <strong>ifelse</strong>. As the name suggests, this just lets us say: <strong>if this condition is met, do this - else, do that</strong>. (That’s the best way to remember the order of the arguments too: <em>`if, then: this, else that’</em>.) We can combine it with the <strong>%in%</strong> operator.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="freeform.html#cb182-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb182-2"><a href="freeform.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inLondon =</span> <span class="fu">ifelse</span>(Area <span class="sc">%in%</span> londonzones, <span class="st">&#39;london&#39;</span>,<span class="st">&#39;other&#39;</span>))</span></code></pre></div>
+<p>As always, take a look at the dataframe to confirm it’s done what you wanted it to. Or throw it into the <strong>ggplot</strong> and see…</p>
+<blockquote>
+<ul>
+<li><strong>Bringing all that together</strong></li>
+</ul>
+</blockquote>
+<p>Here’s those options all in the ggplot code - <strong>including the new linetype aesthetic mapping.</strong> It also hides the <em>inLondon</em> variable name above the <strong>linetype</strong> legend.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="freeform.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection<span class="sc">$</span>Area), </span>
+<span id="cb183-2"><a href="freeform.html#cb183-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb183-3"><a href="freeform.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> inLondon), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb183-4"><a href="freeform.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;wage multiple&#39;</span>) <span class="sc">+</span></span>
+<span id="cb183-5"><a href="freeform.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;local authority&#39;</span>, <span class="at">linetype =</span> <span class="st">&#39; &#39;</span>) <span class="sc">+</span></span>
+<span id="cb183-6"><a href="freeform.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">25</span>,<span class="dv">30</span>), </span>
+<span id="cb183-7"><a href="freeform.html#cb183-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;0&#39;</span>,<span class="st">&#39;5x&#39;</span>,<span class="st">&#39;10x&#39;</span>,<span class="st">&#39;15x&#39;</span>,<span class="st">&#39;20x&#39;</span>,<span class="st">&#39;25x&#39;</span>,<span class="st">&#39;30x&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb183-8"><a href="freeform.html#cb183-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;House prices as multiple of yearly wage</span><span class="sc">\n</span><span class="st">top and bottom five English local authorities&quot;</span>) <span class="sc">+</span></span>
+<span id="cb183-9"><a href="freeform.html#cb183-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb183-10"><a href="freeform.html#cb183-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-113-1.png" width="691.2" style="display: block; margin: auto;" /></p>
+<!-- > **Prettifying a log scale** -->
+<!-- ```{r echo = F, message = F} -->
+<!-- #One I made earlier -->
+<!-- saleSummary <- readRDS('data/saleSummary4logprettifying.rds') -->
+<!-- ``` -->
+<!-- One last thing: we've worked a lot with log scales for prices and they didn't look great. **How to improve them?** Let's look at one of the price graphs using a log scale. Here's the code to create it again. -->
+<!-- This has **one easy addition** to make prices more readable: **turning them into multiples of a thousand**. Axes look a lot nicer with *100* and a label explaining they're in thousands. -->
+<!-- ```{r eval = F} -->
+<!-- sales <- readRDS('data/landRegistryPricePaidTopTTWAs.rds') -->
+<!-- sales$year <- year(sales$date) -->
+<!-- saleSummary <- sales %>%  -->
+<!--   mutate(pricethousands = price/1000) %>%  -->
+<!--   group_by(ttwa,year) %>%  -->
+<!--   summarise(meanPriceThousands = mean(pricethousands), countOfSales = n()) -->
+<!-- ``` -->
+<!-- We can then **make some additions to the *scale_y_log10* function**, including setting the scale name directly. The values in **breaks** are where the *real* (non-log) values will have ticks. The **labels** function tells them what to show. We could leave that out here since it's just repeating breaks, but it's worth knowing you have complete control over them. -->
+<!-- ```{r fig.width=7.2, fig.height=4.5} -->
+<!-- ggplot(saleSummary,  -->
+<!--        aes(x = year, y = meanPriceThousands,  -->
+<!--            colour = fct_reorder(ttwa,-meanPriceThousands))) + -->
+<!--   geom_point(aes(size = countOfSales), alpha = 0.3) + -->
+<!--   geom_line() + -->
+<!--   guides(size = F) + -->
+<!--   labs(colour = 'TTWA') + -->
+<!--   scale_y_log10(name = 'average price (log scale in real prices)', -->
+<!--                 breaks = c(100,200,400), -->
+<!--                 labels = c(100,200,400)) + -->
+<!--   scale_size_continuous(range = c(0,10)) + -->
+<!--   ggtitle("Average House prices for TTWAs") + -->
+<!--   theme(plot.title = element_text(face="bold",hjust = 0.5), -->
+<!--         axis.title.x=element_blank()) -->
+<!-- ``` -->
+<hr />
+</div>
+<div id="facetting-and-dodging-getting-as-much-info-into-one-graph-as-humanly-possible" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Facetting and dodging: getting as much info into one graph as humanly possible</h2>
+<p>There’s a quote about visualisation doing the rounds:</p>
+<blockquote>
+<p><strong>``A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.’’</strong></p>
+</blockquote>
+<p>That’s all very well, but sometimes it’s good to <strong>stuff as much information into one chart as possible</strong>… This section covers two useful things to help us do this:</p>
+<p><strong>ggplot</strong> has a rather nice feature called <strong>facetting</strong> that allows us to put data into separate panels in one plot. As with other mapping of aesthetics, to do this we need <strong>one column that will act as our facet category</strong>, to split across multiple panels.</p>
+<p>The <strong>position</strong> function in geometries also has a very useful option: <strong>“dodge”</strong>. We’ve already seen <strong>position = “stack”</strong>: this stacked mapped variables on top of each other in a bar chart so their counts summed. Instead, <strong>dodge places them next to each other.</strong></p>
+<p>We’ll also use this as an opportunity to explain a bit more how <strong>factors</strong> work.</p>
+<p>Let’s ask:</p>
+<blockquote>
+<p><strong>How have prices (in terms of wage multiple) of different <em>types</em> of house changed (detached, terraced etc) for a range of years, in four local authorities?</strong></p>
+</blockquote>
+<p>Again, this is the wage data combined with local authority house price data. In case this isn’t already loaded, here’s the code again. Note, we already know the <strong>year</strong> column will need converting to <strong>numeric</strong>, so we do that here too.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="freeform.html#cb184-1" aria-hidden="true" tabindex="-1"></a>wages <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/medianWages_localAuthority.csv&#39;</span>)</span>
+<span id="cb184-2"><a href="freeform.html#cb184-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-3"><a href="freeform.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Make wages into long data, year in its own column</span></span>
+<span id="cb184-4"><a href="freeform.html#cb184-4" aria-hidden="true" tabindex="-1"></a>wagesLong <span class="ot">&lt;-</span> wages <span class="sc">%&gt;%</span> </span>
+<span id="cb184-5"><a href="freeform.html#cb184-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> year, <span class="at">value =</span> medianwage, <span class="st">`</span><span class="at">1997</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2018</span><span class="st">`</span>)</span>
+<span id="cb184-6"><a href="freeform.html#cb184-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-7"><a href="freeform.html#cb184-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Make year numeric in preparation for the join</span></span>
+<span id="cb184-8"><a href="freeform.html#cb184-8" aria-hidden="true" tabindex="-1"></a>wagesLong<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(wagesLong<span class="sc">$</span>year)</span>
+<span id="cb184-9"><a href="freeform.html#cb184-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-10"><a href="freeform.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Reload sales at local authority level</span></span>
+<span id="cb184-11"><a href="freeform.html#cb184-11" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaidLocalAuthoritySelection.rds&#39;</span>)</span>
+<span id="cb184-12"><a href="freeform.html#cb184-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Add the year column</span></span>
+<span id="cb184-13"><a href="freeform.html#cb184-13" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sales<span class="sc">$</span>date)</span></code></pre></div>
+<p>As before, we need to make a <strong>summary of the house price data</strong> - but with an addition. We want <strong>average price per year, per place AND per house type.</strong> As always, you can just add this to the <strong>group_by</strong> verb and <strong>dplyr</strong> will create the grouped data already in long form.</p>
+<p>We also initially filter to get <strong>just four specific years</strong>, two each side of the crash. <strong>Each of these will get its own facet.</strong></p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="freeform.html#cb185-1" aria-hidden="true" tabindex="-1"></a>saleSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb185-2"><a href="freeform.html#cb185-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">2005</span>,<span class="dv">2010</span>,<span class="dv">2015</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb185-3"><a href="freeform.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(localauthority,year,type) <span class="sc">%&gt;%</span> </span>
+<span id="cb185-4"><a href="freeform.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanPrice =</span> <span class="fu">mean</span>(price))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;localauthority&#39;, &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
+<p>We’re now ready to join, as we did before. We use <strong>inner_join</strong> again: so this will <strong>only keep years (and local authorities) common to both</strong>, in this case just 2000, 2005, 2010 and 2015.</p>
+<p>Because the saleSumary data now has <strong>type</strong> in long form, the join will <strong>repeat values for the joined wages dataframe.</strong> Take a look once joined, you can see there are <strong>repeated wages</strong> for each house type (but unique price averages).</p>
+<p>Let’s also add the <strong>yearly wage</strong> and <strong>wage multiple</strong> columns here. Note: you could of course join these two separate tasks with the <strong>pipe operator</strong>. It doesn’t always help with readability though - sometimes it’s better to keep things a little separate.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="freeform.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co">#See the dataframe: median wage repeated for each year / place</span></span>
+<span id="cb187-2"><a href="freeform.html#cb187-2" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(</span>
+<span id="cb187-3"><a href="freeform.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  wagesLong,</span>
+<span id="cb187-4"><a href="freeform.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  saleSummary,</span>
+<span id="cb187-5"><a href="freeform.html#cb187-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;year&#39;</span>, <span class="st">&#39;Area&#39;</span> <span class="ot">=</span> <span class="st">&#39;localauthority&#39;</span>)</span>
+<span id="cb187-6"><a href="freeform.html#cb187-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb187-7"><a href="freeform.html#cb187-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-8"><a href="freeform.html#cb187-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Make new columns</span></span>
+<span id="cb187-9"><a href="freeform.html#cb187-9" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb187-10"><a href="freeform.html#cb187-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb187-11"><a href="freeform.html#cb187-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">medianwageyearly =</span> medianwage <span class="sc">*</span> <span class="dv">52</span>, <span class="co"># weekly wage to yearly wage</span></span>
+<span id="cb187-12"><a href="freeform.html#cb187-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">wagemultiple =</span> meanPrice <span class="sc">/</span> medianwageyearly <span class="co"># house price as multiple of that yearly wage</span></span>
+<span id="cb187-13"><a href="freeform.html#cb187-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<blockquote>
+<p><strong>OK, the data’s ready for plotting.</strong> A reminder of the principle here: <strong>ggplot wants one column per variable mapping / aesthetic</strong>. We do that by <strong>using long data</strong>. So now we’ve got each of the following in its own column:</p>
+</blockquote>
+<ul>
+<li>wagemultiple</li>
+<li>Area (the local authority)</li>
+<li>type (the house type)</li>
+<li>year</li>
+</ul>
+<p>The only <strong>new type of mapping</strong> we now do is the <strong>facet</strong> itself. Here’s another R/ggplot quirk: <strong>unlike everything else, this one requires a tilde before the variable name</strong>. (Look up <strong>facet_grid</strong> to see why this is actually useful.)</p>
+<p>So let’s try this:</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="freeform.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;Camden&#39;</span>,<span class="st">&#39;Oxford&#39;</span>,<span class="st">&#39;Wirral&#39;</span>,<span class="st">&#39;Liverpool&#39;</span>)), </span>
+<span id="cb188-2"><a href="freeform.html#cb188-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Area, <span class="at">y =</span> wagemultiple, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb188-3"><a href="freeform.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb188-4"><a href="freeform.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year)</span></code></pre></div>
+<p>Hmm. Not quite: <strong>the wage multiples are stacked</strong> (this is <strong>geom_col</strong>’s default position - check its help file to confirm), which doesn’t make sense here. They should be side-by-side. <strong>Dodge to the rescue! Over-ride <em>geom_col’s</em> default position (remembering the plus for the next line):</strong></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="freeform.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>)</span></code></pre></div>
+<p><strong>Ah ha! Each value is now side-by-side and makes sense against the y axis.</strong> But it would be useful to tell <strong>ggplot</strong> to place all the facets on one row to make it easier to compare the y-axis between categories. How? <strong>Use autocomplete to get your list of facet options. Put a comma after year then press CTRL+SPACE</strong>. Use the mouse or cursor: the help tells you how to use <strong>ncol, nrow</strong> and <strong>scales</strong>:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-119-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>So we can set all the facets on one row with:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="freeform.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Starting to look better, but <strong>the order and labels for the house type are poor.</strong> The order of the local authorities could do with tweaking too.</p>
+<p>For this, we need to return to <strong>factors</strong> and using <strong>forcats</strong>.</p>
+<ul>
+<li>Recall that ggplot uses <strong>factor order for ordering its legends and plots</strong>. (Or alphabetical / numerical order if the variables are plain character or number.)</li>
+<li>We’ve already used <strong>fct_reorder</strong>: this orders a variable by another - we’ve used it to order place names by average house price. But it also <strong>converts the variable to a factor in the process</strong> as <strong>only factors can have a defined order in R.</strong></li>
+</ul>
+<p>To see what’s going on, it’s useful to look closer at the variables. The current <strong>type</strong> variable is a plain character:</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="freeform.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(price_n_wage<span class="sc">$</span>type)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>The first thing we’ll do is use <strong>forcats</strong> to <strong>recode the names</strong> to something more readable. We’ll make a <strong>new</strong> variable, <strong>type2</strong>, so we can compare the difference: in practice <strong>we’d usually overwrite the original</strong>.</p>
+<p>Using <strong>mutate</strong> to carry out the recode, we make a new <strong>type2</strong> variable from the old <strong>type</strong>:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="freeform.html#cb193-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb193-2"><a href="freeform.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type2 =</span> <span class="fu">fct_recode</span>(type,</span>
+<span id="cb193-3"><a href="freeform.html#cb193-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&#39;flat&#39;</span> <span class="ot">=</span> <span class="st">&#39;F&#39;</span>,</span>
+<span id="cb193-4"><a href="freeform.html#cb193-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&#39;terrace&#39;</span> <span class="ot">=</span> <span class="st">&#39;T&#39;</span>,</span>
+<span id="cb193-5"><a href="freeform.html#cb193-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&#39;semi&#39;</span> <span class="ot">=</span> <span class="st">&#39;S&#39;</span>,</span>
+<span id="cb193-6"><a href="freeform.html#cb193-6" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&#39;detached&#39;</span> <span class="ot">=</span> <span class="st">&#39;D&#39;</span></span>
+<span id="cb193-7"><a href="freeform.html#cb193-7" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<p>As with <strong>fct_reorder</strong>, the act of recoding converts the variable to a factor. And we can see this factor <strong>has an order to it</strong> as well - <strong>this defaults to alphabetical.</strong> By converting to <strong>numeric</strong>, you can also see what <strong>factor</strong> does: the coding has a number under the surface, <strong>marking what order the factors are in.</strong></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="freeform.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(price_n_wage<span class="sc">$</span>type2)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="freeform.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(price_n_wage<span class="sc">$</span>type2)</span></code></pre></div>
+<pre><code>## [1] detached flat     semi     terrace 
+## Levels: detached flat semi terrace</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="freeform.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">unique</span>(price_n_wage<span class="sc">$</span>type2))</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<p>A more sensible order for house type would be <strong>by size and likely cost</strong>. Use <strong>fct_relevel</strong> to do this (and this time over-write <strong>type2</strong>):</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="freeform.html#cb200-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb200-2"><a href="freeform.html#cb200-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type2 =</span> <span class="fu">fct_relevel</span>(type2,</span>
+<span id="cb200-3"><a href="freeform.html#cb200-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;detached&#39;</span>,</span>
+<span id="cb200-4"><a href="freeform.html#cb200-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;semi&#39;</span>,</span>
+<span id="cb200-5"><a href="freeform.html#cb200-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;terrace&#39;</span>,</span>
+<span id="cb200-6"><a href="freeform.html#cb200-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;flat&#39;</span></span>
+<span id="cb200-7"><a href="freeform.html#cb200-7" aria-hidden="true" tabindex="-1"></a>  )) </span></code></pre></div>
+<p>If you now repeat the previous look at the variable, you can see the <strong>levels have the order we’ve given them</strong> (as has the number order.)</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="freeform.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(price_n_wage<span class="sc">$</span>type2)</span></code></pre></div>
+<pre><code>## [1] detached flat     semi     terrace 
+## Levels: detached semi terrace flat</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="freeform.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">unique</span>(price_n_wage<span class="sc">$</span>type2))</span></code></pre></div>
+<pre><code>## [1] 1 4 2 3</code></pre>
+<p>It’s worth emphasising: <strong>this order has nothing to do with row order in the dataframe. It’s the coding for the variable itself.</strong></p>
+<blockquote>
+<p><strong>OK, so that’s enough about factors.</strong> We’ll just do one last thing: <strong>reorder place names by the wage multiple</strong>, as we’ve done before. This factor can overwrite the previous plain-character variable:</p>
+</blockquote>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="freeform.html#cb205-1" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb205-2"><a href="freeform.html#cb205-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Area =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))</span></code></pre></div>
+<blockquote>
+<p><strong>Bringing all that together, the plot should now look something like this. Note also that <em>geom_col</em> has its colour set directly. This makes the bar outlines a little better defined:</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="freeform.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&#39;dodge&#39;</span>, <span class="at">colour =</span> <span class="st">&#39;grey&#39;</span>) </span></code></pre></div>
+<p>You could also try <strong>coord-flip</strong> - this can work well with categorical x axes.</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-129-1.png" width="883.2" style="display: block; margin: auto;" /></p>
+<p>And - because we’re using three different categorical variables, try different combinations of <strong>mapping them to fill, facet and x axis.</strong> What works best? For example, if we <strong>swap year with Area</strong> and <strong>set a free y scale</strong>, we can look at changes within local authorities over time. Though you <strong>need to be careful to note that they’re less visually comparable</strong>, if a scale is free, <strong>ggplot</strong> will add individual tick marks for each.</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-130-1.png" width="883.2" style="display: block; margin: auto;" /></p>
+<p><strong>facet_wrap</strong> has a <a href="http://docs.ggplot2.org/current/facet_wrap.html">range of other options</a>. Also useful is <strong>scales</strong>. As the link above explains (and as we saw in the autocomplete) this can be <strong>scales = ‘free’</strong>. Or also <strong>‘free_y’</strong>, <strong>‘free_x’</strong> to control them separately. In this case, ‘free_y’ would allow <strong>ggplot</strong> to adjust each separately to fill the graph (but at the cost of the <strong>wage multiple</strong> not being as comparable.)</p>
+<hr />
+</div>
+<div id="iteration" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Iteration</h2>
+<hr />
+</div>
+<div id="outputting-multiple-plots" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 1. Outputting multiple plots</h2>
+<p>It’s often useful to be able to look at many different elements of your data in their own separate plots - for example, looking at each city/town or local authority separately. This isn’t often the kind of task you might need for <strong>presenting data</strong> - but as a way to <strong>understand your own data</strong>, being able to output many plots easily is really useful.</p>
+<blockquote>
+<p><strong>One option is to use a for-loop to do this. This will allow us to loop over each plot we want and output them separately.</strong></p>
+</blockquote>
+<blockquote>
+<p>What we’ll do here: <strong>cut up the local authorities from the work done in the <em>joining-data section</em> into equal size groups</strong> and plot each of the groups.</p>
+</blockquote>
+<p>We can work with the list of local authorities in price_n_wage2018. As usual, the tidyverse supplies a feature for cutting numeric data up in various ways.</p>
+<hr />
+<p><strong>If you haven’t still got <em>price_n_wage</em> and <em>price_n_wage2018</em> in memory from the join section, here’s the <em>price_n_wage</em> dataframe with code for re-grabbing just 2018.</strong></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="freeform.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reload price_n_wage data we previously made</span></span>
+<span id="cb207-2"><a href="freeform.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="co">#if it&#39;s been over-written with anything or removed</span></span>
+<span id="cb207-3"><a href="freeform.html#cb207-3" aria-hidden="true" tabindex="-1"></a>price_n_wage <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/price_n_wage_fromjoinsection.rds&#39;</span>)</span>
+<span id="cb207-4"><a href="freeform.html#cb207-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-5"><a href="freeform.html#cb207-5" aria-hidden="true" tabindex="-1"></a>price_n_wage2018 <span class="ot">&lt;-</span> price_n_wage <span class="sc">%&gt;%</span> </span>
+<span id="cb207-6"><a href="freeform.html#cb207-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb207-7"><a href="freeform.html#cb207-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>wagemultiple)</span></code></pre></div>
+<hr />
+<p><strong>So how to cut up the local authority data into equal size groups? Here’s code that does that in two forms: the first is base R, the second uses the pipe operator in dplyr</strong> - just to compare legibility between the two.</p>
+<p><strong>There’s very useful auto-help for the cut functions: if you just type <em>cut_</em>, this should appear. Each of the three cut functions is explained.</strong> <strong>cut_number</strong> will create a column marking out which rows for <strong>wagemultiple</strong> are in each group:</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="freeform.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Base R version</span></span>
+<span id="cb208-2"><a href="freeform.html#cb208-2" aria-hidden="true" tabindex="-1"></a>price_n_wage2018<span class="sc">$</span>groupToPrint <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">cut_number</span>(price_n_wage2018<span class="sc">$</span>wagemultiple,<span class="dv">8</span>))</span>
+<span id="cb208-3"><a href="freeform.html#cb208-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-4"><a href="freeform.html#cb208-4" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyr piping version, same result</span></span>
+<span id="cb208-5"><a href="freeform.html#cb208-5" aria-hidden="true" tabindex="-1"></a>price_n_wage2018 <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> </span>
+<span id="cb208-6"><a href="freeform.html#cb208-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">groupToPrint =</span> wagemultiple <span class="sc">%&gt;%</span></span>
+<span id="cb208-7"><a href="freeform.html#cb208-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">cut_number</span>(<span class="dv">8</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb208-8"><a href="freeform.html#cb208-8" aria-hidden="true" tabindex="-1"></a>           as.numeric</span>
+<span id="cb208-9"><a href="freeform.html#cb208-9" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div>
+<p>Note: the <strong>cut</strong> functions are <em>not</em> cutting according to row - it’s done according to value. That’s why group number one is <em>lowest-value</em> local authorities and eight the <em>highest</em>.</p>
+<p>Get a list of the unique values we’re going to iterate over. <strong>This could be a vector of character names like place-names</strong> - it wouldn’t have to be numeric.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="freeform.html#cb209-1" aria-hidden="true" tabindex="-1"></a>groupsToPrint <span class="ot">&lt;-</span> <span class="fu">unique</span>(price_n_wage2018<span class="sc">$</span>groupToPrint)</span>
+<span id="cb209-2"><a href="freeform.html#cb209-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-3"><a href="freeform.html#cb209-3" aria-hidden="true" tabindex="-1"></a>groupsToPrint</span></code></pre></div>
+<pre><code>## [1] 8 7 6 5 4 3 2 1</code></pre>
+<blockquote>
+<p><strong>Now we’re going to loop over those eight groups and produce a plot for each.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>If you’ve not come across <em>for-loops</em> before, they’re straightforward. Translated to English, for-loops are just: ‘for each of this set of values (in our case, it’ll be our eight groups), carry out this bunch of tasks, once per value’.</strong></p>
+</blockquote>
+<p>That vector can now be used in the for loop. <strong>Set up the for loop first just to see what it’s doing:</strong></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="freeform.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(grp <span class="cf">in</span> groupsToPrint){</span>
+<span id="cb211-2"><a href="freeform.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb211-3"><a href="freeform.html#cb211-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(grp)</span>
+<span id="cb211-4"><a href="freeform.html#cb211-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb211-5"><a href="freeform.html#cb211-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The for-loop <strong>assigns each value from <em>groupsToPrint</em> to the <em>grp</em> variable in turn</strong>. It then executes the code between the curly braces. In this case, we’re just printing the grp number - <strong>but the principle is the same for whatever code we put between them. We just need to replace <em>print(grp)</em> with our code.</strong></p>
+<p>The first job for the loop: <strong>pull out the list of local authorities to print on each iteration</strong>. We <strong>filter by group</strong> and then <strong>pull</strong> out the single vector of local authorities in the <strong>Area</strong> variable (we also use <strong>print</strong> here so the result is visible in the for loop):</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="freeform.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(grp <span class="cf">in</span> groupsToPrint){</span>
+<span id="cb212-2"><a href="freeform.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb212-3"><a href="freeform.html#cb212-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#get vector of zones to draw</span></span>
+<span id="cb212-4"><a href="freeform.html#cb212-4" aria-hidden="true" tabindex="-1"></a>  zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> </span>
+<span id="cb212-5"><a href="freeform.html#cb212-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(groupToPrint <span class="sc">==</span> grp) <span class="sc">%&gt;%</span> </span>
+<span id="cb212-6"><a href="freeform.html#cb212-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(Area)</span>
+<span id="cb212-7"><a href="freeform.html#cb212-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb212-8"><a href="freeform.html#cb212-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(zoneselection)</span>
+<span id="cb212-9"><a href="freeform.html#cb212-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb212-10"><a href="freeform.html#cb212-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>A couple of things before starting:</p>
+<blockquote>
+<p><strong>We’ll add our plots to a sub-folder in the images folder. Make that now with RStudio’s ‘new folder’ option in the file tab, inside the images folder: something like <em>groupsOfLocalAuthorities</em>.</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>It’s tricky trying to debug code that’s running inside a for loop. A useful thing to do is: pick one value to assign to <em>grp</em> so that we can then run the code by highlighting, without having to run the whole for loop. For example:</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="freeform.html#cb213-1" aria-hidden="true" tabindex="-1"></a>grp <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>When we run the actual for loop, it will overwrite this with the value it assigns. But we can work with it while getting the code right.</p>
+<p>There’s nothing much new in the code below: this is just our previous wage multiple plot code, working on each group in turn. The only other thing to note:</p>
+<blockquote>
+<p><strong>At the bottom, we’re making a filename that includes the first and last <em>local authority</em> names in the group (as well as the group name). This is done with the <em>paste0</em> function. <em>Paste0</em> just takes in a bunch of bits of text and variables, separated by commas, and turns them into one character. This allows us to save each group as its own file.</strong></p>
+</blockquote>
+<blockquote>
+<p>There is also an added <strong>geom_point</strong> showing the median wage itself.</p>
+</blockquote>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="freeform.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(grp <span class="cf">in</span> groupsToPrint){</span>
+<span id="cb214-2"><a href="freeform.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-3"><a href="freeform.html#cb214-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&#39;outputting group &#39;</span>,grp))</span>
+<span id="cb214-4"><a href="freeform.html#cb214-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-5"><a href="freeform.html#cb214-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#get vector of zones to draw</span></span>
+<span id="cb214-6"><a href="freeform.html#cb214-6" aria-hidden="true" tabindex="-1"></a>  zoneselection <span class="ot">&lt;-</span> price_n_wage2018 <span class="sc">%&gt;%</span> </span>
+<span id="cb214-7"><a href="freeform.html#cb214-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(groupToPrint <span class="sc">==</span> grp) <span class="sc">%&gt;%</span> </span>
+<span id="cb214-8"><a href="freeform.html#cb214-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(Area)</span>
+<span id="cb214-9"><a href="freeform.html#cb214-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-10"><a href="freeform.html#cb214-10" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(price_n_wage <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Area <span class="sc">%in%</span> zoneselection),</span>
+<span id="cb214-11"><a href="freeform.html#cb214-11" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> wagemultiple, <span class="at">colour =</span> <span class="fu">fct_reorder</span>(Area,<span class="sc">-</span>wagemultiple))) <span class="sc">+</span></span>
+<span id="cb214-12"><a href="freeform.html#cb214-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> medianwage), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb214-13"><a href="freeform.html#cb214-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb214-14"><a href="freeform.html#cb214-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb214-15"><a href="freeform.html#cb214-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;area&#39;</span>)</span>
+<span id="cb214-16"><a href="freeform.html#cb214-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-17"><a href="freeform.html#cb214-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#save the plot</span></span>
+<span id="cb214-18"><a href="freeform.html#cb214-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#text of zones</span></span>
+<span id="cb214-19"><a href="freeform.html#cb214-19" aria-hidden="true" tabindex="-1"></a>  zonetext <span class="ot">&lt;-</span> <span class="fu">paste0</span>(zoneselection[<span class="dv">1</span>],<span class="st">&#39;_to_&#39;</span>,zoneselection[<span class="fu">length</span>(zoneselection)])</span>
+<span id="cb214-20"><a href="freeform.html#cb214-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-21"><a href="freeform.html#cb214-21" aria-hidden="true" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&#39;images/groupsOfLocalAuthorities/group_&#39;</span>,grp,<span class="st">&#39;_&#39;</span>,zonetext,<span class="st">&#39;.png&#39;</span>)</span>
+<span id="cb214-22"><a href="freeform.html#cb214-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb214-23"><a href="freeform.html#cb214-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(filename, output, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">5</span>)</span>
+<span id="cb214-24"><a href="freeform.html#cb214-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-25"><a href="freeform.html#cb214-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<div id="pulling-out-multiple-model-values-and-visualising-them" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> 2. Pulling out multiple model values and visualising them</h3>
+<p>This section is inspired by code from the excellent book <a href="http://r4ds.had.co.nz/">R for Data Science</a> and the section on mapping with the <strong>purrr</strong> library (another one that comes packaged with the <strong>tidyverse library</strong>).</p>
+<p>Academic papers are still full of endless regression tables. They are not very aesthetically pleasing. Another option is to <strong>visualise your model’s findings</strong> in some way.</p>
+<p>This section gives an example - it has little statistical merit but illustrates the basic idea:</p>
+<blockquote>
+<p><strong>If you’re running any kind of model on multiple subsets of data, how can you pull out the results of interest and visualise them? How do you also show error?</strong></p>
+</blockquote>
+<p><strong>ggplot</strong> has a number of geometries specifically for showing ranges - as well as showing error, these can be used for e.g. showing mins and maxes. <strong>You must set the values for these yourself</strong></p>
+<blockquote>
+<p><strong>The basic principle here is simple: pull out all of the results you want into a dataframe, then apply your dplyr and ggplot knowledge to visualise it and create error values</strong></p>
+</blockquote>
+<hr />
+<p><strong>We’d expect employment and house prices to have a positive relationship but what’s the magnitude of the relationship, how much does it vary between places and has it changed over time?</strong></p>
+<p>To look at this, <strong>we’ll combine house price data with employment data</strong> so that we have these in their own columns:</p>
+<ul>
+<li><strong>Average house price per ward for a range of TTWAs, for 2001 and 2011</strong></li>
+<li><strong>Percent of employed people in those wards for 2001 and 2011</strong></li>
+</ul>
+<p>We’ll look at the same house price data, but this version is subsetted to:</p>
+<blockquote>
+<p><strong>2001 and 2011 so we can compare to employment data from the Censuses in those years.</strong>
+<strong>Only TTWAs that have wards with 30 or more sales in each time period.</strong></p>
+</blockquote>
+<hr />
+<p>If you like, <strong>there’s the option of skipping ahead a few steps and just loading the pre-prepared data</strong> for the regressions. Otherwise, <strong>let’s start by loading another subset of the sales data</strong>:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="freeform.html#cb215-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/sales2001and2011wardsWithMoreThan30sales.rds&#39;</span>)</span>
+<span id="cb215-2"><a href="freeform.html#cb215-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-3"><a href="freeform.html#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Note it&#39;s already got year in</span></span>
+<span id="cb215-4"><a href="freeform.html#cb215-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sales)</span></code></pre></div>
+<pre><code>##  [1] &quot;price&quot;              &quot;date&quot;               &quot;postcode&quot;          
+##  [4] &quot;type&quot;               &quot;Eastings&quot;           &quot;Northings&quot;         
+##  [7] &quot;wardcode&quot;           &quot;ttwa&quot;               &quot;ttwa_code&quot;         
+## [10] &quot;localauthority&quot;     &quot;localauthoritycode&quot; &quot;year&quot;</code></pre>
+<p>And this is the employment data: the columns <strong>2001</strong> and <strong>2011</strong> contain the <strong>percent of economically active people in employment</strong> in that ward.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="freeform.html#cb217-1" aria-hidden="true" tabindex="-1"></a>employment <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data/percentEmployedByWard2001n2011.csv&#39;</span>)</span></code></pre></div>
+<p>Now, as before, the job is just to:</p>
+<ul>
+<li><strong>summarise the housing data: average price per ward and per year</strong> - with the added detail that we want to <strong>keep the TTWA name these wards are in.</strong></li>
+<li><strong>Join this summary with the employment data</strong>, linking on <strong>year</strong> and <strong>ward</strong>.</li>
+</ul>
+<p>Notice the trick used in <strong>summarise</strong> here to keep the TTWA name in the summary: <strong>using max(ttwa)</strong>. What does this do? In short: it’s a way of easily grabbing a column we want in our summary, if we know there’s a single value per group. (The <strong>sales</strong> dataframe has already had its wards set to only be in one TTWA.)</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="freeform.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Average price per ward per year</span></span>
+<span id="cb218-2"><a href="freeform.html#cb218-2" aria-hidden="true" tabindex="-1"></a>priceSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb218-3"><a href="freeform.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year,wardcode) <span class="sc">%&gt;%</span> </span>
+<span id="cb218-4"><a href="freeform.html#cb218-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanprice =</span> <span class="fu">mean</span>(price), <span class="at">count =</span><span class="fu">n</span>(), <span class="at">ttwa =</span><span class="fu">max</span>(ttwa))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="freeform.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co">#p.s. if we wanted to find the modal ttwa, we could use this.</span></span>
+<span id="cb220-2"><a href="freeform.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ttwa = names(which.max(table(ttwa))</span></span></code></pre></div>
+<p>As the <strong>employment</strong> data has one column for each year, this has to be <strong>made into long-form.</strong> The two can then be <strong>joined</strong> using inner_join again to keep only wards common to both:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="freeform.html#cb221-1" aria-hidden="true" tabindex="-1"></a>empLong <span class="ot">&lt;-</span> employment <span class="sc">%&gt;%</span> </span>
+<span id="cb221-2"><a href="freeform.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> year, <span class="at">value =</span> percentEmployed, <span class="st">`</span><span class="at">2001</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2011</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb221-3"><a href="freeform.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year))</span>
+<span id="cb221-4"><a href="freeform.html#cb221-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-5"><a href="freeform.html#cb221-5" aria-hidden="true" tabindex="-1"></a>avpriceplusemp <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(priceSummary,empLong,</span>
+<span id="cb221-6"><a href="freeform.html#cb221-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;year&#39;</span>,<span class="st">&#39;wardcode&#39;</span>))</span>
+<span id="cb221-7"><a href="freeform.html#cb221-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-8"><a href="freeform.html#cb221-8" aria-hidden="true" tabindex="-1"></a><span class="co">#count of wards per ttwa / year</span></span>
+<span id="cb221-9"><a href="freeform.html#cb221-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(avpriceplusemp<span class="sc">$</span>ttwa, avpriceplusemp<span class="sc">$</span>year)</span></code></pre></div>
+<pre><code>##                           
+##                            2001 2011
+##   Blackburn                  50   50
+##   Bradford                   32   32
+##   Brighton                   54   54
+##   Cambridge                  67   67
+##   Doncaster                  21   21
+##   Hull                       61   61
+##   London                    926  926
+##   Middlesbrough &amp; Stockton   71   71
+##   Oxford                     66   66
+##   Poole                      24   24</code></pre>
+<p><strong>Here’s the pre-prepared and joined price and employment data, if you skipped the last chunk:</strong></p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="freeform.html#cb223-1" aria-hidden="true" tabindex="-1"></a>avpriceplusemp <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/avpriceplusemp.rds&#39;</span>)</span></code></pre></div>
+<hr />
+<p>So: <strong>the aim is to do a regression of house price on employment for each TTWA, using its wards as data points.</strong> Before attempting multiple regressions, though, let’s <strong>work through a single regression</strong> to see what needs to happen.</p>
+<p>We’ll be using <strong>log of house price</strong> as the dependent variable and using this to tell us about <strong>percentage change</strong>. And we’ll even use <strong>R’s base plotting function to quickly look at it.</strong></p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="freeform.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co">#test a single regression, look at plot.</span></span>
+<span id="cb224-2"><a href="freeform.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Pull out a single year and TTWA</span></span>
+<span id="cb224-3"><a href="freeform.html#cb224-3" aria-hidden="true" tabindex="-1"></a>testinz <span class="ot">&lt;-</span> avpriceplusemp <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2001</span>, ttwa <span class="sc">==</span> <span class="st">&#39;Bradford&#39;</span>)</span>
+<span id="cb224-4"><a href="freeform.html#cb224-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb224-5"><a href="freeform.html#cb224-5" aria-hidden="true" tabindex="-1"></a><span class="co">#run the regression and look at a summary - log of house price as </span></span>
+<span id="cb224-6"><a href="freeform.html#cb224-6" aria-hidden="true" tabindex="-1"></a>rez <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> testinz, <span class="at">formula =</span> <span class="fu">log</span>(meanprice) <span class="sc">~</span> percentEmployed)</span>
+<span id="cb224-7"><a href="freeform.html#cb224-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rez)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = log(meanprice) ~ percentEmployed, data = testinz)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.27890 -0.16621  0.02439  0.13770  0.31521 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     4.804860   0.760030   6.322 5.69e-07 ***
+## percentEmployed 0.066004   0.008179   8.070 5.22e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1921 on 30 degrees of freedom
+## Multiple R-squared:  0.6846, Adjusted R-squared:  0.6741 
+## F-statistic: 65.13 on 1 and 30 DF,  p-value: 5.223e-09</code></pre>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="freeform.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Look at the data and the estimated regression line</span></span>
+<span id="cb226-2"><a href="freeform.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(testinz<span class="sc">$</span>meanprice) <span class="sc">~</span> testinz<span class="sc">$</span>percentEmployed)</span>
+<span id="cb226-3"><a href="freeform.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(rez)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-144-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In Bradford in 2001, an employment increase of 1% was associated with a house price increase of about 6.6%.</p>
+<p>But how to get the coefficients out of the ugly table and into a lovely graph? You’ll have to work this out for whatever model type you use, but for <strong>lm</strong> it looks like this. Read the comments…</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="freeform.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get a model summary object</span></span>
+<span id="cb227-2"><a href="freeform.html#cb227-2" aria-hidden="true" tabindex="-1"></a>rezsummary <span class="ot">&lt;-</span> <span class="fu">summary</span>(rez)</span>
+<span id="cb227-3"><a href="freeform.html#cb227-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-4"><a href="freeform.html#cb227-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Some things like R-squared are easily accessible... </span></span>
+<span id="cb227-5"><a href="freeform.html#cb227-5" aria-hidden="true" tabindex="-1"></a>rezsummary<span class="sc">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.6846464</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="freeform.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co">#But we want the slope coefficient and standard error.</span></span>
+<span id="cb229-2"><a href="freeform.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Coefficients are stored in a matrix...</span></span>
+<span id="cb229-3"><a href="freeform.html#cb229-3" aria-hidden="true" tabindex="-1"></a>rezsummary<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##                   Estimate  Std. Error  t value     Pr(&gt;|t|)
+## (Intercept)     4.80485956 0.760030304 6.321932 5.690004e-07
+## percentEmployed 0.06600402 0.008178535 8.070397 5.223239e-09</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="freeform.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co">#... so we just reference using row and column position to get them:</span></span>
+<span id="cb231-2"><a href="freeform.html#cb231-2" aria-hidden="true" tabindex="-1"></a>rezsummary<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># coefficient for employment </span></span></code></pre></div>
+<pre><code>## [1] 0.06600402</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="freeform.html#cb233-1" aria-hidden="true" tabindex="-1"></a>rezsummary<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">2</span>] <span class="co"># standard error</span></span></code></pre></div>
+<pre><code>## [1] 0.008178535</code></pre>
+<p>Now we know <strong>where to find the coefficients and standard errors</strong> all that needs to happen is: <strong>find a way to repeatedly run the model for each TTWA.</strong></p>
+<p>We’ve already used a <strong>for loop</strong> to iterate over a process. R has a few other methods for iterating over groups of objects - and again the <strong>tidyverse</strong> provides a really neat version: the <strong>map</strong> function from the <strong>purrr</strong> library.</p>
+<p>Since we’ve already used <strong>summarise</strong>, this is a good way to think about how <strong>map</strong> works. The notation is lengthy to explain - check the <strong>R for data science</strong> book if you want to know more. But this allows us to pull out the price means from each TTWA into a variable (of `double’ format, i.e. can have good decimal precision).</p>
+<blockquote>
+<p><strong>Note: split is a base-R function that <em>splits</em> a dataframe into a bunch of dataframes, based on the category passed in. So this is splitting the sales dataframe into smaller ones for each TTWA.</strong></p>
+</blockquote>
+<p><strong>The purrr library should be already loaded as part of the tidyverse library.</strong></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="freeform.html#cb235-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> </span>
+<span id="cb235-2"><a href="freeform.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>ttwa) <span class="sc">%&gt;%</span> </span>
+<span id="cb235-3"><a href="freeform.html#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">mean</span>(.<span class="sc">$</span>price))</span>
+<span id="cb235-4"><a href="freeform.html#cb235-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-5"><a href="freeform.html#cb235-5" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##                Blackburn                 Bradford                 Brighton 
+##                 74787.08                 78759.26                186405.66 
+##                Cambridge                Doncaster                     Hull 
+##                189188.19                 76228.50                 85228.74 
+##                   London Middlesbrough &amp; Stockton                   Oxford 
+##                277824.28                 89690.92                208710.30 
+##                    Poole 
+##                189531.80</code></pre>
+<p>The notation used makes it very easy to create tidy iterations. And here, we can break down the process of running many models and pulling out the numbers of interest <strong>using exactly the same approach we just used to get those means</strong>. First, <strong>running a linear model on each TTWA for 2001</strong>. Note we combine map with the <strong>dplyr filter</strong> verb.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="freeform.html#cb237-1" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> avpriceplusemp <span class="sc">%&gt;%</span> </span>
+<span id="cb237-2"><a href="freeform.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2001</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb237-3"><a href="freeform.html#cb237-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>ttwa) <span class="sc">%&gt;%</span> </span>
+<span id="cb237-4"><a href="freeform.html#cb237-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">lm</span>(<span class="fu">log</span>(meanprice) <span class="sc">~</span> percentEmployed, <span class="at">data =</span> .))</span></code></pre></div>
+<p>And to check we can now use those models to access the coefficients in the way we previously worked out:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="freeform.html#cb238-1" aria-hidden="true" tabindex="-1"></a>models <span class="sc">%&gt;%</span> </span>
+<span id="cb238-2"><a href="freeform.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb238-3"><a href="freeform.html#cb238-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span>.<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>##                Blackburn                 Bradford                 Brighton 
+##               0.11050658               0.06600402               0.02570804 
+##                Cambridge                Doncaster                     Hull 
+##               0.09532273               0.12828774               0.08965422 
+##                   London Middlesbrough &amp; Stockton                   Oxford 
+##               0.03491091               0.07675510               0.06060024 
+##                    Poole 
+##               0.10562224</code></pre>
+<p><strong>Tick!</strong> Great. Now what? Well, <strong>we can use this repeatedly to directly create a dataframe.</strong> So using the check code we just tested and two others, the following code does this:</p>
+<ul>
+<li><strong>Creates a dataframe of coefficients and standard errors (and pulls out the TTWA names in the process)</strong></li>
+<li><strong>Uses mutate to multiply the coefficients by 100 to give percentages</strong></li>
+<li><strong>Then uses mutate again to create a 95% confidence interval using the standard error</strong></li>
+</ul>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="freeform.html#cb240-1" aria-hidden="true" tabindex="-1"></a>alloutput <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb240-2"><a href="freeform.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb240-3"><a href="freeform.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">names =</span> models <span class="sc">%&gt;%</span> </span>
+<span id="cb240-4"><a href="freeform.html#cb240-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-5"><a href="freeform.html#cb240-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map_dbl</span>(<span class="sc">~</span>.<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]) <span class="sc">%&gt;%</span> names,</span>
+<span id="cb240-6"><a href="freeform.html#cb240-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb240-7"><a href="freeform.html#cb240-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">coeffs =</span> models <span class="sc">%&gt;%</span> </span>
+<span id="cb240-8"><a href="freeform.html#cb240-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-9"><a href="freeform.html#cb240-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span>.<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">1</span>]),</span>
+<span id="cb240-10"><a href="freeform.html#cb240-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb240-11"><a href="freeform.html#cb240-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">se =</span> models <span class="sc">%&gt;%</span> </span>
+<span id="cb240-12"><a href="freeform.html#cb240-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-13"><a href="freeform.html#cb240-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span>.<span class="sc">$</span>coefficients[<span class="dv">2</span>,<span class="dv">2</span>])</span>
+<span id="cb240-14"><a href="freeform.html#cb240-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb240-15"><a href="freeform.html#cb240-15" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb240-16"><a href="freeform.html#cb240-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-17"><a href="freeform.html#cb240-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Multiply by 100</span></span>
+<span id="cb240-18"><a href="freeform.html#cb240-18" aria-hidden="true" tabindex="-1"></a>alloutput <span class="ot">&lt;-</span> alloutput <span class="sc">%&gt;%</span> </span>
+<span id="cb240-19"><a href="freeform.html#cb240-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb240-20"><a href="freeform.html#cb240-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">coeffs =</span> coeffs <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb240-21"><a href="freeform.html#cb240-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> se <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb240-22"><a href="freeform.html#cb240-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb240-23"><a href="freeform.html#cb240-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-24"><a href="freeform.html#cb240-24" aria-hidden="true" tabindex="-1"></a><span class="co">#add in some min/max confidence intervals from standard error</span></span>
+<span id="cb240-25"><a href="freeform.html#cb240-25" aria-hidden="true" tabindex="-1"></a>alloutput <span class="ot">&lt;-</span> alloutput <span class="sc">%&gt;%</span> </span>
+<span id="cb240-26"><a href="freeform.html#cb240-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb240-27"><a href="freeform.html#cb240-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">minn =</span> coeffs <span class="sc">-</span> (se <span class="sc">*</span> <span class="fl">1.96</span>),</span>
+<span id="cb240-28"><a href="freeform.html#cb240-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">maxx =</span> coeffs <span class="sc">+</span> (se <span class="sc">*</span> <span class="fl">1.96</span>)</span>
+<span id="cb240-29"><a href="freeform.html#cb240-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>As always, <strong>take a look at the resulting dataframe.</strong> We’ve got everything we need to plot. But notice the new thing here:</p>
+<blockquote>
+<p><strong>geom_errorbar takes in values for ymin and ymax from the data</strong>: these geoms in ggplot are <strong>not</strong> doing any of their own stats - you need to supply the mins and maxes directly, which is why we calculated them. (This gives us a lot more flexibility about what we want to show.)</p>
+</blockquote>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="freeform.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(alloutput, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(names,<span class="sc">-</span>coeffs), <span class="at">y =</span> coeffs)) <span class="sc">+</span></span>
+<span id="cb241-2"><a href="freeform.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb241-3"><a href="freeform.html#cb241-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> minn, <span class="at">ymax =</span> maxx), <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb241-4"><a href="freeform.html#cb241-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-151-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As a last exercise: <strong>how would you go about running the models for both decades and then comparing?</strong> The aim, as with all <strong>ggplots</strong>, would be to have <strong>year in its own column</strong> so it can be mapped to an aesthetic. You could also use <strong>dodge</strong>.</p>
+<p>You could just re-run the code above, changing the year in <strong>filter</strong> to 2011. But another option is to <strong>turn the above code into a function</strong>. Doing this provides another way of iterating your code. Some points on functions:</p>
+<ul>
+<li><strong>As we’ve already said, R is a functional language: everything is a function, and they can all be composed together in whatever way produces valid output.</strong></li>
+<li>Functions are just <strong>input/output machines</strong>: you just need to tell it what goes in and what you want out.</li>
+</ul>
+<p>A basic function might look like this. This is obviously a trivial example but the idea applies to anything more complex - the structure of writing one is exactly the same. Say we want to know: is a number divisible by two? (As if this isn’t obvious, but this illustrates the principle!)</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="freeform.html#cb242-1" aria-hidden="true" tabindex="-1"></a>isDivisibleByTwo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb242-2"><a href="freeform.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb242-3"><a href="freeform.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Use R&#39;s modulus operator %% - gives the remainder from dividing by a number</span></span>
+<span id="cb242-4"><a href="freeform.html#cb242-4" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">%%</span> <span class="dv">2</span></span>
+<span id="cb242-5"><a href="freeform.html#cb242-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb242-6"><a href="freeform.html#cb242-6" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(result <span class="sc">==</span> <span class="dv">0</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb242-7"><a href="freeform.html#cb242-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb242-8"><a href="freeform.html#cb242-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#We could also do this as the remainder from 2 is only 1 or 0</span></span>
+<span id="cb242-9"><a href="freeform.html#cb242-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#and R interprets 1 and 0 as TRUE and FALSE</span></span>
+<span id="cb242-10"><a href="freeform.html#cb242-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#return(!as.logical(x))</span></span>
+<span id="cb242-11"><a href="freeform.html#cb242-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb242-12"><a href="freeform.html#cb242-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#By default, an R function will return the last created variable. </span></span>
+<span id="cb242-13"><a href="freeform.html#cb242-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Or you can tell it explicitly what to return like this.</span></span>
+<span id="cb242-14"><a href="freeform.html#cb242-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb242-15"><a href="freeform.html#cb242-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb242-16"><a href="freeform.html#cb242-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>You then need to highlight the whole code block and run it, as usual. Nothing will happen - except <strong>you’ll now see the function name in the environment panel.</strong></p>
+<p>Once that’s done, your new in-out machine should work:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="freeform.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isDivisibleByTwo</span>(<span class="dv">46</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="freeform.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isDivisibleByTwo</span>(<span class="dv">127</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>The principle of building functions is simple: <strong>where possible, put what doesn’t change into a function, pass what <em>does</em> change as <em>arguments</em> to the function.</strong> In this simple case, it’s our number we want dividing by two that changes. (Note: the name of the variable is arbitrary: whatever you pass in will be assigned to it.)</p>
+<blockquote>
+<p><strong>So: how would you apply this to the model-running code? Here are some ideas.</strong></p>
+</blockquote>
+<ul>
+<li>The only thing that changes is the year: it’s either 2001 or 2011. Everything else can be the same as the code used above.</li>
+<li>All of this code could go inside the function:
+<ul>
+<li>The first <strong>models &lt;- avpriceplusemp</strong> code, where currently year is set to either 2001 or 2011. It’s here we’d use the value passed into the function.</li>
+<li>Then the code creating the <strong>alloutput</strong> dataframe. This is the thing we want the function to return.</li>
+</ul></li>
+</ul>
+<p>There would also be nothing wrong with adding the extra year column in the function itself - but you would need that for creating <strong>a single year column</strong> that ggplot can use to map to an aesthetic.</p>
+<blockquote>
+<p><strong>Note: you can view a working version of this function in the file containing all the code, in the project folder, if you want to see how it’s put together to help write your own / cheat!</strong></p>
+</blockquote>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="freeform.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pass a year into the function, then add a column to mark the year.</span></span>
+<span id="cb247-2"><a href="freeform.html#cb247-2" aria-hidden="true" tabindex="-1"></a>model01 <span class="ot">&lt;-</span> <span class="fu">modelz</span>(<span class="dv">2001</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2001</span>)</span>
+<span id="cb247-3"><a href="freeform.html#cb247-3" aria-hidden="true" tabindex="-1"></a>model11 <span class="ot">&lt;-</span> <span class="fu">modelz</span>(<span class="dv">2011</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2011</span>)</span>
+<span id="cb247-4"><a href="freeform.html#cb247-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb247-5"><a href="freeform.html#cb247-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Both will be the same structure - combine the rows from both</span></span>
+<span id="cb247-6"><a href="freeform.html#cb247-6" aria-hidden="true" tabindex="-1"></a>bothmodels <span class="ot">&lt;-</span> <span class="fu">rbind</span>(model01,model11)</span></code></pre></div>
+<p>And with the addition of <strong>position = ‘dodge’</strong> in <strong>geom_errorbar</strong>, this could be used to create the following. Note here we’re setting <strong>dodge spacing</strong> directly so we can control the point <strong>and</strong> error bar position to both match each other:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-155-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Again, the <strong>R for Data Science</strong> book has a lot more on functional programming - hopefully this gives a hint of its power.</p>
+<hr />
+</div>
+</div>
+<div id="a-little-bit-of-mapping" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> A little bit of mapping</h2>
+<p>In this section, we’ll take a quick look at three different ways to make maps from the housing data:</p>
+<ul>
+<li>The first two use ggplot again, to show two very simple ways it can be used to view geographical data. ggplot can do a lot more, but this is a start.</li>
+<li>Then we’ll introduce a couple of new libraries: <strong>the simple features (sf) library</strong> and <strong>tmap</strong> for making maps.</li>
+</ul>
+<p>The <strong>sf library</strong> is relatively new: it’s particularly great because it works excellently with all the *<strong>dplyr</strong> data wrangling skills you’ve already learned. We’ll run through an example of doing that.</p>
+<div id="one-simple-way-to-use-ggplot-for-mapping-the-2d-geoms" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> One simple way to use ggplot for mapping: the 2D geoms</h3>
+<p>A really simple way to make quick maps is to use ggplot’s <strong>2D geoms</strong>. One of these included on the ggplot cheatsheet - <strong>geom_bin2d</strong> - does a single job: as the help says, if you have two dimensions of continuous data, it:</p>
+<blockquote>
+<p>divides the plane into rectangles, counts the number of cases in each rectangle, and then (by default) maps the number of cases to the rectangle’s fill.</p>
+</blockquote>
+<p>We have exact postcode locations for each sale: these can be our two dimensions. So in practice that means we can easily make a map using this geom that <strong>counts how many sales there are in each rectangle</strong>. First, let’s re-load the sales data (adding the year column back in) and subset to London:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="freeform.html#cb248-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaidTopTTWAs.rds&#39;</span>)</span>
+<span id="cb248-2"><a href="freeform.html#cb248-2" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sales<span class="sc">$</span>date)</span>
+<span id="cb248-3"><a href="freeform.html#cb248-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-4"><a href="freeform.html#cb248-4" aria-hidden="true" tabindex="-1"></a>london <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa<span class="sc">==</span><span class="st">&#39;London&#39;</span>)</span></code></pre></div>
+<p>Then try the new geom, subsetting to a single year:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="freeform.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb249-2"><a href="freeform.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>()</span></code></pre></div>
+<p>A map! It could with a few little extras. The next version shows that you can:</p>
+<ul>
+<li>Control the number of bins by defining their dimensions. This geographical data is in British National Grid projection: <strong>Easting and Northing units are in metres.</strong> So we can make a map with 1km square grid by <strong>setting bin width to 1000.</strong> As with geom_bar and other bin stats, this is set in the geom itself.</li>
+<li>Pick a colour scale, as we’ve done before - but with one difference: use <strong>distiller</strong>. This is for continuous variables: it distills continuous values from color brewer’s discrete scales. (You can also add <strong>trans = ‘log’</strong> into this function if you want a log fill scale showing the correct values.)</li>
+<li><strong>coord_fixed</strong> does what the name suggests: the x and y axis are fixed relative to each other. It’s also possible to set a ratio for the two of them - check the help file.</li>
+<li><strong>theme_void()</strong> drops almost all extras from the graph, just leaving the data itself and the guide/legend.</li>
+</ul>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="freeform.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb250-2"><a href="freeform.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb250-3"><a href="freeform.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb250-4"><a href="freeform.html#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb250-5"><a href="freeform.html#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-158-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>But what about things other than count?</strong></p>
+<p>What if we want to, say, <strong>find the median sale value per square?</strong> ggplot has a <strong>stat</strong> for that - though it’s not listed on the cheatsheet: <strong>stat_summary_2d</strong>. This gives us total control over what goes into each square. The only extra thing we need to do here:</p>
+<blockquote>
+<p><strong>Provide a z value</strong>: this will be the column used in the grid square statistic. So we’ll use price.</p>
+</blockquote>
+<p>stat_summary_2d’s default is to give you the mean, but we can provide any function we like. So here’s the median (and we’re including all the other extras we added to the last one). Note, we’ve only changed three things: the geom used, and adding ‘z = price’ into the aesthetic. We’ve also done as mentioned above: told the fill scale <strong>we want a log transformation:</strong></p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="freeform.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings, <span class="at">z =</span> price)) <span class="sc">+</span></span>
+<span id="cb251-2"><a href="freeform.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary_2d</span>(<span class="at">fun =</span> median, <span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb251-3"><a href="freeform.html#cb251-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>, <span class="at">trans =</span> <span class="st">&#39;log&#39;</span>) <span class="sc">+</span></span>
+<span id="cb251-4"><a href="freeform.html#cb251-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb251-5"><a href="freeform.html#cb251-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-159-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Try finding the <strong>minimum</strong> and <strong>maximum</strong> property value per square (using the min and max functions). This reveals something interesting about the difference in property types in the centre versus the outskirts.</p>
+<blockquote>
+<p><strong>You have a couple of options now:</strong> you can skip ahead to the next section if you want to do some proper mapping with actual map data, get to use the simple features package and learn how to wrangle spatial data.</p>
+</blockquote>
+<blockquote>
+<p>Or the last part of this section just shows quickly how to use the <strong>map</strong> function from the <strong>purrr</strong> library (also used in the ‘pulling out multiple values’ section) to get around a problem with using facet (see the facet section).</p>
+</blockquote>
+</div>
+<div id="using-cowplot-to-get-around-the-facetting-problem" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Using cowplot to get around the facetting problem</h3>
+<p>As the section above on facetting shows, <strong>ggplot</strong> can be used to ‘facet’ produce many sub-plots based on a factor, like property type. However, facets all <strong>keep the same colour scale</strong>. This can be a problem if e.g. the count of flats and detached houses is very different: each individual map will have its scale compressed and look flat and boring.</p>
+<p>One workaround: <strong>create a number of individual plots and then combine them.</strong> We can do this with the <strong>cowplot</strong> library. As always, use <strong>install.packages</strong> if this isn’t already installed.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="freeform.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code></pre></div>
+<p>This library can be used to <strong>very neatly arrange multiple ggplots.</strong></p>
+<p>So let’s aim to make a single plot showing the <strong>count of each different property type</strong>. We can start with the same code we just wrote for getting a count of properties per grid square, except subset to single property types:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="freeform.html#cb253-1" aria-hidden="true" tabindex="-1"></a>flats <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&#39;F&#39;</span>)</span>
+<span id="cb253-2"><a href="freeform.html#cb253-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-3"><a href="freeform.html#cb253-3" aria-hidden="true" tabindex="-1"></a>flatplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(flats <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb253-4"><a href="freeform.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb253-5"><a href="freeform.html#cb253-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb253-6"><a href="freeform.html#cb253-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb253-7"><a href="freeform.html#cb253-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb253-8"><a href="freeform.html#cb253-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-9"><a href="freeform.html#cb253-9" aria-hidden="true" tabindex="-1"></a>flatplot</span>
+<span id="cb253-10"><a href="freeform.html#cb253-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-11"><a href="freeform.html#cb253-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-12"><a href="freeform.html#cb253-12" aria-hidden="true" tabindex="-1"></a>terraces <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span> <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">&#39;T&#39;</span>)</span>
+<span id="cb253-13"><a href="freeform.html#cb253-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-14"><a href="freeform.html#cb253-14" aria-hidden="true" tabindex="-1"></a>terraceplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(terraces <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>), <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb253-15"><a href="freeform.html#cb253-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb253-16"><a href="freeform.html#cb253-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb253-17"><a href="freeform.html#cb253-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb253-18"><a href="freeform.html#cb253-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb253-19"><a href="freeform.html#cb253-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-20"><a href="freeform.html#cb253-20" aria-hidden="true" tabindex="-1"></a>terraceplot</span></code></pre></div>
+<p>We can see how <strong>cowplot</strong> works now just with these two. We can combine multiple plots just by supplying them to <strong>plot_grid</strong>:</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="freeform.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(flatplot,terraceplot)</span></code></pre></div>
+<p>But how to avoid having to manually create each plot? There are several options, but here’s a neat one using <strong>purrr</strong>. All this does:</p>
+<blockquote>
+<p>Uses base R’s <strong>split</strong> function to split the dataframe into each house type
+Passes each subgroup to the map function.
+Note, this is <strong>exactly the same ggplot code we just used</strong> (except we’re filtering to 2018 in the first line). The <em>only</em> other difference: we’ve <strong>replaced the dataframe name with the dot operator</strong>. The dot stands in for each of the smaller dataframes that <strong>map</strong> passes in.
+Note also the tilde (~): that’s just shorthand for passing into a function.</p>
+</blockquote>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="freeform.html#cb255-1" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span></span>
+<span id="cb255-2"><a href="freeform.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb255-3"><a href="freeform.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>type) <span class="sc">%&gt;%</span> </span>
+<span id="cb255-4"><a href="freeform.html#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(</span>
+<span id="cb255-5"><a href="freeform.html#cb255-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span><span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> Eastings, <span class="at">y =</span> Northings)) <span class="sc">+</span></span>
+<span id="cb255-6"><a href="freeform.html#cb255-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bin2d</span>(<span class="at">binwidth =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb255-7"><a href="freeform.html#cb255-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&#39;Spectral&#39;</span>) <span class="sc">+</span></span>
+<span id="cb255-8"><a href="freeform.html#cb255-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb255-9"><a href="freeform.html#cb255-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_void</span>()</span>
+<span id="cb255-10"><a href="freeform.html#cb255-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>All that’s done is map each of the plots we were previously doing manually to a list. We could view any of them by looking at the list directly. For example, here’s the first:</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="freeform.html#cb256-1" aria-hidden="true" tabindex="-1"></a>plots[[<span class="dv">1</span>]]</span></code></pre></div>
+<p>Now that whole list can just be passed directly into cowplot’s plot_grid. (We’re also now telling cowplot the number of rows and columns we want):</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="freeform.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(<span class="at">plotlist =</span> plots, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>OK, looking good. There are a couple of things it would be nice to do now. See if you can work out how. Some hints:</p>
+<ul>
+<li>We need to label each house type. Using info from the ‘prettifying’ section, can you use <strong>ggtitle</strong> to add that in? Hint: use the ‘max’ trick, also used in the ‘pulling out multiple model values’ section to get a single value from the type column. There will only be e.g. a single ‘F’ repeated in the flats sub-dataframe, so you can pull that out be e.g. doing this. You just need to use the dot operator instead.</li>
+</ul>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="freeform.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(flats<span class="sc">$</span>type)</span></code></pre></div>
+<ul>
+<li>Coordinates for each plot are currently different, because ggplot adjusts each to its min and max range. We could do with <strong>setting them to be the same</strong>. Hint: in the prettifying section, we used coord_cartesian and set the plots <strong>xlim</strong> values. We can set them here directly in coord_fixed. The limits we’re after are just the minimum and maximum for both eastings and northings. These could be dropped directly into the right place in coord_fixed…</li>
+</ul>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="freeform.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(london<span class="sc">$</span>Eastings)</span>
+<span id="cb259-2"><a href="freeform.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(london<span class="sc">$</span>Northings)</span></code></pre></div>
+<p>The result should look something like this:</p>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-168-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="making-a-map-using-the-simple-features-library-tmap-and-a-bit-of-wrangling" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Making a map using the simple features library, tmap and a bit of wrangling</h2>
+<p>Another way to map data is the <strong>simple features library</strong>. As always, if it’s not installed, do so with:</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="freeform.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;sf&#39;</span>)</span></code></pre></div>
+<p>And then load it:</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="freeform.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<p>The <strong>sf</strong> library has been designed from the ground up to work with the <strong>tidyverse</strong> - so any kind of wrangling you’ve already learned can be used here too.</p>
+<p>If you want to learn more, take a look at the excellent free online book <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> by Robin Lovelace, Jakub Nowosad and Jannes Muenchow. We’ll just be making a map here, but <strong>sf</strong>, combined with the <strong>tidyverse</strong>, is a powerful spatial analysis and manipulation tool.</p>
+<p><strong>We’ll start by loading some map data - London wards.</strong> All we’ll then do is make a map of the average house price per ward.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="freeform.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note it appears as a standard dataframe. But look, geometries!</span></span>
+<span id="cb262-2"><a href="freeform.html#cb262-2" aria-hidden="true" tabindex="-1"></a>londonwards <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&#39;data/mapdata/londonwards.shp&#39;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `londonwards&#39; from data source `C:\Users\admin\Dropbox\Training\R_PrinciplesOfViz_and_Datawrangling_2021\data\mapdata\londonwards.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 962 features and 1 field
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 501183 ymin: 149641 xmax: 576444 ymax: 208030
+## Projected CRS: Transverse_Mercator</code></pre>
+<p>Take a quick look at the loaded spatial data. You can just use <strong>plot(londonwards)</strong> but that gives one map per column by default. To just check it’s looking correct, you can use:</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="freeform.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(londonwards))</span></code></pre></div>
+<p>Let’s also reload the house sales data just for those London wards:</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="freeform.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use London-only ward subset:</span></span>
+<span id="cb265-2"><a href="freeform.html#cb265-2" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaid_LondonWards.rds&#39;</span>)</span>
+<span id="cb265-3"><a href="freeform.html#cb265-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-4"><a href="freeform.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Add year column back in</span></span>
+<span id="cb265-5"><a href="freeform.html#cb265-5" aria-hidden="true" tabindex="-1"></a>sales<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sales<span class="sc">$</span>date)</span></code></pre></div>
+<p>The plan is to link these two - it’s always a good idea to make sure the link columns are behaving and there are no bad links. A good way to do this is just to <strong>table up a question: are the london wardcodes present in the sales wardcodes?</strong></p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="freeform.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check there&#39;s a good link between the mapping and housing data. Tick.</span></span>
+<span id="cb266-2"><a href="freeform.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(londonwards<span class="sc">$</span>wardcode <span class="sc">%in%</span> sales<span class="sc">$</span>wardcode)</span></code></pre></div>
+<pre><code>## 
+## TRUE 
+##  962</code></pre>
+<p>All true - so yes, it’s fine, we’ll be able to successfully link the mapping and housing data on that column.</p>
+<p>Now, we’ll just do as we’ve previously done: find a <strong>summary of the housing data per geographical zone</strong>, ward in this case. And filter down to a single year:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="freeform.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summarise</span></span>
+<span id="cb268-2"><a href="freeform.html#cb268-2" aria-hidden="true" tabindex="-1"></a>salesSummary <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span></span>
+<span id="cb268-3"><a href="freeform.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2018</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-4"><a href="freeform.html#cb268-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(wardcode) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-5"><a href="freeform.html#cb268-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanprice =</span> (<span class="fu">mean</span>(price)<span class="sc">/</span><span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="fu">as.integer</span>(), <span class="at">count =</span> <span class="fu">n</span>())</span></code></pre></div>
+<p>So now that gives us <strong>single wards in each row</strong> (check by looking via the environment panel), each one summarised with a mean and count of sale number.</p>
+<p>We can now <strong>link this summary to our mapping data</strong> using the same <strong>dplyr</strong> join functions we’ve already used. But note, there’s little wrinkle here. Let’s run this twice, but with the dataframes in a different order:</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="freeform.html#cb269-1" aria-hidden="true" tabindex="-1"></a>london1 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(salesSummary, londonwards, <span class="at">by =</span> <span class="st">&#39;wardcode&#39;</span>)</span>
+<span id="cb269-2"><a href="freeform.html#cb269-2" aria-hidden="true" tabindex="-1"></a>london2 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(londonwards, salesSummary, <span class="at">by =</span> <span class="st">&#39;wardcode&#39;</span>)</span>
+<span id="cb269-3"><a href="freeform.html#cb269-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-4"><a href="freeform.html#cb269-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(london1)</span></code></pre></div>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="freeform.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(london2)<span class="co">#Only this one is spatial</span></span></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<p>Both dataframes look the same if viewed but, if we check the class, only the second has “sf” as its first class. The lesson: <strong>if you’re joining spatial sf data and want to keep the spatial part, put it first in a join.</strong> There are ways around that but this is the easiest way.</p>
+<p><strong>We’re now ready to make a map.</strong> This will require a new library: <strong>tmap</strong>. As always, install first if it’s not already installed, and then load:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="freeform.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code></pre></div>
+<p>And then we can jump straight into making a map. All we do is <strong>supply the column value we want to plot in tm_polygons:</strong></p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="freeform.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(london2) <span class="sc">+</span></span>
+<span id="cb274-2"><a href="freeform.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;meanprice&quot;</span>)</span></code></pre></div>
+<p>A map! But it needs a few extras. First-up, you may want to pick a better colour scheme. As with color brewer, there’s a function for looking at all the options:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="freeform.html#cb275-1" aria-hidden="true" tabindex="-1"></a>tmaptools<span class="sc">::</span><span class="fu">palette_explorer</span>()</span></code></pre></div>
+<p>There are a few other tweaks added here as well - the <a href="https://cran.r-project.org/web/packages/tmap/index.html">tmap help files</a> explain the vast number of others available to you. That includes a great <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html">getting started</a> page.</p>
+<p>Here, we make these additions:</p>
+<ul>
+<li>Set the style to ‘jenks’: this makes for a better visual spread of values.</li>
+<li>Set the number of legend categories with n to get a nicer spread.</li>
+<li>Set the palette, having picked one from the palette explorer. (Just put a minus before the palette name to reverse its order.)</li>
+<li>Reduce the border alpha so it doesn’t block the polygons as much. (See the ‘prettifying’ section for more on alpha values: 0 is totally transparent; 1 is opaque.)</li>
+<li>Move the legend outside of the main map box. This is a quick way to make sure legends don’t clash with the map. See the <strong>?tm_layout</strong> help for a load more legend positioning options.</li>
+</ul>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="freeform.html#cb276-1" aria-hidden="true" tabindex="-1"></a>tm <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(london2) <span class="sc">+</span></span>
+<span id="cb276-2"><a href="freeform.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;meanprice&quot;</span>, <span class="at">style =</span> <span class="st">&#39;jenks&#39;</span>, <span class="at">n =</span> <span class="dv">10</span>, <span class="at">palette =</span> <span class="st">&#39;viridis&#39;</span>, <span class="at">border.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb276-3"><a href="freeform.html#cb276-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(</span>
+<span id="cb276-4"><a href="freeform.html#cb276-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.outside =</span> T,</span>
+<span id="cb276-5"><a href="freeform.html#cb276-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.05</span>,<span class="st">&#39;center&#39;</span>)</span>
+<span id="cb276-6"><a href="freeform.html#cb276-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb276-7"><a href="freeform.html#cb276-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb276-8"><a href="freeform.html#cb276-8" aria-hidden="true" tabindex="-1"></a>tm</span></code></pre></div>
+<p>And because we’ve assigned the map to a variable, we can also save it:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="freeform.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_save</span>(tm, <span class="at">filename =</span> <span class="st">&quot;images/londonhouseprices_ward2018.png&quot;</span>)</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-180-1.png" width="576" style="display: block; margin: auto;" /></p>
+<hr />
+<div id="a-last-little-ggplot-mapping-example" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> A last little ggplot mapping example</h3>
+<p>We’ve already seen at the start, if you have point coordinates you can map these to the x and y axes to get an idea of the geography of your data.</p>
+<p>Here, we just combine this idea with <strong>dplyr’s summary ability</strong> to ask:</p>
+<blockquote>
+<p><strong>What’s the most common type of house in each postcode in London?</strong></p>
+</blockquote>
+<p>To do this, we’ll apply a simple function that finds the modal property type. The general principle here is: <strong>you can use any function in summarise</strong>.</p>
+<p>So it’s the same sales data, containing the London TTWA. And we reduce it to London:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="freeform.html#cb278-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/landRegistryPricePaidTopTTWAs.rds&#39;</span>)</span>
+<span id="cb278-2"><a href="freeform.html#cb278-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb278-3"><a href="freeform.html#cb278-3" aria-hidden="true" tabindex="-1"></a>london <span class="ot">&lt;-</span> sales <span class="sc">%&gt;%</span> <span class="fu">filter</span>(ttwa <span class="sc">==</span> <span class="st">&#39;London&#39;</span>)</span></code></pre></div>
+<p>Then it’s good old <strong>dplyr</strong> again for finding the mode. Note we can use <strong>max</strong> here as the data has been <strong>grouped by postcode</strong> - we only have one location value per postcode, so the max is correct.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="freeform.html#cb279-1" aria-hidden="true" tabindex="-1"></a>cityModalTypes <span class="ot">&lt;-</span> london <span class="sc">%&gt;%</span> </span>
+<span id="cb279-2"><a href="freeform.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(postcode) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-3"><a href="freeform.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mode =</span> <span class="fu">names</span>(<span class="fu">which.max</span>(<span class="fu">table</span>(type))),</span>
+<span id="cb279-4"><a href="freeform.html#cb279-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">Eastings =</span> <span class="fu">max</span>(Eastings),</span>
+<span id="cb279-5"><a href="freeform.html#cb279-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">Northings =</span> <span class="fu">max</span>(Northings)) </span></code></pre></div>
+<p>To see how the mode is found, take some time to break down the full list of functions and check the help files too:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="freeform.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(city<span class="sc">$</span>type)</span>
+<span id="cb280-2"><a href="freeform.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">table</span>(city<span class="sc">$</span>type))</span>
+<span id="cb280-3"><a href="freeform.html#cb280-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">which.max</span>(<span class="fu">table</span>(city<span class="sc">$</span>type)))</span></code></pre></div>
+<p>As in the facetting section, we can also recode the property type to something more sensible:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="freeform.html#cb281-1" aria-hidden="true" tabindex="-1"></a>cityModalTypes <span class="ot">&lt;-</span> cityModalTypes <span class="sc">%&gt;%</span> </span>
+<span id="cb281-2"><a href="freeform.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mode2 =</span> <span class="fu">fct_recode</span>(mode,</span>
+<span id="cb281-3"><a href="freeform.html#cb281-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;flat&#39;</span> <span class="ot">=</span> <span class="st">&#39;F&#39;</span>,</span>
+<span id="cb281-4"><a href="freeform.html#cb281-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;terrace&#39;</span> <span class="ot">=</span> <span class="st">&#39;T&#39;</span>,</span>
+<span id="cb281-5"><a href="freeform.html#cb281-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;semi&#39;</span> <span class="ot">=</span> <span class="st">&#39;S&#39;</span>,</span>
+<span id="cb281-6"><a href="freeform.html#cb281-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;detached&#39;</span> <span class="ot">=</span> <span class="st">&#39;D&#39;</span></span>
+<span id="cb281-7"><a href="freeform.html#cb281-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb281-8"><a href="freeform.html#cb281-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mode2 =</span> <span class="fu">fct_relevel</span>(mode2,</span>
+<span id="cb281-9"><a href="freeform.html#cb281-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;flat&#39;</span>,</span>
+<span id="cb281-10"><a href="freeform.html#cb281-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;terrace&#39;</span>,</span>
+<span id="cb281-11"><a href="freeform.html#cb281-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;semi&#39;</span>,</span>
+<span id="cb281-12"><a href="freeform.html#cb281-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;detached&#39;</span></span>
+<span id="cb281-13"><a href="freeform.html#cb281-13" aria-hidden="true" tabindex="-1"></a>  )) </span></code></pre></div>
+<p>And then plot! A couple of extras here to notice:</p>
+<ul>
+<li>We set the shape by number: the <strong>ggplot</strong> cheatsheet has a little guide to the available shape codes.</li>
+<li>the <strong>guides</strong> function is used to make the categories more clear - otherwise it defaults to the displayed size which, in this case, would be tiny.</li>
+<li><strong>labs</strong> is used to remove the legend title - it’s clear enough from the labels what it refers to.</li>
+</ul>
+<p>Now it just needs some less hideous colours…</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="freeform.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cityModalTypes,<span class="fu">aes</span>(<span class="at">x =</span> Eastings,<span class="at">y =</span> Northings, <span class="at">colour =</span> mode2)) <span class="sc">+</span></span>
+<span id="cb282-2"><a href="freeform.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">15</span>, <span class="at">size =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb282-3"><a href="freeform.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&#39;Set1&#39;</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb282-4"><a href="freeform.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#https://stackoverflow.com/questions/20415963/how-to-increase-the-size-of-points-in-legend-of-ggplot2</span></span>
+<span id="cb282-5"><a href="freeform.html#cb282-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size=</span><span class="dv">10</span>))) <span class="sc">+</span></span>
+<span id="cb282-6"><a href="freeform.html#cb282-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb282-7"><a href="freeform.html#cb282-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
+<span id="cb282-8"><a href="freeform.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="02_viz_n_wrangling_files/figure-html/unnamed-chunk-185-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-wrangling-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-sources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

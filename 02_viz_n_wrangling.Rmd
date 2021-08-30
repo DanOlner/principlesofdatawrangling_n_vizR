@@ -1,5 +1,5 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+# knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 #Fig align not supported for word output. We can look at PDF output...?
 #knitr::opts_chunk$set(echo = TRUE)
 #opts_chunk$set(fig.align='center') 
@@ -20,42 +20,42 @@ library(RColorBrewer)
 library(scales)
 ```
 
+# DATA WRANGLING & VISUALISATION
 
+## The first principle of data visualisation...
 
-# Introduction
-
-the principles of shaping data in preparation for visualising in **ggplot**. The first principle is: **shaping the data is an essential part of building visualisations**. It's not just an annoyance: your visualisation goals will dictate the kind of shape the data needs to be made into.
+The first principle of data visualisation is: **shaping the data is an essential part of building visualisations**. It's not just an annoyance: your visualisation goals will dictate the kind of shape the data needs to be made into.
 
 We'll use libraries from the **tidyverse** to do this. As [Hadley Wickham says](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html), 'by constraining your options, it simplifies how you can think about common data manipulation tasks'.
 
 We'll be looking at **two cheatsheets** as guides to the two main libraries we will use: **ggplot** and **dplyr**. These two are the [yin and yang](https://en.wikipedia.org/wiki/Yin_and_yang) of data visualisation in R. With **dplyr**, we'll shape and squeeze our data into the right form to visualise what we want in **ggplot**.
 
-We're obviously not going to try and look at everything on these sheets. We'll pick out a small number of examples to illustrate the underlying principles, with the hope that **by the end of the day, you should have enough of an understanding of them to carry on your learning from them.**
+We're obviously not going to try and look at everything on these sheets. We'll pick out a small number of examples to illustrate the underlying principles, with the hope that **by the end of the course, you should have enough of an understanding of them to carry on your learning from them.**
 
 You've got copies of each of the cheat sheets. If you need them in future, they're both available via **RStudio's help menu** (or search for them online).
 
 
 *****
 
-The day is split roughly into two:
+This part of the course is split roughly into two:
 
 1. **We'll learn some of the essential concepts of data wrangling in preparation for visualising** by **walking through a few typical script creation scenarios**: getting our data, processing it, deciding what we want to do with it to prepare for visualising.
 
-> **For this part of the day, I'll be working through the material with you step by step, carrying out exactly the same tasks.** Things will doubtless go wrong, often just misplaced brackets and the like - **please ask if you're stuck.** 
+> **For this part of the course, I'll be working through the material with you step by step, carrying out exactly the same tasks.** Things will doubtless go wrong, often just misplaced brackets and the like - **please ask if you're stuck.** 
 
-2. The **second part** will be more free-form. There are **a range of choices** for you to pick in this half of the day. You'll get to work through whichever you like, with help on hand (and you'll get a break from me talking the whole time.) **If there's anything else you want to have a go at, let me know and I'll try to help.**
+2. The **second part** will be more free-form. There are **a range of choices** for you to play with. You'll get to work through whichever you like, with help on hand (and you'll get a break from me talking the whole time.) **If there's anything else you want to have a go at, let me know and I'll try to help.**
 
 *****
 
-**We're going to try and fit a lot into one day: don't worry too much if not all of it makes sense** as long as the overall picture you get *does* make sense. I'll try and make sure that everyone knows which bits they *really* need to have taken in.
+**We're going to try and fit a lot into one course: don't worry too much if not all of it makes sense** as long as the overall picture you get *does* make sense. I'll try and make sure that everyone knows which bits they *really* need to have taken in.
 
 **We'll only scratch the surface of what R and the tidyverse can do.** But it should be a solid foundation for further exploration.
 
-**We'll check in after every chunk of work** to make sure everyone's OK with where we've got to. Each part of the day builds on the other - it's important that you feel like it's making enough sense that you don't get lost as we move on. **Please do ask if anything is confusing. Any new programming concepts, even for experienced programmers is always confusing.** I learned Java before R: that didn't stop R being baffling for a long while.
+**We'll check in after every chunk of work** to make sure everyone's OK with where we've got to. Each part of the course builds on the other - it's important that you feel like it's making enough sense that you don't get lost as we move on. **Please do ask if anything is confusing. Any new programming concepts, even for experienced programmers is always confusing.** I learned Java before R: that didn't stop R being baffling for a long while.
 
 *****
 
-> **Our data for the day: *Land registry data on house prices in England*. (We'll also look at some other data and link it.)**
+> **Our data for the course: *Land registry data on house prices in England*. (We'll also look at some other data and link it.)**
 
 > **All of the data for the workshop is open access**: you can download it yourself for free. I've provided links and notes at the end of this document for that.
 
@@ -65,9 +65,9 @@ The day is split roughly into two:
 
 Some random tips before we get started properly:
 
-* I'd recommend typing out as many of the R commands we'll be working with where you can in the first part of the day - **it's by far the best way to learn and understand the code**. But if you get bored of that, or for some of the larger chunks of code later, feel free to use any of the code sources I've supplied. **The digital PDF and webpage also have links** to the topics we're covering, if you want to look at any of those during the day.
+* I'd recommend typing out as many of the R commands we'll be working with where you can in the first part of the course - **it's by far the best way to learn and understand the code**. But if you get bored of that, or for some of the larger chunks of code later, feel free to use any of the code sources I've supplied. **The digital PDF and webpage also have links** to the topics we're covering, if you want to look at any of those during the course.
 
-* **Learning some keyboard shortcuts helps massively**. You don't have to use them but, once learned, they're hugely useful in R-Studio. I'll explain them as we go along. I've also included a **keyboard shortcut sheet** for the ones you might want to use today.
+* **Learning some keyboard shortcuts helps massively**. You don't have to use them but, once learned, they're hugely useful in R-Studio. I'll explain them as we go along. I've also included a **keyboard shortcut sheet** for the ones you might want to use.
 
 * Oh and... **what's data wrangling?** I [refer you to Wikipedia](https://en.wikipedia.org/wiki/Data_wrangling). Really, it just means re-arranging data until it's the shape we need. It has its own word now because **we spend far more time doing this re-arranging than actual analysis.**
 
@@ -75,7 +75,7 @@ Right! --->
 
 ******
 
-# Getting started
+## Getting started
 
 OK, let's start by **sorting out our project folder** so we can access the data we're all going to be working from. We'll first need to **copy the data folder to our own machines**. Once you've done that, I'd recommend **making it a new RStudio project** via the top right button:
 
@@ -84,13 +84,13 @@ img <- readPNG("images/openproject.png")
 grid.raster(img)
 ```
 
-Navigate to your copied files and make a new project there. **We can now access all the files and save our R script and visualisations here**. Once you're done today, you can copy all this over to your USB stick or keep on your own drive.
+Navigate to your copied files and make a new project there. **We can now access all the files and save our R script and visualisations here**. Once you're done, you can copy all this over to your USB stick or keep on your own drive.
 
-So now: **create a new R script for your day's programming and we can begin.** Either use the menu (**file/new**) or the shortcut **CTRL+SHIFT+N**.
+So now: **create a new R script for your programming and we can begin.** Either use the menu (**file/new**) or the shortcut **CTRL+SHIFT+N**.
 
 *****
 
-# Loading the libraries
+## Loading the libraries
 
 Many of the most important **tidyverse** libraries are packaged into one - including **ggplot** and **dplyr**, the two we'll be using most heavily. We'll start our script by loading this library. **Stick this, and any later library loads, right at the top of your script:**
 
@@ -100,7 +100,7 @@ library(tidyverse)
 
 When it loads, you'll see the many different libraries that come in the tidyverse displayed in the console.
 
-If the library isn't yet installed, you'll get an error. You'll need to install it first. Because this only needs doing once, it's best to do it in the console. If you discover any other libraries we use today are not yet installed, it's same procedure. 
+If the library isn't yet installed, you'll get an error. You'll need to install it first. Because this only needs doing once, it's best to do it in the console. If you discover any other libraries we use in the course are not yet installed, it's same procedure. 
 
 > Note: **when installing, the library name needs to be in quote marks**. But it's **not in quote marks when we actually load the library.**
 
@@ -109,7 +109,7 @@ install.packages('tidyverse')
 ```
 
 
-# Loading the house price data
+## Loading the house price data
 
 **OK, let's get stuck in to the data we're going to use.** You can use the **file** pane, bottom-right, to have a look at the files. **Click on the 'data' folder**: as well as the little example dataframe we just looked at, this folder contains the following file:
 
@@ -162,7 +162,7 @@ We'll get to know the geographies better as we visualise them. But first...
 
 *****
 
-# Let's jump right into ggplot 
+## Let's jump right into ggplot 
 
 We can start making some **ggplots** immediately: **these won't be pretty, but we can use them to illustrate the basics of how *ggplot* works, step by step.**
 
@@ -264,19 +264,19 @@ ggplot(saleSample, aes(x = date, y = price)) +
 
 **ggplot** can plot dates correctly and provides axis ticks - but using each day is far too messy. We need to do two things to fix this:
 
-1. **Create a better date category - we'll break the data down by year.**
+1. **Create a better date category - we'll break the data down by year.**4
 2. **Summarise the housing data based on this.**
 
 There are two ways to summarise data for **ggplot**: 
 
 * **ggplot**'s own **stat** functions (more on these after the next section...)
-* **Wrangling into the right shape ourselves** using **dplyr** and other R functions. While rather more work, this is the only way to fully control what you want to visualise. **Learning about wrangling and dplyr will be a big chunk of the day.**
+* **Wrangling into the right shape ourselves** using **dplyr** and other R functions. While rather more work, this is the only way to fully control what you want to visualise. **Learning about wrangling and dplyr will be a big chunk of the course.**
 
 First-up though: **making a useable date column.**
 
 *****
 
-# The lubridate library
+## The lubridate library
 
 > **Time for another library: lubridate**. As you'd expect, this makes working with dates a lot easier. Put this library call with the others at the top of the script.
 
@@ -321,7 +321,7 @@ table(sales$year, sales$type)
 
 *******
 
-# Using ggplot's own stat functions
+## Using ggplot's own stat functions
 
 Now there's a year column, we can start **summarising the data for each year.** Going back to the original question - what impact did the 2007/8 crash have on the housing market - we can start by asking:
 
@@ -416,13 +416,11 @@ We'll come back to one or two of these later. For now, on to **using dplyr** to 
 
 
 
-# Getting started with **dplyr** and **piping**
+## Getting started with **dplyr** and **piping**
 
 We're going to be mainly using **dplyr** to reshape our data into different forms for the visualisations. (We've already loaded this library as part of the **tidyverse** package.) 
 
-Before we get to **dplyr** itself - 
-
-## Piping! 
+Before we get to **dplyr** itself - Piping! 
 
 > **Piping is *magic*: it will make everything spectacularly easier and tidier.** 
 
@@ -705,7 +703,7 @@ ggplot(saleSummary, aes(x = year, y = meanPrice, colour = ttwa)) +
 
 *****
 
-# Using scales to control appearance
+## Using scales to control appearance
 
 The last graph was getting there: it's possible to see that **prices were rising up until the crash** - we'll need some more tweaks to properly compare places with different average house prices.
 
@@ -799,7 +797,7 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
 
 
 
-# Scales for controlling colour
+## Scales for controlling colour
 
 We've been using ggplot's default colour scheme so far but - as with other scales - we can choose a colour scheme for the **colour mapping** ourselves. There are a huge number of options here, many on **page 2 of the ggplot cheatsheet** - let's just cover two.
 
@@ -860,7 +858,7 @@ ggplot(saleSummary %>% filter(ttwa!='London'),
 
 *****
 
-# Using factors to control order of variables
+## Using factors to control order of variables
 
 Up to now, the TTWAs **have appeared in alphabetical order in the legend** - which is a bit visually confusing, as **the highest prices are nearer the top**. It would be nice if the legend matched this.
 
@@ -924,7 +922,7 @@ There'll be a lot more info on controlling appearance later.
 
 ***********************************************
 
-#  Joining data sources together
+##  Joining data sources together
 
 
 It would be very useful to be able to **adjust our house price data to something that's consistent over time**. But how? We could use some value for inflation, but this doesn't actually include house price change and would only provide a single adjustment figure for the whole of England.
@@ -1263,7 +1261,7 @@ ggplot(price_n_wage2018, aes(x = wagemultiple, y = medianwage)) +
 
 ******
 
-# Saving ggplots as image files
+## Saving ggplots as image files
 
 Lastly, **let's save a plot as an image file**. To do this, we need to assign the plot to its own variable. If we re-run the previous **ggplot** of top and bottom wage multiples, it's done like this - assigning to a variable as we would with any other assignment:
 
@@ -1315,7 +1313,7 @@ ggsave('images/topAndBottomLAs_wageMultiples_lowres.png',
 
 ## Time for a pause!
 
-So you've successfully loaded data, wrangled it and visualised it. Just a quick reflection on how we did that, before moving on to the second part of the day:
+So you've successfully loaded data, wrangled it and visualised it. Just a quick reflection on how we did that, before moving on to the second part of this section:
 
 * **We used a bunch of *tidyverse* libraries** to process and visualise data. These are all designed with the same philosophy of `constrain to simplify'.
 
@@ -1323,7 +1321,7 @@ So you've successfully loaded data, wrangled it and visualised it. Just a quick 
 
 *****
 
-OK, so next - you've got **six (and a bit) options** to have a go at. For this part of the day I'm going to let you work independently from this booklet and be on hand to help. If anything important comes up, I'll work through it on the screen again.
+OK, so next - you've got **six (and a bit) options** to have a go at. For this part of the course I'm going to let you work independently from this booklet and be on hand to help. If anything important comes up, I'll work through it on the screen again.
 
 1. **Working on prettifying the plot you've just made.** This covers some of the most common options for customising plots.
 
@@ -1347,9 +1345,13 @@ And this one doesn't have its own section below: you're on your own! Work with t
 
 *****
 
-# SIX (and a bit) OPTIONS
+# FREEFORM 1: WORK ON NEW IDEAS TOGETHER...
 
-# Prettifying a graph
+From here on, we can either look at some more examples below, or work on other data ideas e.g. perhaps some Sheffield-specific data sources. Here are six other options if we want to look at those:
+
+# FREEFORM 2: SIX OTHER OPTIONS TO PLAY WITH
+
+## Prettifying a graph
 
 So we made some graphs, but they're lacking finesse. **ggplot** provides many ways to customise its appearance to make it more presentable. **In this option, we'll look at some of the most common functions used to do this.** So here's the plot we were just working on, for reference - **but feel free to go and grab code for the earlier plots if you'd prefer.** This will all apply to those too.
 
@@ -1558,7 +1560,7 @@ ggplot(price_n_wage %>% filter(Area %in% zoneselection$Area),
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-# Facetting and dodging: getting as much info into one graph as humanly possible
+## Facetting and dodging: getting as much info into one graph as humanly possible
 
 There's a quote about visualisation doing the rounds:
 
@@ -1770,7 +1772,7 @@ ggplot(price_n_wage %>% filter(Area %in% c('Camden','Oxford','Wirral','Liverpool
 
 *****
 
-# Iteration
+## Iteration
 
 
 *****
@@ -1913,7 +1915,7 @@ for(grp in groupsToPrint){
 
 *****
 
-## 2. Pulling out multiple model values and visualising them
+### 2. Pulling out multiple model values and visualising them
 
 
 This section is inspired by code from the excellent book [R for Data Science](http://r4ds.had.co.nz/) and the section on mapping with the **purrr** library (another one that comes packaged with the **tidyverse library**).
@@ -2278,7 +2280,7 @@ Again, the **R for Data Science** book has a lot more on functional programming 
 
 ***********
 
-# A little bit of mapping
+## A little bit of mapping
 
 In this section, we'll take a quick look at three different ways to make maps from the housing data:
 
@@ -2289,7 +2291,7 @@ The **sf library** is relatively new: it's particularly great because it works e
 
 
 
-## One simple way to use ggplot for mapping: the 2D geoms
+### One simple way to use ggplot for mapping: the 2D geoms
 
 A really simple way to make quick maps is to use ggplot's **2D geoms**. One of these included on the ggplot cheatsheet - **geom_bin2d** - does a single job: as the help says, if you have two dimensions of continuous data, it:
 
@@ -2359,7 +2361,7 @@ Try finding the **minimum** and **maximum** property value per square (using the
 > Or the last part of this section just shows quickly how to use the **map** function from the **purrr** library (also used in the 'pulling out multiple values' section) to get around a problem with using facet (see the facet section).
 
 
-## Using cowplot to get around the facetting problem
+### Using cowplot to get around the facetting problem
 
 As the section above on facetting shows, **ggplot** can be used to 'facet' produce many sub-plots based on a factor, like property type. However, facets all **keep the same colour scale**. This can be a problem if e.g. the count of flats and detached houses is very different: each individual map will have its scale compressed and look flat and boring.
 
@@ -2476,7 +2478,7 @@ plot_grid(plotlist = plots, ncol = 2, nrow = 2)
 
 *****
 
-# Making a map using the simple features library, tmap and a bit of wrangling
+## Making a map using the simple features library, tmap and a bit of wrangling
 
 Another way to map data is the **simple features library**. As always, if it's not installed, do so with:
 
@@ -2612,7 +2614,7 @@ img <- readPNG("images/londonhouseprices_ward2018formarkdown.png")
 
 *****
 
-# A last little ggplot mapping example
+### A last little ggplot mapping example
 
 
 We've already seen at the start, if you have point coordinates you can map these to the x and y axes to get an idea of the geography of your data.
