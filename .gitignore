@@ -47,3 +47,4 @@ po/*~
 *.tmp
 
 data/*
+!data/averagePricePerTTWA.csv
