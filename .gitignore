@@ -48,3 +48,4 @@ po/*~
 
 data/*
 !data/averagePricePerTTWA.csv
+!data/metalbands_per_country.csv
